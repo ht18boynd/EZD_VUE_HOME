@@ -1,12 +1,15 @@
 <template>
-<router-view></router-view>
+  <div>
+    About Page
+  </div>
 </template>
 
 <script>
 export default {
- name: 'App',
-
+name:'aboutEZD'
 }
 </script>
 
+<style>
 
+</style>

@@ -4818,9 +4818,9 @@ body.dark-mode #filter-form input[type="submit"] {
 }
 
 .categories-bar {
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .category-item {
@@ -4832,19 +4832,27 @@ body.dark-mode #filter-form input[type="submit"] {
     margin-right: 14px;
     white-space: nowrap;
     flex-basis: 160px;
+    width: 20%;
+    
+  
 }
 
 .category-item a {
+
     display: flex;
     align-items: center;
     padding: 9px 16px;
+
+   
 }
 
 .category-item svg {
     margin-right: 7px;
+  
 }
 
 .category-item:hover {
+   
     display: inline-flex;
     align-self: center;
     border-radius: var(--btn-border-radius);
