@@ -142,6 +142,11 @@
 <script>
 export default {
   name: "navigationPanel",
+  data(){
+  return {
+       BASE_URL: process.env.BASE_URL,
+  }
+}
 };
 </script>
 

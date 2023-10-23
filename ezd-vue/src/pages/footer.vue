@@ -6,7 +6,7 @@
               <div class="footer-widget">
                 <div class="logo">
                   <a class="logo-link" href="01-index.html">
-                    <div class="logo-img"><img src="svg/cryptoki-logo.svg" alt="logo" ></div>
+                    <div class="logo-img"><img :src="BASE_URL + 'assets/svg/cryptoki-logo.svg'" alt="logo" ></div>
                     <div class="logo-text">Cryptoki</div>
                   </a>
                 </div>
@@ -104,7 +104,12 @@
 
 <script>
 export default {
-name:'footerHome'
+name:'footerHome',
+data(){
+  return {
+       BASE_URL: process.env.BASE_URL,
+  }
+}
 }
 </script>
 

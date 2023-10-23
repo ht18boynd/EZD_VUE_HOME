@@ -6,7 +6,7 @@
             <div class="mobile-nav-panel">
               <div class="mobile-nav-header">
                 <!--MOBILE LOGO-->
-                <div class="mobile-menu-logo logo"><a href="01-index.html"><img src="svg/cryptoki-logo.svg" alt="" ></a>
+                <div class="mobile-menu-logo logo"><a href="01-index.html"><img  :src="BASE_URL + 'assets/svg/cryptoki-logo.svg'" alt="" ></a>
                 </div>
                 <!--/MOBILE LOGO-->
                 <!--close button-->
@@ -170,7 +170,7 @@
             <!--LOGO-->
             <div class="logo ">
               <a class="logo-link" href="01-index.html">
-                <div class="logo-img"><img src="svg/cryptoki-logo.svg" alt="logo" ></div>
+                <div class="logo-img"><img  :src="BASE_URL + 'assets/svg/cryptoki-logo.svg'" alt="logo" ></div>
                 <div class="logo-text">Cryptoki</div>
               </a>
             </div>
@@ -234,7 +234,7 @@
                     <!--cart product-->
                     <div class="cart-product">
                       <div class="thumb-box">
-                        <a href="05-product-page.html"><img src="img/content/notifications/notif-thumb-1.png" width="50" height="50" alt="UI templates" loading="lazy"></a>
+                        <a href="05-product-page.html"><img  :src="BASE_URL + 'assets/img/content/notifications/notif-thumb-1.png'" width="50" height="50" alt="UI templates" loading="lazy"></a>
                       </div>
                       <div class="purchase-info">
                         <div class="product-info">
@@ -249,7 +249,7 @@
                     <!--cart product-->
                     <div class="cart-product">
                       <div class="thumb-box">
-                        <a href="06-product-page-v2.html"><img src="img/content/notifications/notif-thumb-2.png" width="50" height="50" alt="Social graphics" loading="lazy"></a>
+                        <a href="06-product-page-v2.html"><img  :src="BASE_URL + 'assets/img/content/notifications/notif-thumb-2.png'" width="50" height="50" alt="Social graphics" loading="lazy"></a>
                       </div>
                       <div class="purchase-info">
                         <div class="product-info">
@@ -264,7 +264,7 @@
                     <!--cart product-->
                     <div class="cart-product">
                       <div class="thumb-box">
-                        <a href="07-product-page-v3.html"><img src="img/content/notifications/notif-thumb-3.png" width="50" height="50" alt="Coded templates" loading="lazy"></a>
+                        <a href="07-product-page-v3.html"><img  :src="BASE_URL + 'assets/img/content/notifications/notif-thumb-3.png'" width="50" height="50" alt="Coded templates" loading="lazy"></a>
                       </div>
                       <div class="purchase-info">
                         <div class="product-info">
@@ -312,7 +312,7 @@
                     <!--notification-item-->
                     <div class="notification">
                       <div class="thumb-box">
-                        <img src="img/content/notifications/notif-thumb-1.png" width="50" height="50" alt="" loading="lazy">
+                        <img  :src="BASE_URL + 'assets/img/content/notifications/notif-thumb-1.png'" width="50" height="50" alt="" loading="lazy">
                         <span class="bid-type"><svg class="crumina-icon">
                             <use xlink:href="#annotation-icon"></use>
                           </svg></span>
@@ -329,7 +329,7 @@
                     <!--/notification-item-->
                     <!--notification-item-->
                     <div class="notification">
-                      <div class="thumb-box"><img src="img/content/notifications/notif-thumb-1.png" height="50" width="50" alt="" loading="lazy">
+                      <div class="thumb-box"><img  :src="BASE_URL + 'assets/img/content/notifications/notif-thumb-1.png'" height="50" width="50" alt="" loading="lazy">
                         <span class="purchase-type">
                           <svg class="crumina-icon">
                             <use xlink:href="#wallet-icon"></use>
@@ -349,7 +349,7 @@
                     <!--notification-item-->
                     <div class="notification">
                       <div class="thumb-box">
-                        <img src="img/content/notifications/notif-thumb-2.png" width="50" height="50" alt="" loading="lazy">
+                        <img  :src="BASE_URL + 'assets/img/content/notifications/notif-thumb-2.png'" width="50" height="50" alt="" loading="lazy">
                         <span class="like-type"><svg class="crumina-icon">
                             <use xlink:href="#heart-icon"></use>
                           </svg></span>
@@ -366,7 +366,7 @@
                     <!--/notification-item-->
                     <!--notification-item-->
                     <div class="notification">
-                      <div class="thumb-box"><img src="img/content/notifications/notif-thumb-1.png" height="50" width="50" alt="" loading="lazy">
+                      <div class="thumb-box"><img  :src="BASE_URL + 'assets/img/content/notifications/notif-thumb-1.png'" height="50" width="50" alt="" loading="lazy">
                         <span class="review-type">
                           <svg class="crumina-icon">
                             <use xlink:href="#star-icon"></use>
@@ -404,7 +404,7 @@
               <div class="avatar box-42">
                 <picture>
                   <source type="image/avif" srcset="avif/avatar.avif" />
-                  <img src="img/avatar.png" alt="avatar" loading="lazy" width="100" height="100">
+                  <img  :src="BASE_URL + 'assets/img/avatar.png'" alt="avatar" loading="lazy" width="100" height="100">
                 </picture>
   
                 <span class="verified"><svg class="crumina-icon">
@@ -425,7 +425,7 @@
                   <div class="profile-heading">
                     <!--user-avatar-->
                     <div class="profile-avatar avatar box-26">
-                      <img src="img/avatar.png" alt="avatar" loading="lazy" height="100" width="100">
+                      <img  :src="BASE_URL + 'assets/img/avatar.png'" alt="avatar" loading="lazy" height="100" width="100">
                       <span class="verified"><svg class="crumina-icon">
                           <use xlink:href="#check-icon"></use>
                         </svg></span>
@@ -508,7 +508,12 @@
 
 <script>
 export default {
-name:'headerPanel'
+name:'headerPanel',
+data(){
+  return {
+       BASE_URL: process.env.BASE_URL,
+  }
+}
 }
 </script>
 

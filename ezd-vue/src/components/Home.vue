@@ -20,7 +20,7 @@
                   srcset="avif/content/slider/slider-img-3.avif"
                 />
                 <img
-                  src="img/content/slider/slider-img-3.png"
+                  src="assets/img/content/slider/slider-img-3.png"
                   width="940"
                   height="640"
                   alt="Slide Image"
@@ -37,7 +37,7 @@
                         <picture>
                           <source type="image/avif" srcset="avif/avatar.avif" />
                           <img
-                            src="img/avatar.png"
+                            src="assets/img/avatar.png"
                             alt="avatar"
                             loading="lazy"
                             width="100"
@@ -86,7 +86,7 @@
                   srcset="avif/content/slider/slider-img-1.avif"
                 />
                 <img
-                  src="img/content/slider/slider-img-1.png"
+                  src="assets/img/content/slider/slider-img-1.png"
                   width="940"
                   height="640"
                   alt="Slide Image"
@@ -111,7 +111,7 @@
                   srcset="avif/content/slider/slider-img-2.avif"
                 />
                 <img
-                  src="img/content/slider/slider-img-2.png"
+                  src="assets/img/content/slider/slider-img-2.png"
                   width="940"
                   height="640"
                   alt="Slide Image"
@@ -127,7 +127,7 @@
                         <picture>
                           <source type="image/avif" srcset="avif/avatar.avif" />
                           <img
-                            src="img/avatar.png"
+                            src="assets/img/avatar.png"
                             alt="avatar"
                             loading="lazy"
                             width="100"
@@ -221,7 +221,7 @@
                             srcset="avif/content/items/featured-item-1.avif"
                           />
                           <img
-                            src="img/content/items/featured-item-1.png"
+                            src="assets/img/content/items/featured-item-1.png"
                             width="304"
                             height="340"
                             alt="Featured"
@@ -253,7 +253,7 @@
                                 srcset="avif/avatar.avif"
                               />
                               <img
-                                src="img/avatar.png"
+                                src="assets/img/avatar.png"
                                 alt="avatar"
                                 loading="lazy"
                                 width="100"
@@ -310,7 +310,7 @@
                             srcset="avif/content/items/featured-item-2.avif"
                           />
                           <img
-                            src="img/content/items/featured-item-2.png"
+                            src="assets/img/content/items/featured-item-2.png"
                             width="304"
                             height="340"
                             alt="Featured"
@@ -336,7 +336,7 @@
                         <span class="avatar box-26">
                           <a href="08-profile-page.html"
                             ><img
-                              src="img/avatar-2.png"
+                              src="assets/img/avatar-2.png"
                               height="52"
                               width="52"
                               alt=""
@@ -391,7 +391,7 @@
                             srcset="avif/content/items/featured-item-3.avif"
                           />
                           <img
-                            src="img/content/items/featured-item-3.png"
+                            src="assets/img/content/items/featured-item-3.png"
                             width="304"
                             height="340"
                             loading="lazy"
@@ -423,7 +423,7 @@
                                 srcset="avif/avatar.avif"
                               />
                               <img
-                                src="img/avatar.png"
+                                src="assets/img/avatar.png"
                                 alt="avatar"
                                 loading="lazy"
                                 width="100"
@@ -480,7 +480,7 @@
                             srcset="avif/content/items/featured-item-4.avif"
                           />
                           <img
-                            src="img/content/items/featured-item-4.png"
+                            src="assets/img/content/items/featured-item-4.png"
                             width="304"
                             height="340"
                             loading="lazy"
@@ -507,7 +507,7 @@
                         <span class="avatar box-26">
                           <a href="08-profile-page.html"
                             ><img
-                              src="img/avatar-8.png"
+                              src="assets/img/avatar-8.png"
                               height="52"
                               width="52"
                               alt=""
@@ -563,7 +563,7 @@
                   <picture>
                     <source type="image/avif" srcset="avif/avatar.avif" />
                     <img
-                      src="img/avatar.png"
+                      src="assets/img/avatar.png"
                       alt="avatar"
                       loading="lazy"
                       width="100"
@@ -595,7 +595,7 @@
                       srcset="avif/content/previews/project-thumb-1.avif"
                     />
                     <img
-                      src="img/content/previews/project-thumb-1.png"
+                      src="assets/img/content/previews/project-thumb-1.png"
                       height="68"
                       width="68"
                       alt=""
@@ -612,7 +612,7 @@
                       srcset="avif/content/previews/project-thumb-2.avif"
                     />
                     <img
-                      src="img/content/previews/project-thumb-2.png"
+                      src="assets/img/content/previews/project-thumb-2.png"
                       height="66"
                       width="66"
                       alt=""
@@ -629,7 +629,7 @@
                       srcset="avif/content/previews/project-thumb-3.avif"
                     />
                     <img
-                      src="img/content/previews/project-thumb-3.png"
+                      src="assets/img/content/previews/project-thumb-3.png"
                       height="68"
                       width="68"
                       alt=""
@@ -646,7 +646,7 @@
               <div class="avatar box-64">
                 <a href="08-profile-page.html">
                   <img
-                    src="img/avatar-2.png"
+                    src="assets/img/avatar-2.png"
                     width="52"
                     height="52"
                     alt="avatar"
@@ -675,7 +675,7 @@
                       srcset="avif/content/previews/project-thumb-5.avif"
                     />
                     <img
-                      src="img/content/previews/project-thumb-5.png"
+                      src="assets/img/content/previews/project-thumb-5.png"
                       height="68"
                       width="68"
                       alt=""
@@ -692,7 +692,7 @@
                       srcset="avif/content/previews/project-thumb-9.avif"
                     />
                     <img
-                      src="img/content/previews/project-thumb-9.png"
+                      src="assets/img/content/previews/project-thumb-9.png"
                       height="74"
                       width="74"
                       alt=""
@@ -709,7 +709,7 @@
                       srcset="avif/content/previews/project-thumb-10.avif"
                     />
                     <img
-                      src="img/content/previews/project-thumb-10.png"
+                      src="assets/img/content/previews/project-thumb-10.png"
                       height="68"
                       width="68"
                       alt=""
@@ -726,7 +726,7 @@
               <div class="avatar box-64">
                 <a href="08-profile-page.html">
                   <img
-                    src="img/avatar-5.png"
+                    src="assets/img/avatar-5.png"
                     height="52"
                     width="52"
                     alt="avatar"
@@ -755,7 +755,7 @@
                       srcset="avif/content/previews/project-thumb-4.avif"
                     />
                     <img
-                      src="img/content/previews/project-thumb-4.png"
+                      src="assets/img/content/previews/project-thumb-4.png"
                       height="68"
                       width="68"
                       alt=""
@@ -772,7 +772,7 @@
                       srcset="avif/content/previews/project-thumb-11.avif"
                     />
                     <img
-                      src="img/content/previews/project-thumb-11.png"
+                      src="assets/img/content/previews/project-thumb-11.png"
                       height="68"
                       width="68"
                       alt=""
@@ -789,7 +789,7 @@
                       srcset="avif/content/previews/project-thumb-12.avif"
                     />
                     <img
-                      src="img/content/previews/project-thumb-12.png"
+                      src="assets/img/content/previews/project-thumb-12.png"
                       height="68"
                       width="68"
                       alt=""
@@ -806,7 +806,7 @@
               <div class="avatar box-64">
                 <a href="08-profile-page.html">
                   <img
-                    src="img/avatar-3.png"
+                    src="assets/img/avatar-3.png"
                     height="52"
                     width="52"
                     alt="avatar"
@@ -830,7 +830,7 @@
               <div class="preview-box box-68">
                 <a href="05-product-page.html"
                   ><img
-                    src="img/content/previews/project-thumb-13.png"
+                    src="assets/img/content/previews/project-thumb-13.png"
                     height="68"
                     width="68"
                     alt=""
@@ -840,7 +840,7 @@
               <div class="preview-box box-68">
                 <a href="06-product-page-v2.html"
                   ><img
-                    src="img/content/previews/project-thumb-14.png"
+                    src="assets/img/content/previews/project-thumb-14.png"
                     height="68"
                     width="68"
                     alt=""
@@ -850,7 +850,7 @@
               <div class="preview-box box-68">
                 <a href="07-product-page-v3.html"
                   ><img
-                    src="img/content/previews/project-thumb-8.png"
+                    src="assets/img/content/previews/project-thumb-8.png"
                     height="74"
                     width="74"
                     alt=""
@@ -865,7 +865,7 @@
               <div class="avatar box-64">
                 <a href="08-profile-page.html">
                   <img
-                    src="img/avatar-10.png"
+                    src="assets/img/avatar-10.png"
                     width="52"
                     height="52"
                     alt="avatar"
@@ -889,7 +889,7 @@
               <div class="preview-box box-68">
                 <a href="05-product-page.html"
                   ><img
-                    src="img/content/previews/project-thumb-15.png"
+                    src="assets/img/content/previews/project-thumb-15.png"
                     height="68"
                     width="68"
                     alt=""
@@ -899,7 +899,7 @@
               <div class="preview-box box-68">
                 <a href="06-product-page-v2.html"
                   ><img
-                    src="img/content/previews/project-thumb-16.png"
+                    src="assets/img/content/previews/project-thumb-16.png"
                     height="68"
                     width="68"
                     alt=""
@@ -909,7 +909,7 @@
               <div class="preview-box box-68">
                 <a href="07-product-page-v3.html"
                   ><img
-                    src="img/content/previews/project-thumb-17.png"
+                    src="assets/img/content/previews/project-thumb-17.png"
                     height="68"
                     width="68"
                     alt=""
@@ -924,7 +924,7 @@
               <div class="avatar box-64">
                 <a href="08-profile-page.html">
                   <img
-                    src="img/avatar-8.png"
+                    src="assets/img/avatar-8.png"
                     height="52"
                     width="52"
                     alt="avatar"
@@ -948,7 +948,7 @@
               <div class="preview-box box-68">
                 <a href="05-product-page.html"
                   ><img
-                    src="img/content/previews/project-thumb-18.png"
+                    src="assets/img/content/previews/project-thumb-18.png"
                     height="68"
                     width="68"
                     alt=""
@@ -958,7 +958,7 @@
               <div class="preview-box box-68">
                 <a href="06-product-page-v2.html"
                   ><img
-                    src="img/content/previews/project-thumb-19.png"
+                    src="assets/img/content/previews/project-thumb-19.png"
                     height="68"
                     width="68"
                     alt=""
@@ -968,7 +968,7 @@
               <div class="preview-box box-68">
                 <a href="07-product-page-v3.html"
                   ><img
-                    src="img/content/previews/project-thumb-20.png"
+                    src="assets/img/content/previews/project-thumb-20.png"
                     height="68"
                     width="68"
                     alt=""
@@ -1006,7 +1006,7 @@
                           srcset="avif/content/items/featured-item-5.avif"
                         />
                         <img
-                          src="img/content/items/featured-item-5.png"
+                          src="assets/img/content/items/featured-item-5.png"
                           width="304"
                           height="340"
                           loading="lazy"
@@ -1028,7 +1028,7 @@
                               srcset="avif/avatar.avif"
                             />
                             <img
-                              src="img/avatar.png"
+                              src="assets/img/avatar.png"
                               alt="avatar"
                               loading="lazy"
                               width="100"
@@ -1083,7 +1083,7 @@
                           srcset="avif/content/items/featured-item-6.avif"
                         />
                         <img
-                          src="img/content/items/featured-item-6.png"
+                          src="assets/img/content/items/featured-item-6.png"
                           width="304"
                           height="340"
                           loading="lazy"
@@ -1105,7 +1105,7 @@
                               srcset="avif/avatar.avif"
                             />
                             <img
-                              src="img/avatar.png"
+                              src="assets/img/avatar.png"
                               alt="avatar"
                               loading="lazy"
                               width="100"
@@ -1155,7 +1155,7 @@
                   <div class="featured-item-image">
                     <a href="05-product-page.html"
                       ><img
-                        src="img/content/items/featured-item-7.png"
+                        src="assets/img/content/items/featured-item-7.png"
                         width="304"
                         height="340"
                         alt=""
@@ -1180,7 +1180,7 @@
                       <span class="avatar box-26">
                         <a href="08-profile-page.html">
                           <img
-                            src="img/avatar-2.png"
+                            src="assets/img/avatar-2.png"
                             height="52"
                             width="52"
                             alt=""
@@ -1229,7 +1229,7 @@
                   <div class="featured-item-image">
                     <a href="06-product-page-v2.html"
                       ><img
-                        src="img/content/items/featured-item-8.png"
+                        src="assets/img/content/items/featured-item-8.png"
                         width="304"
                         height="340"
                         alt=""
@@ -1244,7 +1244,7 @@
                       <span class="avatar box-26">
                         <a href="08-profile-page.html">
                           <img
-                            src="img/avatar-8.png"
+                            src="assets/img/avatar-8.png"
                             height="52"
                             width="52"
                             alt=""
@@ -1293,7 +1293,7 @@
                   <div class="featured-item-image">
                     <a href="07-product-page-v3.html"
                       ><img
-                        src="img/content/items/featured-item-9.png"
+                        src="assets/img/content/items/featured-item-9.png"
                         width="304"
                         height="340"
                         alt=""
@@ -1308,7 +1308,7 @@
                       <span class="avatar box-26">
                         <a href="08-profile-page.html">
                           <img
-                            src="img/avatar-3.png"
+                            src="assets/img/avatar-3.png"
                             height="52"
                             width="52"
                             alt=""
@@ -1357,7 +1357,7 @@
                   <div class="featured-item-image">
                     <a href="05-product-page.html"
                       ><img
-                        src="img/content/items/featured-item-10.png"
+                        src="assets/img/content/items/featured-item-10.png"
                         width="304"
                         height="340"
                         alt=""
@@ -1382,7 +1382,7 @@
                       <span class="avatar box-26">
                         <a href="08-profile-page.html">
                           <img
-                            src="img/avatar-5.png"
+                            src="assets/img/avatar-5.png"
                             height="52"
                             width="52"
                             alt=""
@@ -1431,7 +1431,7 @@
                   <div class="featured-item-image">
                     <a href="06-product-page-v2.html"
                       ><img
-                        src="img/content/items/featured-item-11.png"
+                        src="assets/img/content/items/featured-item-11.png"
                         width="304"
                         height="340"
                         alt=""
@@ -1446,7 +1446,7 @@
                       <span class="avatar box-26">
                         <a href="08-profile-page.html"
                           ><img
-                            src="img/avatar-3.png"
+                            src="assets/img/avatar-3.png"
                             height="52"
                             width="52"
                             alt=""
@@ -1494,7 +1494,7 @@
                   <div class="featured-item-image">
                     <a href="07-product-page-v3.html"
                       ><img
-                        src="img/content/items/featured-item-12.png"
+                        src="assets/img/content/items/featured-item-12.png"
                         width="304"
                         height="340"
                         alt=""
@@ -1509,7 +1509,7 @@
                       <span class="avatar box-26">
                         <a href="08-profile-page.html">
                           <img
-                            src="img/avatar-5.png"
+                            src="assets/img/avatar-5.png"
                             height="52"
                             width="52"
                             alt=""
@@ -1558,7 +1558,7 @@
                   <div class="featured-item-image">
                     <a href="05-product-page.html"
                       ><img
-                        src="img/content/items/featured-item-13.png"
+                        src="assets/img/content/items/featured-item-13.png"
                         width="304"
                         height="340"
                         alt=""
@@ -1583,7 +1583,7 @@
                       <span class="avatar box-26">
                         <a href="08-profile-page.html">
                           <img
-                            src="img/avatar-5.png"
+                            src="assets/img/avatar-5.png"
                             alt=""
                             height="52"
                             width="52"
@@ -1632,7 +1632,7 @@
                   <div class="featured-item-image">
                     <a href="06-product-page-v2.html"
                       ><img
-                        src="img/content/items/featured-item-14.png"
+                        src="assets/img/content/items/featured-item-14.png"
                         width="304"
                         height="340"
                         alt=""
@@ -1647,7 +1647,7 @@
                       <span class="avatar box-26">
                         <a href="08-profile-page.html"
                           ><img
-                            src="img/avatar-10.png"
+                            src="assets/img/avatar-10.png"
                             height="52"
                             width="52"
                             alt=""
@@ -1695,7 +1695,7 @@
                   <div class="featured-item-image">
                     <a href="07-product-page-v3.html"
                       ><img
-                        src="img/content/items/featured-item-15.png"
+                        src="assets/img/content/items/featured-item-15.png"
                         width="304"
                         height="340"
                         alt=""
@@ -1720,7 +1720,7 @@
                       <span class="avatar box-26">
                         <a href="08-profile-page.html"
                           ><img
-                            src="img/avatar-10.png"
+                            src="assets/img/avatar-10.png"
                             height="52"
                             width="52"
                             alt=""
@@ -1768,7 +1768,7 @@
                   <div class="featured-item-image">
                     <a href="05-product-page.html"
                       ><img
-                        src="img/content/items/featured-item-16.png"
+                        src="assets/img/content/items/featured-item-16.png"
                         width="304"
                         height="340"
                         alt=""
@@ -1783,7 +1783,7 @@
                       <span class="avatar box-26">
                         <a href="08-profile-page.html"
                           ><img
-                            src="img/avatar-3.png"
+                            src="assets/img/avatar-3.png"
                             height="52"
                             width="52"
                             alt=""
@@ -1840,7 +1840,7 @@
         <div class="featured-creators-box grid-2-columns">
           <div class="featured-creators-item">
             <img
-              src="img/content/subtle-images/subtle-image-1.png"
+              src="assets/img/content/subtle-images/subtle-image-1.png"
               width="470"
               height="640"
               alt=""
@@ -1856,7 +1856,7 @@
                     <span class="avatar box-26">
                       <a href="08-profile-page.html"
                         ><img
-                          src="img/avatar.png"
+                          src="assets/img/avatar.png"
                           height="100"
                           width="100"
                           alt=""
@@ -1935,7 +1935,7 @@
                 <div class="preview-box">
                   <a href="05-product-page.html">
                     <img
-                      src="img/content/previews/project-thumb-1.png"
+                      src="assets/img/content/previews/project-thumb-1.png"
                       width="68"
                       height="68"
                       alt=""
@@ -1946,7 +1946,7 @@
                 <div class="preview-box">
                   <a href="06-product-page-v2.html"
                     ><img
-                      src="img/content/previews/project-thumb-2.png"
+                      src="assets/img/content/previews/project-thumb-2.png"
                       height="66"
                       width="66"
                       alt=""
@@ -1956,7 +1956,7 @@
                 <div class="preview-box">
                   <a href="07-product-page-v3.html"
                     ><img
-                      src="img/content/previews/project-thumb-3.png"
+                      src="assets/img/content/previews/project-thumb-3.png"
                       width="68"
                       height="68"
                       alt=""
@@ -1966,7 +1966,7 @@
                 <div class="preview-box">
                   <a href="05-product-page.html"
                     ><img
-                      src="img/content/previews/project-thumb-21.png"
+                      src="assets/img/content/previews/project-thumb-21.png"
                       height="50"
                       width="50"
                       alt=""
@@ -1984,7 +1984,7 @@
           </div>
           <div class="featured-creators-item">
             <img
-              src="img/content/subtle-images/subtle-image-2.png"
+              src="assets/img/content/subtle-images/subtle-image-2.png"
               width="470"
               height="640"
               alt=""
@@ -2000,7 +2000,7 @@
                     <span class="avatar box-26">
                       <a href="08-profile-page.html"
                         ><img
-                          src="img/avatar-5.png"
+                          src="assets/img/avatar-5.png"
                           height="52"
                           width="52"
                           alt=""
@@ -2080,7 +2080,7 @@
                 <div class="preview-box">
                   <a href="05-product-page.html"
                     ><img
-                      src="img/content/previews/project-thumb-4.png"
+                      src="assets/img/content/previews/project-thumb-4.png"
                       width="68"
                       height="68"
                       alt=""
@@ -2090,7 +2090,7 @@
                 <div class="preview-box">
                   <a href="06-product-page-v2.html"
                     ><img
-                      src="img/content/previews/project-thumb-11.png"
+                      src="assets/img/content/previews/project-thumb-11.png"
                       height="68"
                       width="68"
                       alt=""
@@ -2100,7 +2100,7 @@
                 <div class="preview-box">
                   <a href="07-product-page-v3.html"
                     ><img
-                      src="img/content/previews/project-thumb-12.png"
+                      src="assets/img/content/previews/project-thumb-12.png"
                       width="68"
                       height="68"
                       alt=""
@@ -2110,7 +2110,7 @@
                 <div class="preview-box">
                   <a href="05-product-page.html"
                     ><img
-                      src="img/content/previews/project-thumb-22.png"
+                      src="assets/img/content/previews/project-thumb-22.png"
                       height="50"
                       width="50"
                       alt=""
@@ -2154,7 +2154,7 @@
             <div class="news-thumb">
               <a href="14-blog-post-centered.html">
                 <img
-                  src="img/content/latest-news/news-thumb1.png"
+                  src="assets/img/content/latest-news/news-thumb1.png"
                   width="460"
                   height="260"
                   alt=""
@@ -2190,7 +2190,7 @@
             <div class="news-thumb">
               <a href="14-blog-post-centered.html">
                 <img
-                  src="img/content/latest-news/news-thumb2.png"
+                  src="assets/img/content/latest-news/news-thumb2.png"
                   height="260"
                   width="460"
                   alt=""
@@ -2228,7 +2228,7 @@
             <div class="news-thumb">
               <a href="15-blog-post-sidebar.html">
                 <img
-                  src="img/content/latest-news/news-thumb3.png"
+                  src="assets/img/content/latest-news/news-thumb3.png"
                   width="460"
                   height="260"
                   alt=""
@@ -2280,8 +2280,9 @@ import headerPanel from "@/pages/header.vue";
 import footerVue from "@/pages/footer.vue";
 import navigationVue from "@/pages/navigation.vue";
 import footerBlock from "@/pages/footerblock.vue";
+import GameService from "@/service/GameService";
 
-import categoriesBarVue from '@/pages/categoriesBar.vue';
+import categoriesBarVue from "@/pages/categoriesBar.vue";
 export default {
   name: "homeEZD",
   components: {
@@ -2289,9 +2290,38 @@ export default {
     footerVue,
     navigationVue,
     footerBlock,
-    categoriesBarVue
+    categoriesBarVue,
+  },
+  data() {
+    return {
+      gamelist: [],
+    };
+  },
+  methods: {
+    async getAllGames() {
+      try {
+        const response = await GameService.getAllGames();
+        this.gamelist = response.data.sort((a, b) => b.id - a.id);
+      } catch (error) {
+        console.error("Lỗi khi lấy danh sách trò chơi: ", error);
+      }
+    },
+  },
+  async created() {
+   
+    await this.getAllGames();
+
+    // await this.getAllLevels();
+    // await this.getAllRoles();
+    // await this.getAllGenders();
+  },
+  computed: {
+    // Tính toán `maxId` để xác định `id` lớn nhất trong danh sách
+    maxId() {
+      return Math.max(...this.gamelist.map((game) => game.id));
+    },
   },
 };
 </script>
 
-<style></style>
+
