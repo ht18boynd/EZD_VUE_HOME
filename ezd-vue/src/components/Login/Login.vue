@@ -1,12 +1,13 @@
 <template>
-<router-view></router-view>
+  <div>Loign Page</div>
 </template>
 
 <script>
 export default {
- name: 'App',
-
+name:'loginHome'
 }
 </script>
 
+<style>
 
+</style>
