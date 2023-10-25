@@ -2,51 +2,107 @@
 <html class="no-js" lang="en">
   <!-- Mirrored from html.crumina.net/cryptoki/nft/21-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 12 Oct 2023 14:37:03 GMT -->
   <head>
-    <meta charset="utf-8" />
-    <title>Home</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <meta property="og:title" content="" />
-    <meta property="og:type" content="" />
-    <meta property="og:url" content="" />
-    <meta property="og:image" content="" />
-
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
-
-    <link
-      rel="preload"
-      href="<%= BASE_URL %>assets/fonts/manrope-v4-latin-500.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="<%= BASE_URL %>assets/fonts/manrope-v4-latin-800.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link rel="stylesheet" href="<%= BASE_URL %>assets/css/fonts.css" />
-    <link rel="stylesheet" href="<%= BASE_URL %>assets/css/normalize.css" />
-    <link rel="stylesheet" href="<%= BASE_URL %>assets/css/main.css" />
-    <link rel="stylesheet" href="<%= BASE_URL %>assets/css/swiper-bundle.css" />
-    <link rel="stylesheet" href="<%= BASE_URL %>assets/css/login-register.css" />
-
-    <meta name="theme-color" content="#fafafa" />
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="ThemeMarch">
+    <!-- Site Title -->
+    <title>NFT Home</title>
+    <link rel="stylesheet" href="<%= BASE_URL %>assets/css/plugins/fontawesome.min.css">
+    <link rel="stylesheet" href="<%= BASE_URL %>assets/css/plugins/bootstrap.min.css">
+    <link rel="stylesheet" href="<%= BASE_URL %>assets/css/plugins/slick.css">
+    <link rel="stylesheet" href="<%= BASE_URL %>assets/css/style.css">
   </head>
+ 
   <body class="loading">
     <div class="main">
+
+      
       <div id="app"></div>
     </div>
     <!-- built files will be auto injected -->
 
     <!-- Add your site or application content here -->
-    <script defer src="<%= BASE_URL %>assets/js/waves.min.js"></script>
-    <script src="<%= BASE_URL %>assets/js/main.js"></script>
-    <script src="<%= BASE_URL %>assets/js/svg-loader.js"></script>
+     <!-- Script -->
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="EZDGame"
+  agent-id="dd48e940-92f3-461a-8499-d9c69d6bea66"
+  language-code="en"
+></df-messenger>
+
+
+<div>Teachable Machine Image Model</div>
+<button type="button" onclick="init()">Start</button>
+<div id="webcam-container"></div>
+<div id="label-container"></div>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+<script type="text/javascript">
+    // More API functions here:
+    // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
+
+    // the link to your model provided by Teachable Machine export panel
+    const URL = "https://teachablemachine.withgoogle.com/models/3e70vOM44/";
+
+    let model, webcam, labelContainer, maxPredictions;
+
+    // Load the image model and setup the webcam
+    async function init() {
+        const modelURL = URL + "model.json";
+        const metadataURL = URL + "metadata.json";
+
+        // load the model and metadata
+        // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+        // or files from your local hard drive
+        // Note: the pose library adds "tmImage" object to your window (window.tmImage)
+        model = await tmImage.load(modelURL, metadataURL);
+        maxPredictions = model.getTotalClasses();
+
+        // Convenience function to setup a webcam
+        const flip = true; // whether to flip the webcam
+        webcam = new tmImage.Webcam(200, 200, flip); // width, height, flip
+        await webcam.setup(); // request access to the webcam
+        await webcam.play();
+        window.requestAnimationFrame(loop);
+
+        // append elements to the DOM
+        document.getElementById("webcam-container").appendChild(webcam.canvas);
+        labelContainer = document.getElementById("label-container");
+        for (let i = 0; i < maxPredictions; i++) { // and class labels
+            labelContainer.appendChild(document.createElement("div"));
+        }
+    }
+
+    async function loop() {
+        webcam.update(); // update the webcam frame
+        await predict();
+        window.requestAnimationFrame(loop);
+    }
+
+    // run the webcam image through the image model
+    async function predict() {
+        // predict can take in an image, video or canvas html element
+        const prediction = await model.predict(webcam.canvas);
+        for (let i = 0; i < maxPredictions; i++) {
+            const classPrediction =
+                prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+            labelContainer.childNodes[i].innerHTML = classPrediction;
+        }
+    }
+</script>
+
+
+ 
+
+
+
+
+  <script src="<%= BASE_URL %>assets/js/plugins/jquery-3.6.0.min.js"></script>
+  <script src="<%= BASE_URL %>assets/js/plugins/isotope.pkg.min.js"></script>
+  <script src="<%= BASE_URL %>assets/js/plugins/jquery.slick.min.js"></script>
+  <script src="<%= BASE_URL %>assets/js/main.js"></script>
   </body>
 </html>
