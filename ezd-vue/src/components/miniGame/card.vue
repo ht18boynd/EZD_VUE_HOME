@@ -95,7 +95,8 @@ export default {
   display: inline-block;
   margin-right: 1rem;
   margin-bottom: 1rem;
-  background-color: #212121;
+  background-color: rgba(255, 255, 255, 0); /* Đặt màu nền trong suốt */
+  border: 0;
 }
 
 .card__inner {
@@ -123,18 +124,20 @@ export default {
   overflow: hidden;
   border-radius: 1rem;
   padding: 1rem;
-  box-shadow: 0 3px 18px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 10px 3px rgba(0, 0, 0, 0.2);
 }
 
 .card__face--front .card__content {
   background: url("../../assets/images/icon_back.png") no-repeat center center;
   height: 100%;
   width: 100%;
-  background-color: #212121;
+  background-color: linear-gradient(116.85deg, rgba(252, 70, 107, 0.3) 0%, rgba(63, 94, 251, 0.3) 100%);
+  
 }
 
 .card__face--back {
-  background-color: #ffce00;
+  background-color: #2596be;
+
   transform: rotateY(-180deg);
 }
 

@@ -1,5 +1,18 @@
 <template>
   <div>
+    <startHeader></startHeader>
+    <div class="cs-height_100 cs-height_lg_70"></div>
+    <section class="cs-page_head cs-bg" data-src="assets/img/page_head_bg.svg">
+      <div class="container">
+        <div class="text-center">
+          <h1 class="cs-page_title">Pokemon GO !!!</h1>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active">Game</li>
+          </ol>
+        </div>
+      </div>
+    </section>
     <main-screen
       v-if="statusMatch === 'default'"
       @onStart="onHandleBeforeStart($event)"
@@ -14,6 +27,8 @@
     :timer="timer"
     @onStartAgain="statusMatch = 'default'"
   />
+
+    <footerHome></footerHome>
   </div>
 
  
@@ -23,7 +38,8 @@
 import MainScreen from "@/components/miniGame/mainGame.vue";
 import InteractScreen from "@/components/miniGame/interactScreen.vue";
 import ResultScreen from "@/components/miniGame/resultScreen.vue";
-
+import startHeader from "@/pages/startHeader.vue";
+import footerHome from "@/pages/footer.vue";
 import { shuffled } from "@/utils/array";
 
 export default {
@@ -32,6 +48,9 @@ export default {
     MainScreen,
     InteractScreen,
     ResultScreen,
+    startHeader,
+    footerHome
+    
   },
   data() {
     return {
@@ -71,25 +90,3 @@ export default {
 };
 </script>
 
-<style lang="css" scoped>
-@import url("https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap");
-:root {
-  --primary: #ffce00;
-  --sencondary: #fe4880;
-  --dark: #212121;
-  --light: #f3f3f3;
-}
-
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: "Odibee Sans", sans-serif;
-  font-size: 20px;
-  width: 100%;
-  background-color: #212121;
-}
-</style>

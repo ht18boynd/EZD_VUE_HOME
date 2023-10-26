@@ -97,12 +97,9 @@ export default {
 
 .screen {
   width: 100%;
- height: 1200px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  background-color: #212121;
+  height: 860px;
+
+  background-color: #bee0ec;
   color: #f3f3f3;
 }
 

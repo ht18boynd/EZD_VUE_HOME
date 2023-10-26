@@ -1,5 +1,5 @@
 <template>
-    <header class="cs-site_header cs-style1 cs-sticky-header cs-white_bg">
+    <header class="cs-site_header cs-style1 cs-sticky-header ">
         <div class="cs-main_header">
           <div class="container-fluid">
             <div class="cs-main_header_in">
@@ -23,15 +23,9 @@
                     <div class="cs-nav_in">
                       <div class="cs-nav">
                         <ul class="cs-nav_list">
-                          <li class="menu-item-has-children">
-                            <a href="index.html">Home</a>
-                            <ul>
-                              <li><a href="index.html">Home Default</a></li>
-                              <li><a href="index_2.html">Home Style 2</a></li>
-                              <li><a href="index_3.html">Home Style 3</a></li>
-                              <li><a href="index_4.html">Home Style 4</a></li>
-                              <li><a href="index_5.html">Home Style 5</a></li>
-                            </ul>
+                          <li >
+                            <a href="/">Home</a>
+                         
                           </li>
                      
                           <li><a href="how-it-works.html">How It Works</a></li>
