@@ -223,7 +223,7 @@ import startCollection from '@/pages/startCollection.vue';
 import startHeader from '@/pages/startHeader.vue';
 import startHero from '@/pages/startHero.vue';
 
-
+import BannnerService from "@/service/BannerService";
 // import GameService from '@/service/GameService';
 
 export default {
@@ -234,18 +234,30 @@ export default {
   data() {
     return {
       // gamelist: [],
+      bannerList :[],
     };
   },
-  // methods: {
-  //   async getAllGames() {
-  //     try {
-  //       const response = await GameService.getAllGames();
-  //       this.gamelist = response.data.sort((a, b) => b.id - a.id);
-  //     } catch (error) {
-  //       console.error("Lỗi khi lấy danh sách trò chơi: ", error);
-  //     }
-  //   },
-  // },
+  methods: {
+    // async getAllGames() {
+    //   try {
+    //     const response = await GameService.getAllGames();
+    //     this.gamelist = response.data.sort((a, b) => b.id - a.id);
+    //   } catch (error) {
+    //     console.error("Lỗi khi lấy danh sách trò chơi: ", error);
+    //   }
+    // },
+
+    async getAllBanner(){
+      try {
+      const response = await BannnerService.getAllBanner()
+      this.bannerList = response.data.sort((a,b)=> b.id -a.id);
+      }catch(error){
+        console.error("Lỗi khi lấy danh sách Banner: ", error);
+      }
+
+    }
+  },
+  
   async created() {
    
     // await this.getAllGames();
