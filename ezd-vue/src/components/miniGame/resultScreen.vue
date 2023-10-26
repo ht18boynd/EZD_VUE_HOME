@@ -1,5 +1,6 @@
 <template>
   <div class="screen">
+
     <h1>✨ Congratulations ✨</h1>
     <h3>{{ Math.round(timer / 920) }} seconds</h3>
     <button @click="onStartAgain">Start Again</button>
@@ -16,6 +17,11 @@ props: {
     },
   },
   emits: ["onStartAgain"],
+  data(){
+    return{
+      BASE_URL: process.env.BASE_URL,
+    }
+  },
   methods: {
     onStartAgain() {
       this.$emit("onStartAgain");
@@ -28,13 +34,10 @@ props: {
 <style scoped>
 .screen {
   width: 100%;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  background-color: var(--dark);
-  color: var(--light);
+  height: 480px;
+
+  background-color: linear-gradient(116.85deg, rgba(252, 70, 107, 0.3) 0%, rgba(63, 94, 251, 0.3) 100%);
+ 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -54,8 +57,8 @@ props: {
   font: var(--font);
   background: transparent;
   box-shadow: none;
-  border: 1px solid var(--light);
-  color: var(--light);
+  border: 1px solid #f3f3f3;
+  color: #f3f3f3;
   margin: 1rem;
   padding: 1rem 1.25rem;
   border-radius: 0.5rem;
@@ -65,7 +68,7 @@ props: {
 }
 
 .screen button:hover {
-  background-color: var(--light);
-  color: var(--dark);
+  background-color: #f3f3f3;
+  color: #212121;
 }
 </style>

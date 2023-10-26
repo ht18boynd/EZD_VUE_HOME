@@ -38,16 +38,13 @@ emits: ["onStart"],
 <style lang="css" scoped>
 .screen {
   width: 100%;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
+  height: 920px;
+
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: #212121;
+  background-color: #2596be;
   color: #f3f3f3;
 }
 
@@ -67,7 +64,7 @@ emits: ["onStart"],
 }
 
 .modes button {
-  font: var(--font);
+ 
   width: 150px;
   height: 150px;
   background: transparent;
