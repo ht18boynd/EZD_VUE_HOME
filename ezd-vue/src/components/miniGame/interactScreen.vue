@@ -46,41 +46,47 @@ export default {
   },
   methods: {
     async checkRule(card) {
-      if (this.rules.length === 2) return false;
-      this.rules.push(card);
+  if (this.rules.length === 2) return false;
+  
+  // Kiểm tra xem thẻ đã được lật trước đó chưa
+  if (this.rules.length === 1 && this.rules[0].index === card.index) {
+    return false; // Chọn cùng một thẻ hai lần
+  }
 
-      if (
-        this.rules.length === 2 &&
-        this.rules[0].value === this.rules[1].value
-      ) {
-      
-        this.$refs[`card-${this.rules[0].index}`][0].onEnabledDisabledMode();
-        this.$refs[`card-${this.rules[1].index}`][0].onEnabledDisabledMode();
-        this.rules = [];
+  this.rules.push(card);
 
-        const disabledElements = document.querySelectorAll(
-          ".screen .card.disabled",
-        );
-        if (
-          disabledElements &&
-          disabledElements.length === this.cardsContext.length - 2
-        )
-          setTimeout(() => {
-            this.$emit("onFinish");
-          }, 920);
-      } else if (
-        this.rules.length === 2 &&
-        this.rules[0].value !== this.rules[1].value
-      ) {
-        console.log("Wrong");
-        await setTimeout(() => {
-          this.$refs[`card-${this.rules[0].index}`][0].onFlipBackCard();
-          this.$refs[`card-${this.rules[1].index}`][0].onFlipBackCard();
+  if (
+    this.rules.length === 2 &&
+    this.rules[0].value === this.rules[1].value
+  ) {
+    this.$refs[`card-${this.rules[0].index}`][0].onEnabledDisabledMode();
+    this.$refs[`card-${this.rules[1].index}`][0].onEnabledDisabledMode();
+    this.rules = [];
 
-          this.rules = [];
-        }, 800);
-      } else return false;
-    },
+    const disabledElements = document.querySelectorAll(
+      ".screen .card.disabled",
+    );
+    if (
+      disabledElements &&
+      disabledElements.length === this.cardsContext.length - 2
+    )
+      setTimeout(() => {
+        this.$emit("onFinish");
+      }, 920);
+  } else if (
+    this.rules.length === 2 &&
+    this.rules[0].value !== this.rules[1].value
+  ) {
+    console.log("Wrong");
+    await setTimeout(() => {
+      this.$refs[`card-${this.rules[0].index}`][0].onFlipBackCard();
+      this.$refs[`card-${this.rules[1].index}`][0].onFlipBackCard();
+
+      this.rules = [];
+    }, 800);
+  } else return false;
+},
+
   },
   components: {
     CardFlip,

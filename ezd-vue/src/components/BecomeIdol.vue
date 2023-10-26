@@ -103,6 +103,46 @@
                 </div>
                 <div class="cs-height_20 cs-height_lg_20"></div>
               </div>
+
+              <div class="col-lg-6">
+                <div class="cs-form_field_wrap">
+                  <input id="imageUpload" type="file" @change="readURL" />
+                </div>
+                <div class="cs-height_20 cs-height_lg_20"></div>
+              </div>
+              <div class="col-lg-6">
+                <div class="cs-form_field_wrap">
+                  <canvas id="imageCanvas" style="width:120px;height:150px;"></canvas>
+                </div>
+                <div class="cs-height_20 cs-height_lg_20"></div>
+              </div>
+              <div class="col-lg-12">
+                <div v-for="(prediction, index) in predictions" :key="index">
+                  <span
+                    :style="{ width: '10%', color: getColorForClassName(prediction.className) }"
+                  >
+                    {{ prediction.className }}
+                  </span>
+                  :
+                  <div class="progress mb-3" style="height: 20px">
+                    <div
+                      class="progress-bar progress-bar-striped progress-bar-animated"
+                     
+                      :style="{
+                        width: prediction.probability * 100 + '%',
+                        backgroundColor: getBackgroundColorForClassName(prediction.className),
+                      }"
+                      :aria-valuenow="(prediction.probability * 100).toFixed(2)"
+                      aria-valuemin="0"
+                    >
+                      <span class="pr-2">{{ (prediction.probability * 100).toFixed(2) }}%</span>
+                    </div>
+                  </div>
+                </div>
+                <div v-if="isCheckMax" class="alert alert-warning">
+                  "check" có xác suất lớn nhất: {{ maxCheckProbability.toFixed(2) }}%
+                </div>           
+              </div>
               <div class="col-lg-12">
                 <div class="cs-form_field_wrap">
                   <input type="text" class="cs-form_field" placeholder="Wright Subject">
@@ -116,49 +156,9 @@
                 <div class="cs-height_20 cs-height_lg_20"></div>
               </div>
 
+            
               <div class="col-lg-12">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="card-title">
-                      <h5 class="mb-0">Striped</h5>
-    
-                      <canvas id="imageCanvas" style="height: 150px"></canvas>
-                      <input id="imageUpload" type="file" @change="readURL" />
-    
-                      <div>Teachable Machine Image Model with upload</div>
-                    </div>
-                    <hr />
-    
-                    <div v-for="(prediction, index) in predictions" :key="index">
-                      <span
-                        :style="{ width: '10%', color: getColorForClassName(prediction.className) }"
-                      >
-                        {{ prediction.className }}
-                      </span>
-                      :
-                      <div class="progress mb-3" style="height: 20px">
-                        <div
-                          class="progress-bar progress-bar-striped progress-bar-animated"
-                         
-                          :style="{
-                            width: prediction.probability * 100 + '%',
-                            backgroundColor: getBackgroundColorForClassName(prediction.className),
-                          }"
-                          :aria-valuenow="(prediction.probability * 100).toFixed(2)"
-                          aria-valuemin="0"
-                        >
-                          <span class="pr-2">{{ (prediction.probability * 100).toFixed(2) }}%</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div v-if="isCheckMax" class="alert alert-warning">
-                      "check" có xác suất lớn nhất: {{ maxCheckProbability.toFixed(2) }}%
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-12">
-                <button class="cs-btn cs-style1 cs-btn_lg"><span>Send Message</span></button>
+                <button class="cs-btn cs-style1 cs-btn_lg" v-if="!isCheckMax" :disabled="isCheckMax"><span>Send Form</span></button>
               </div>
             </div>
           </form>
@@ -373,7 +373,7 @@ import startHeader from '@/pages/startHeader.vue';
 import * as tmImage from "@teachablemachine/image";
 
 export default {
-name:'contactEZD'
+name:'becomeIdol'
 ,
 components: {
     endCategory,footerHome,startHeader
@@ -383,6 +383,7 @@ components: {
     return {
       model: null,
       predictions: [],
+      isButtonCreate:false,
     };
   },
   methods: {

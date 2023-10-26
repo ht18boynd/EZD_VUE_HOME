@@ -40,6 +40,7 @@ export default {
         cardsContext: [],
         startedAt: null,
       },
+      userName:"",
       timer: 0,
       statusMatch: "default",
     };

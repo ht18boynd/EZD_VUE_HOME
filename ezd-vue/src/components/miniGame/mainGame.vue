@@ -2,7 +2,13 @@
     <div class="screen">
       <h1>Poke Memories</h1>
       <p>Select mode to start game</p>
-      <div class="modes">
+     
+      <div class="modes" >
+     
+        <button @click="onStart(4)">
+          <span>2x2</span>
+          <span>Easy</span>
+        </button>
         <button @click="onStart(16)">
           <span>4x4</span>
           <span>Easy</span>
@@ -20,7 +26,9 @@
 export default {
 name:'mainGame',
 emits: ["onStart"],
+
   methods: {
+
     onStart(totalOfBlocks) {
       this.$emit("onStart", { totalOfBlocks });
     },

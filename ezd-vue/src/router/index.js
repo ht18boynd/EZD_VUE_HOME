@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import HomePage from '@/components/Home.vue'
 import AboutPage from '@/components/About.vue'
-import ContactPage from '@/components/Contact.vue'
+import BecomeIdol from '@/components/BecomeIdol.vue'
 import GameIndex from '@/components/miniGame/index.vue'
 
 const routes = [
@@ -16,8 +16,8 @@ const routes = [
     },
    
     {
-        path: '/contact',
-        component: ContactPage
+        path: '/become',
+        component: BecomeIdol
     },
     {
         path:'/game',
