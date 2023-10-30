@@ -9,7 +9,7 @@ const axiosInstance = axios.create({
 const BANNER_API_BASE_URL = "http://localhost:8081/api/banners/";
  
 class BannerService {
-    async getAllBanner (){
+    async getAllBanners (){
         return await axiosInstance.get(BANNER_API_BASE_URL);
     }
 }

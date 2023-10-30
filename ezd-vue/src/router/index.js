@@ -5,11 +5,13 @@ import AboutPage from '@/components/About.vue'
 import BecomeIdol from '@/components/BecomeIdol.vue'
 import GameIndex from '@/components/miniGame/index.vue'
 
+
 const routes = [
     {
         path: '/',
         component: HomePage
     },
+
     {
         path: '/about',
         component: AboutPage

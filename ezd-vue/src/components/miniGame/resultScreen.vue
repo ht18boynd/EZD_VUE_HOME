@@ -8,6 +8,10 @@
 </template>
 
 <script>
+ import { collection, addDoc } from "firebase/firestore"
+  // the firestore instance
+  import db from '@/firebase/init.js'
+  
 export default {
 name:"resultGame",
 props: {
@@ -20,13 +24,34 @@ props: {
   data(){
     return{
       BASE_URL: process.env.BASE_URL,
+      timerScore :null,
     }
   },
   methods: {
     onStartAgain() {
       this.$emit("onStartAgain");
     },
+    async createUser() {
+        // 'users' collection reference
+        const colRef = collection(db, 'users')
+        this.timerScore=Math.round(this.timer / 920)
+        // data to send
+        const dataObj = {
+          firstName: 'John',
+          time:  this.timerScore
+        
+        }
+  
+        // create document and return reference to it
+        const docRef = await addDoc(colRef, dataObj)
+  
+        // access auto-generated ID with '.id'
+        console.log('Document was created with ID:', docRef.id)
+      }
   },
+  created() {
+      this.createUser()
+    },
 
 }
 </script>
