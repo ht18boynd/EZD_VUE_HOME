@@ -56,17 +56,17 @@
                 />
               </div>
               <div class="cs-height_20 cs-height_lg_20"></div>
-              <div class="form-check">
+              <!-- <div class="form-check">
                 <input
                   class="form-check-input"
                   type="checkbox"
                   id="notify"
-                  v-model="userData.rememberMe"
+               
                 />
                 <label class="form-check-label" for="notify">Remember Me</label>
-              </div>
+              </div> -->
               <div class="cs-height_15 cs-height_lg_15"></div>
-              <button class="cs-btn cs-style1 cs-btn_lg w-100">
+              <button class="cs-btn cs-style1 cs-btn_lg w-100" type="submit">
                 <span>Sign In</span>
               </button>
               <div class="cs-height_30 cs-height_lg_30"></div>
@@ -88,6 +88,7 @@ import footerHome from "@/pages/footer.vue";
 import startHeader from "@/pages/startHeader.vue";
 import RegisterService from "@/service/RegisterService";
 
+
 export default {
   name: "LoginPage",
   data() {
@@ -95,30 +96,23 @@ export default {
       userData: {
         email: "",
         password: "",
-        rememberMe: false,
+       
       },
     };
   },
   methods: {
-    login(event) {
-      event.preventDefault();
+    
+    async login(event) {
+      try {
+        event.preventDefault();
 
-      const credentials = {
-        email: this.userData.email,
-        password: this.userData.password,
-        // rememberMe: this.userData.rememberMe,
-      };
-      console.log("-->  ", this.credentials);
-
-      RegisterService.login(credentials)
-        .then((response) => {
-          const jwt = response.data.token;
-          localStorage.setItem("jwt", jwt);
-          this.$router.push("/");
-        })
-        .catch((error) => {
-          console.error("Đăng nhập không thành công:", error);
-        });
+        await RegisterService.login(
+         this.userData
+        );
+        this.$router.push("/");
+      } catch {
+        console.log("Error");
+      }
     },
   },
   components: {
