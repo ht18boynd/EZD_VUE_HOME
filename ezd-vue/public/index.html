@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="<%= BASE_URL %>assets/css/plugins/bootstrap.min.css">
     <link rel="stylesheet" href="<%= BASE_URL %>assets/css/plugins/slick.css">
     <link rel="stylesheet" href="<%= BASE_URL %>assets/css/style.css">
+    <link rel="stylesheet" href="<%= BASE_URL %>assets/css/popup.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,7 +22,25 @@
  
   <body class="loading">
     <div class="main">
-
+      <div class="login-popup">
+        <div class="box">
+           <div class="img-area">
+             <div class="img">
+             </div>
+             
+           </div>
+           <div class="form">
+             <div class="close">&times;</div>
+             <h3>Điền Email Để Nhận Khuyến Mãi</h3>
+             <form>
+               <div class="form-group">
+                 <input type="text" placeholder="Email" class="form-control">
+               </div>
+               <button type="button" class="btn">Gửi</button>
+             </form>
+           </div>
+        </div>
+     </div>
       
       <div id="app"></div>
     </div>
@@ -42,5 +61,41 @@
   <script src="<%= BASE_URL %>assets/js/plugins/isotope.pkg.min.js"></script>
   <script src="<%= BASE_URL %>assets/js/plugins/jquery.slick.min.js"></script>
   <script src="<%= BASE_URL %>assets/js/main.js"></script>
+  <script>
+    
+
+  const loginPopup = document.querySelector(".login-popup");
+  const close = document.querySelector(".close");
+
+
+  window.addEventListener("load",function(){
+ 
+   showPopup();
+   // setTimeout(function(){
+   //   loginPopup.classList.add("show");
+   // },5000)
+
+  })
+
+  function showPopup(){
+        const timeLimit = 2 // seconds;
+        let i=0;
+        const timer = setInterval(function(){
+         i++;
+         if(i == timeLimit){
+          clearInterval(timer);
+          loginPopup.classList.add("show");
+         } 
+         console.log(i)
+        },1000);
+  }
+
+
+  close.addEventListener("click",function(){
+    loginPopup.classList.remove("show");
+  })
+
+
+  </script>
   </body>
 </html>
