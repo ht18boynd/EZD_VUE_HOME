@@ -15,14 +15,13 @@
             src="assets/img/no1_top_list.png"
             class="product-img-2"
             alt="product img"
-           
           />
           <h6 v-if="lowestTimeUser" style="color: #9d00ff">
             {{ lowestTimeUser.firstName }} :{{ lowestTimeUser.time }} s
           </h6>
         </div>
       </h2>
-      <div class="cs-height_45 cs-height_lg_45"></div>
+    
     </div>
     <div class="scroller" data-speed="fast">
       <ul class="tag-list scroller__inner">

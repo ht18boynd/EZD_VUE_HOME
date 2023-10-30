@@ -151,11 +151,18 @@
     <!-- Start New Items -->
     <newItem></newItem>
     <!-- End New Items -->
+    <div class="cs-height_95 cs-height_lg_70"></div>
+    <!-- Music Live-->
+    <musicLive></musicLive>
+    <!--Music Live-->
+    <div class="cs-height_95 cs-height_lg_70"></div>
+    <!-- Game Live-->
+    <gameLive></gameLive>
+    <!--Game Live-->
 
     <div class="cs-height_95 cs-height_lg_70"></div>
 
-   <topScore></topScore>
-
+    <topScore></topScore>
 
     <div class="cs-height_95 cs-height_lg_70"></div>
 
@@ -397,12 +404,11 @@ import { Carousel, Navigation, Pagination, Slide } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
 import footerHome from "@/pages/footer.vue";
 import iconBox from "@/pages/iconBox.vue";
-
 import topScore from "@/pages/topScore.vue";
 import newItem from "@/pages/newItem.vue";
-
-
 import startHeader from "@/pages/startHeader.vue";
+import musicLive from "@/components/youtube/musicLive.vue";
+import gameLive from "@/components/youtube/gameLive.vue";
 
 import BannnerService from "@/service/BannerService";
 import GameService from "@/service/GameService";
@@ -412,15 +418,15 @@ export default {
   components: {
     footerHome,
     iconBox,
-    
     topScore,
     newItem,
-   
     startHeader,
     Carousel,
     Slide,
     Pagination,
     Navigation,
+    musicLive,
+    gameLive,
   },
   data() {
     return {
