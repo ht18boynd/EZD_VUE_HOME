@@ -3,7 +3,7 @@
         <div class="container">
           <div class="cs-section_heading cs-style2">
             <div class="cs-section_left">
-              <h2 class="cs-section_title">Live Music</h2>
+              <h2 class="cs-section_title">TFT Live</h2>
             </div>
             <div class="cs-section_right">
               <a href="collection.html" class="cs-btn cs-style1"><span>Explore More</span></a>
@@ -58,7 +58,7 @@
         try {
           const response = await axios.get('https://www.googleapis.com/youtube/v3/search', {
             params: {
-              q: 'music live',
+              q: 'tft',
               type: 'video',
               eventType: 'live',
               key: process.env.VUE_APP_YOUTUBE_API_KEY,
