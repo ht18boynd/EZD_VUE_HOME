@@ -1,10 +1,21 @@
 <template>
   <div>
+    <!-- Loading indicator or message -->
+    <!-- <div class="vld-parent">
+      <loading
+        :active="isLoading"
+        :can-cancel="true"
+        :on-cancel="onCancel"
+        :is-full-page="fullPage"
+      ></loading>
+
+      <label><input type="checkbox" v-model="fullPage" />Full page?</label>
+      <button @click.prevent="doAjax">fetch Data</button>
+    </div> -->
     <!-- Start Header Section -->
     <startHeader></startHeader>
     <!-- End Header Section -->
 
-   
     <div class="cs-height_30 cs-height_lg_30"></div>
 
     <!-- Start Hero -->
@@ -12,14 +23,18 @@
     <section class="container-fluid">
       <div class="cs-hero_slider_1">
         <carousel :items-to-show="1">
-          <slide v-for="slide in bannerList" :key="slide" >
-          <div class="slide-content">
-            <img :src="slide.image" alt="" style="width:1300px;height:500px" />
+          <slide v-for="slide in bannerList" :key="slide">
+            <div class="slide-content">
+              <img
+                :src="slide.image"
+                alt=""
+                style="width: 1300px; height: 500px"
+              />
             </div>
             <div class="carousel-caption d-none d-md-block">
-												<h5>{{slide.name}}</h5>
-												<p>{{slide.title}}.</p>
-											</div>
+              <h5>{{ slide.name }}</h5>
+              <p>{{ slide.title }}.</p>
+            </div>
           </slide>
 
           <template #addons>
@@ -36,7 +51,8 @@
     <section>
       <div class="container">
         <h2 class="cs-section_heading cs-style1 text-center">
-          Explore By Catagory    <p>User Name: {{ user }}</p>
+          Explore By Catagory
+          <p>User Name: {{ user }}</p>
         </h2>
         <div class="cs-height_45 cs-height_lg_45"></div>
         <Carousel
@@ -66,7 +82,126 @@
     <div class="cs-height_70 cs-height_lg_40"></div>
 
     <!-- Start New Items -->
-    <newItem></newItem>
+    <section>
+      <div class="container">
+        <div class="cs-section_heading cs-style2">
+          <div class="cs-section_left">
+            <h2 class="cs-section_title">New Items</h2>
+          </div>
+          <div class="cs-section_right">
+            <a href="explore-1.html" class="cs-btn cs-style1"
+              ><span>Explore More</span></a
+            >
+          </div>
+        </div>
+        <div class="cs-isotop_filter cs-style1 cs-type1 cs-center">
+          <ul class="cs-mp0 cs-center">
+            <li class="active">
+              <a href="#" data-filter="*"><span>All NFT</span></a>
+            </li>
+            <li>
+              <a href="#" data-filter=".fashion"><span>Fashion</span></a>
+            </li>
+            <li>
+              <a href="#" data-filter=".music"><span>Music</span></a>
+            </li>
+            <li>
+              <a href="#" data-filter=".video"><span>Video</span></a>
+            </li>
+            <li>
+              <a href="#" data-filter=".games"><span>Games</span></a>
+            </li>
+          </ul>
+        </div>
+        <div class="cs-height_45 cs-height_lg_45"></div>
+        <div class="cs-isotop cs-style1 cs-isotop_col_5 cs-has_gutter_30">
+          <div class="cs-grid_sizer"></div>
+          <div class="cs-isotop_item fashion">
+            <div class="cs-card cs-style4 cs-box_shadow cs-white_bg">
+              <span class="cs-card_like cs-primary_color">
+                <i class="fas fa-heart fa-fw"></i>
+                2.1K
+              </span>
+              <a
+                href="explore-details.html"
+                class="cs-card_thumb cs-zoom_effect"
+              >
+                <img
+                  src="assets/img/explore/1.jpeg"
+                  alt="Image"
+                  class="cs-zoom_item"
+                />
+              </a>
+              <div class="cs-card_info">
+                <a href="#" class="cs-avatar cs-white_bg">
+                  <img src="assets/img/avatar/avatar_12.png" alt="Avatar" />
+                  <span>Johny E.</span>
+                </a>
+                <h3 class="cs-card_title">
+                  <a href="explore-details.html">Art work #2134</a>
+                </h3>
+                <div class="cs-card_price">
+                  Current Bid: <b class="cs-primary_color">0.29 ETH 7/21</b>
+                </div>
+                <hr />
+                <div class="cs-card_footer">
+                  <span class="cs-card_btn_1" data-modal="#history_1">
+                    <i class="fas fa-redo fa-fw"></i>
+                    View History
+                  </span>
+                  <span class="cs-card_btn_2" data-modal="#bid_1"
+                    ><span>Place Bid</span></span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- .cs-isotop_item -->
+          <div class="cs-isotop_item music">
+            <div class="cs-card cs-style4 cs-box_shadow cs-white_bg">
+              <span class="cs-card_like cs-primary_color">
+                <i class="fas fa-heart fa-fw"></i>
+                3.3K
+              </span>
+              <a
+                href="explore-details.html"
+                class="cs-card_thumb cs-zoom_effect"
+              >
+                <img
+                  src="assets/img/explore/2.jpeg"
+                  alt="Image"
+                  class="cs-zoom_item"
+                />
+              </a>
+              <div class="cs-card_info">
+                <a href="#" class="cs-avatar cs-white_bg">
+                  <img src="assets/img/avatar/avatar_13.png" alt="Avatar" />
+                  <span>debit alex</span>
+                </a>
+                <h3 class="cs-card_title">
+                  <a href="explore-details.html">Cool octopus traveling</a>
+                </h3>
+                <div class="cs-card_price">
+                  Current Bid: <b class="cs-primary_color">0.24 ETH 4/17</b>
+                </div>
+                <hr />
+                <div class="cs-card_footer">
+                  <span class="cs-card_btn_1" data-modal="#history_1">
+                    <i class="fas fa-redo fa-fw"></i>
+                    View History
+                  </span>
+                  <span class="cs-card_btn_2" data-modal="#bid_1"
+                    ><span>Place Bid</span></span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- .cs-isotop_item -->
+        </div>
+      </div>
+    </section>
     <!-- End New Items -->
     <div class="cs-height_95 cs-height_lg_70"></div>
     <!-- Music Live-->
@@ -317,13 +452,16 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+  // // Import component
+  // import Loading from 'vue-loading-overlay';
+  //   // Import stylesheet
+  //   import 'vue-loading-overlay/dist/vue-loading.css';
+import { mapGetters } from "vuex";
 import { Carousel, Navigation, Pagination, Slide } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
 import footerHome from "@/pages/footer.vue";
 import iconBox from "@/pages/iconBox.vue";
 import topScore from "@/pages/topScore.vue";
-import newItem from "@/pages/newItem.vue";
 import startHeader from "@/pages/startHeader.vue";
 import musicLive from "@/components/youtube/musicLive.vue";
 import gameLive from "@/components/youtube/gameLive.vue";
@@ -337,7 +475,7 @@ export default {
     footerHome,
     iconBox,
     topScore,
-    newItem,
+    // Loading,
     startHeader,
     Carousel,
     Slide,
@@ -348,6 +486,7 @@ export default {
   },
   data() {
     return {
+      // loading: true, // Initially, set loading to true
       // gamelist: [],
       bannerList: [],
       gamelist: [],
@@ -386,8 +525,9 @@ export default {
     // await this.getAllGenders();
   },
   computed: {
-    ...mapGetters(['getUser']),
+    ...mapGetters(["getUser"]),
   },
+ 
 };
 </script>
 <style scoped>

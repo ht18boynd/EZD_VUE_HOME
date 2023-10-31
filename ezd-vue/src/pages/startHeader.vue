@@ -4,7 +4,7 @@
           <div class="container-fluid">
             <div class="cs-main_header_in">
               <div class="cs-main_header_left">
-                <a class="cs-site_branding" href="/"><img src="assets/img/logo.svg" alt="Logo"></a>
+                <router-link to="/" class="cs-site_branding"><img src="assets/img/logo.svg" alt="Logo"></router-link>
               </div>
               <div class="cs-main_header_right">
                 <div class="cs-search_wrap">
@@ -24,7 +24,7 @@
                       <div class="cs-nav">
                         <ul class="cs-nav_list">
                           <li >
-                            <a href="/">Home</a>
+                            <router-link to="/">Home</router-link>
                          
                           </li>
                      
@@ -37,9 +37,11 @@
                               <li><a href="blog-details.html">Blog Details</a></li>
                             </ul>
                           </li>
-                          <li><a href="/become">Become The Idols</a></li>
+                          <li><router-link to="/become">Become The Idols</router-link></li>
                         
-                          <li><a href="/game">Mini Game</a></li>
+                          <li><router-link to="/game">Mini Game</router-link></li>
+                          <li><router-link to="/login">Login</router-link></li>
+                          <!-- <li> <p>Tên người dùng: {{ userInfo.username }}</p></li> -->
                         </ul>
                       </div>
                     </div>
@@ -172,8 +174,20 @@
 </template>
 
 <script>
+// import { ref, onMounted } from 'vue';
+// import jwtDecode from 'jwt-decode';
+// import { useJwt } from '@vueuse/integrations/useJwt';
 export default {
-name:'startHeader'
+name:'startHeader',
+data(){
+  return {
+    // userInfo: null,
+  }
+},
+// created() {
+//     // Lấy thông tin người dùng khi component được tạo ra
+//     this.userInfo = getUserInfo();
+//   },
 }
 </script>
 
