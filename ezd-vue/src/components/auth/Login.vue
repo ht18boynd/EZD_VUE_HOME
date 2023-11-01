@@ -22,62 +22,66 @@
     <div class="container">
       <div class="row">
         <div class="col-xl-6 col-md-8 offset-xl-3 offset-md-2">
-          <form
-            @submit="login"
-            class="cs-form_card cs-style1 cs-box_shadow cs-white_bg"
-          >
-            <div class="cs-form_card_in">
-              <h2 class="cs-form_title text-center">Sign In</h2>
-              <div class="cs-form_btns">
-                <a href="#" class="cs-btn cs-style2 cs-btn_lg">
-                  <span><i class="fab fa-google"></i>Google</span>
-                </a>
-                <a href="#" class="cs-btn cs-style2 cs-btn_lg">
-                  <span><i class="fab fa-facebook-f"></i>Facebook</span>
-                </a>
-                <a href="#" class="cs-btn cs-style2 cs-btn_lg">
-                  <span><i class="fab fa-linkedin-in"></i>Linkedin</span>
-                </a>
-              </div>
-              <div class="cs-height_30 cs-height_lg_30"></div>
-              <div class="cs-form_field_wrap">
-                <input
-                  type="email"
-                  class="cs-form_field"
-                  placeholder="Your Email"
-                  v-model="userData.email"
-                />
-              </div>
-              <div class="cs-height_20 cs-height_lg_20"></div>
-              <div class="cs-form_field_wrap">
-                <input
-                  type="password"
-                  class="cs-form_field"
-                  placeholder="Your password"
-                  v-model="userData.password"
-                />
-              </div>
-              <div class="cs-height_20 cs-height_lg_20"></div>
-              <!-- <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="notify"
-               
-                />
-                <label class="form-check-label" for="notify">Remember Me</label>
-              </div> -->
-              <div class="cs-height_15 cs-height_lg_15"></div>
-              <button class="cs-btn cs-style1 cs-btn_lg w-100" type="submit">
-                <span>Sign In</span>
-              </button>
-              <div class="cs-height_30 cs-height_lg_30"></div>
-              <div class="cs-form_footer text-center">
-                No Account?
-                <router-link to="/register">Register Now</router-link>
-              </div>
+          <div class="cs-form_card_in">
+            <h2 class="cs-form_title text-center">Sign In</h2>
+            <div class="cs-form_btns">
+              <a href="#" class="cs-btn cs-style2 cs-btn_lg">
+                <span><i class="fab fa-google"></i>Google</span>
+              </a>
+              <a href="#" class="cs-btn cs-style2 cs-btn_lg">
+                <span><i class="fab fa-facebook-f"></i>Facebook</span>
+              </a>
+              <a href="#" class="cs-btn cs-style2 cs-btn_lg">
+                <span><i class="fab fa-linkedin-in"></i>Linkedin</span>
+              </a>
             </div>
-          </form>
+            <div class="cs-height_30 cs-height_lg_30"></div>
+            <FormKit
+              type="form"
+              @submit="login"
+              style="
+                background-image: url(&quot;assets/img/naruto.png&quot;);
+                background-size: cover;
+                background-position: center center;
+                background-repeat: no-repeat;
+              "
+            >
+              <FormKit
+                name="email"
+                prefix-icon="email"
+                label="Email address"
+                validation="required|email"
+                style="width: 650px; color: #a8e0d8"
+              />
+              <div class="cs-height_20 cs-height_lg_20"></div>
+
+              <FormKit
+                type="password"
+                name="password"
+                label="Password"
+                validation="required|?length:10"
+                :validation-messages="{
+                  length: 'Try to make your password longer!',
+                }"
+                class="cs-btn cs-style2 cs-btn_lg"
+              />
+              <FormKit
+                type="password"
+                label="Confirm password"
+                name="password_confirm"
+                validation="required|confirm"
+              />
+
+              <div class="cs-height_20 cs-height_lg_20"></div>
+             
+            </FormKit>
+          </div>
+
+          <div class="cs-height_30 cs-height_lg_30"></div>
+          <div class="cs-form_footer text-center">
+            No Account?
+            <router-link to="/register">Register Now</router-link>
+          </div>
         </div>
       </div>
     </div>
@@ -88,25 +92,26 @@
 <script>
 import { user, authInfo } from "@/store";
 
-import useValidate from '@vuelidate/core'
+// import useValidate from '@vuelidate/core'
 // import { required } from '@vuelidate/validators'
-
 
 import { jwtDecode } from "jwt-decode";
 import footerHome from "@/pages/footer.vue";
 import startHeader from "@/pages/startHeader.vue";
 import RegisterService from "@/service/RegisterService";
 import Swal from "sweetalert2";
+import { FormKit } from "@formkit/vue";
+import "@formkit/themes/genesis";
 
 export default {
   name: "LoginPage",
   data() {
     return {
       userData: {
-        email: "",
+        email: null,
         password: "",
       },
-      v$: useValidate(),
+      // v$: useValidate(),
     };
   },
   methods: {
@@ -152,9 +157,24 @@ export default {
   components: {
     startHeader,
     footerHome,
+    FormKit,
   },
-  validations() {
-    return {}
-  },
+  // validations() {
+  //   return {}
+  // },
 };
 </script>
+<style>
+.formkit-inner {
+  width: 100%;
+  color: white;
+}
+[data-invalid] .formkit-inner {
+  border-color: red;
+  box-shadow: 0 0 0 1px red;
+}
+
+[data-complete] .formkit-inner {
+  border-color: red;
+}
+</style>
