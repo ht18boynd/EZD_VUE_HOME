@@ -25,14 +25,14 @@
         <div class="col-xl-6 col-md-8 offset-xl-3 offset-md-2">
           <FormKit
             type="form"
-            @submit="login"
+            @submit="registerUser"
             style="
               background-image: url(&quot;assets/img/jinx.jpg&quot;);
               background-size: cover;
               background-position: center center;
               background-repeat: no-repeat;
             "
-            @submit.prevent="registerUser"
+           
           >
             <div class="cs-form_card_in">
               <h2 class="cs-form_title text-center">Create Account</h2>
@@ -219,6 +219,7 @@ export default {
   },
   methods: {
     async registerUser() {
+     
       try {
         const response = await AuthService.register(this.userData);
         if (response.id) {

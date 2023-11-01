@@ -62,7 +62,7 @@
                 type="password"
                 name="password"
                 label="Password"
-                validation="required|?length:10"
+                validation="required"
                 :validation-messages="{
                   length: 'Try to make your password longer!',
                 }"
@@ -120,9 +120,9 @@ export default {
     };
   },
   methods: {
-    async login(event) {
+    async login() {
       try {
-        event.preventDefault();
+        
 
         const response = await RegisterService.login(this.userData);
         const token = response.data.token;
