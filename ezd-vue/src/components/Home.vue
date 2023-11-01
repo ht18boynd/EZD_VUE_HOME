@@ -1,17 +1,5 @@
 <template>
   <div>
-    <!-- Loading indicator or message -->
-    <!-- <div class="vld-parent">
-      <loading
-        :active="isLoading"
-        :can-cancel="true"
-        :on-cancel="onCancel"
-        :is-full-page="fullPage"
-      ></loading>
-
-      <label><input type="checkbox" v-model="fullPage" />Full page?</label>
-      <button @click.prevent="doAjax">fetch Data</button>
-    </div> -->
     <!-- Start Header Section -->
     <startHeader></startHeader>
     <!-- End Header Section -->
@@ -52,7 +40,7 @@
       <div class="container">
         <h2 class="cs-section_heading cs-style1 text-center">
           Explore By Catagory
-          <p>User Name: {{ user }}</p>
+          <p v-if="authInfo">Tên: {{ authInfo.name }}</p>
         </h2>
         <div class="cs-height_45 cs-height_lg_45"></div>
         <Carousel
@@ -452,11 +440,7 @@
 </template>
 
 <script>
-  // // Import component
-  // import Loading from 'vue-loading-overlay';
-  //   // Import stylesheet
-  //   import 'vue-loading-overlay/dist/vue-loading.css';
-import { mapGetters } from "vuex";
+import {authInfo} from  "@/store";
 import { Carousel, Navigation, Pagination, Slide } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
 import footerHome from "@/pages/footer.vue";
@@ -525,7 +509,8 @@ export default {
     // await this.getAllGenders();
   },
   computed: {
-    ...mapGetters(["getUser"]),
+ 
+    authInfo: () => authInfo.value, // Sử dụng giá trị từ store
   },
  
 };

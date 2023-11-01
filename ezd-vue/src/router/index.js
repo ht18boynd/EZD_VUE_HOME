@@ -4,18 +4,15 @@ import HomePage from "@/components/Home.vue";
 import AboutPage from "@/components/About.vue";
 import BecomeIdol from "@/components/BecomeIdol.vue";
 import GameIndex from "@/components/miniGame/index.vue";
-import liveYouTube from "@/components/youtube/musicLive.vue";
 import LoginPage from "@/components/auth/Login.vue";
 import RegisterPage from "@/components/auth/Register.vue";
+import CoinPage from "@/components/Coin.vue";
+import CheckOut from "@/components/CheckOut.vue";
 
 const routes = [
   {
     path: "/",
     component: HomePage,
-  },
-  {
-    path: "/live",
-    component: liveYouTube,
   },
 
   {
@@ -32,6 +29,14 @@ const routes = [
     component: GameIndex,
   },
   {
+    path: "/coin",
+    component: CoinPage,
+  },
+  {
+    path: "/checkout",
+    component: CheckOut,
+  },
+  {
     path: "/login",
     component: LoginPage,
   },
@@ -39,6 +44,7 @@ const routes = [
     path: "/register",
     component: RegisterPage,
   },
+
 ];
 
 const router = createRouter({

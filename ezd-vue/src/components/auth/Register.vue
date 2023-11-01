@@ -6,10 +6,13 @@
     <section class="cs-page_head cs-bg" data-src="assets/img/page_head_bg.svg">
       <div class="container">
         <div class="text-center">
-          <h1 class="cs-page_title">Login</h1>
+          <h1 class="cs-page_title">Register</h1>
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active">Login</li>
+            <li class="breadcrumb-item">
+              <router-link to="/">Home</router-link>
+            </li>
+
+            <li class="breadcrumb-item active">Register</li>
           </ol>
         </div>
       </div>
@@ -128,20 +131,14 @@
                 >
               </div>
               <div class="cs-height_10 cs-height_lg_10"></div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="terms" />
-                <label class="form-check-label" for="terms"
-                  >I'm attracted in receiving marketing emails for updates on
-                  upcoming promotions, events and new features</label
-                >
-              </div>
+
               <div class="cs-height_20 cs-height_lg_20"></div>
               <button class="cs-btn cs-style1 cs-btn_lg w-100" type="submit">
                 <span>Register Now</span>
               </button>
               <div class="cs-height_30 cs-height_lg_30"></div>
               <div class="cs-form_footer text-center">
-                Have an account? <a href="/login">Log In</a>
+                Have an account? <router-link to="/login">Log In</router-link>
               </div>
             </div>
           </form>
@@ -157,6 +154,7 @@
 import footerHome from "@/pages/footer.vue";
 import startHeader from "@/pages/startHeader.vue";
 import AuthService from "@/service/RegisterService";
+// import { useRouter } from "vue-router"; // Sử dụng useRouter thay vì useRoute
 import Swal from "sweetalert2";
 
 export default {
@@ -183,24 +181,38 @@ export default {
     };
   },
   methods: {
-    registerUser() {
-      console.log("--> UserDate", this.userData);
-      AuthService.register(this.userData)
-        .then((response) => {
-          console.log("Đăng ký thành công:", response);
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Regiter Successfully !",
-            showConfirmButton: false,
-            timer: 2000,
-          }).then(() => {
-            this.$router.push("/login");
-          });
-        })
-        .catch((error) => {
-          console.error("Lỗi đăng ký:", error);
+    async registerUser() {
+      try {
+        const response = await AuthService.register(this.userData);
+        if (response.id) {
+        
+          this.$router.push("/login");
+          const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
         });
+
+        Toast.fire({
+          icon: "success",
+          text: "Register  Successfully",
+        });
+        }
+      } catch {
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "Register error !",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      }
     },
   },
 };

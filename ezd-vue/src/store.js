@@ -1,19 +1,6 @@
-// src/store.js
-import { createStore } from 'vuex';
+import { ref } from 'vue';
 
-export default createStore({
-  state: {
-    user: null, // Thông tin người dùng, ban đầu là null
-  },
-  mutations: {
-    setUser(state, user) {
-      state.user = user;
-    },
-  },
-  actions: {
-    // Không cần tạo action login ở đây, vì bạn đã có AuthService
-  },
-  getters: {
-    getUser: (state) => state.user,
-  },
-});
+export const user = ref(null);
+
+export const authInfo = ref(null); // Add this line to store authInfo
+

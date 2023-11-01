@@ -2,8 +2,8 @@
     <div class="screen">
       <h1>Poke Memories</h1>
       <p>Select mode to start game</p>
-     
-      <div class="modes" >
+      <router-link to="/login"  v-if="authInfo==null"> <p>Please Login To Play</p></router-link>
+      <div class="modes"  v-if="authInfo!=null">
      
         <button @click="onStart(4)">
           <span>2x2</span>
@@ -23,6 +23,7 @@
   </template>
 
 <script>
+import { authInfo } from "@/store";
 export default {
 name:'mainGame',
 emits: ["onStart"],
@@ -32,6 +33,9 @@ emits: ["onStart"],
     onStart(totalOfBlocks) {
       this.$emit("onStart", { totalOfBlocks });
     },
+  },
+  computed: {
+    authInfo: () => authInfo.value, // Sử dụng giá trị từ store
   },
 }
 </script>

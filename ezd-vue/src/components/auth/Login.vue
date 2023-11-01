@@ -8,7 +8,9 @@
         <div class="text-center">
           <h1 class="cs-page_title">Login</h1>
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item">
+              <router-link to="/">Home</router-link>
+            </li>
             <li class="breadcrumb-item active">Login</li>
           </ol>
         </div>
@@ -84,10 +86,17 @@
 </template>
 
 <script>
+import { user, authInfo } from "@/store";
+
+import useValidate from '@vuelidate/core'
+// import { required } from '@vuelidate/validators'
+
+
+import { jwtDecode } from "jwt-decode";
 import footerHome from "@/pages/footer.vue";
 import startHeader from "@/pages/startHeader.vue";
 import RegisterService from "@/service/RegisterService";
-
+import Swal from "sweetalert2";
 
 export default {
   name: "LoginPage",
@@ -96,20 +105,45 @@ export default {
       userData: {
         email: "",
         password: "",
-       
       },
+      v$: useValidate(),
     };
   },
   methods: {
-    
     async login(event) {
       try {
         event.preventDefault();
 
-        await RegisterService.login(
-         this.userData
-        );
+        const response = await RegisterService.login(this.userData);
+        const token = response.data.token;
+        const decoded = jwtDecode(token);
+        console.log(decoded);
+        // Gán giá trị sub vào biến user
+        user.value = decoded.sub;
+        console.log("globle :" + user.value);
+        // Fetch the complete Auth information
+        const authInfoResponse = await RegisterService.findByEmail(user.value);
+        authInfo.value = authInfoResponse;
+        console.log(authInfoResponse);
+        console.log("authen globle ID: " + authInfo.value.id);
+        console.log("authen globle Name: " + authInfo.value.name);
         this.$router.push("/");
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+
+        Toast.fire({
+          icon: "success",
+          text: "Login successfully",
+        });
       } catch {
         console.log("Error");
       }
@@ -119,6 +153,8 @@ export default {
     startHeader,
     footerHome,
   },
+  validations() {
+    return {}
+  },
 };
 </script>
-<style></style>
