@@ -8,7 +8,7 @@ import LoginPage from "@/components/auth/Login.vue";
 import RegisterPage from "@/components/auth/Register.vue";
 import CoinPage from "@/components/Coin.vue";
 import CheckOut from "@/components/CheckOut.vue";
-import formKit from "@/components/auth/formkit.vue"
+import test from "@/components/test.vue"
 
 const routes = [
   {
@@ -16,8 +16,8 @@ const routes = [
     component: HomePage,
   },
   {
-    path: "/form",
-    component: formKit,
+    path: "/test",
+    component: test,
   },
 
   {

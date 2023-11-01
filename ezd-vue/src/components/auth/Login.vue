@@ -24,6 +24,17 @@
         <div class="col-xl-6 col-md-8 offset-xl-3 offset-md-2">
           <div class="cs-form_card_in">
             <h2 class="cs-form_title text-center">Sign In</h2>
+
+            <FormKit
+            type="form"
+            @submit="login"
+            style="
+              background-image: url(&quot;assets/img/naruto.png&quot;);
+              background-size: cover;
+              background-position: center center;
+              background-repeat: no-repeat;
+            "
+          >
             <div class="cs-form_btns">
               <a href="#" class="cs-btn cs-style2 cs-btn_lg">
                 <span><i class="fab fa-google"></i>Google</span>
@@ -36,22 +47,14 @@
               </a>
             </div>
             <div class="cs-height_30 cs-height_lg_30"></div>
-            <FormKit
-              type="form"
-              @submit="login"
-              style="
-                background-image: url(&quot;assets/img/naruto.png&quot;);
-                background-size: cover;
-                background-position: center center;
-                background-repeat: no-repeat;
-              "
-            >
+           
               <FormKit
                 name="email"
                 prefix-icon="email"
                 label="Email address"
                 validation="required|email"
                 style="width: 650px; color: #a8e0d8"
+                v-model="userData.email"
               />
               <div class="cs-height_20 cs-height_lg_20"></div>
 
@@ -64,6 +67,7 @@
                   length: 'Try to make your password longer!',
                 }"
                 class="cs-btn cs-style2 cs-btn_lg"
+                v-model="userData.password"
               />
               <FormKit
                 type="password"
@@ -85,6 +89,7 @@
         </div>
       </div>
     </div>
+    <div class="cs-height_100 cs-height_lg_70"></div>
     <footerHome></footerHome>
   </div>
 </template>
@@ -111,7 +116,7 @@ export default {
         email: null,
         password: "",
       },
-      // v$: useValidate(),
+    
     };
   },
   methods: {
@@ -159,9 +164,7 @@ export default {
     footerHome,
     FormKit,
   },
-  // validations() {
-  //   return {}
-  // },
+ 
 };
 </script>
 <style>
