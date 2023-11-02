@@ -95,10 +95,8 @@
 </template>
 
 <script>
-import { user, authInfo } from "@/store";
 
-// import useValidate from '@vuelidate/core'
-// import { required } from '@vuelidate/validators'
+
 
 import { jwtDecode } from "jwt-decode";
 import footerHome from "@/pages/footer.vue";
@@ -129,14 +127,18 @@ export default {
         const decoded = jwtDecode(token);
         console.log(decoded);
         // Gán giá trị sub vào biến user
-        user.value = decoded.sub;
-        console.log("globle :" + user.value);
+       
+        const userGmail =decoded.sub;
+        console.log("email :" + userGmail);
         // Fetch the complete Auth information
-        const authInfoResponse = await RegisterService.findByEmail(user.value);
-        authInfo.value = authInfoResponse;
+        const authInfoResponse = await RegisterService.findByEmail(userGmail);
+        const authInfoResponseJson = JSON.stringify(authInfoResponse);
+        localStorage.setItem("userLocal",authInfoResponseJson);
+
         console.log(authInfoResponse);
-        console.log("authen globle ID: " + authInfo.value.id);
-        console.log("authen globle Name: " + authInfo.value.name);
+        console.log("authen globle ID: " + authInfoResponse.id);
+        console.log("authInfoResponseJson"+authInfoResponseJson);
+    
         this.$router.push("/");
         const Toast = Swal.mixin({
           toast: true,

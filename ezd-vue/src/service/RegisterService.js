@@ -10,7 +10,7 @@ const axiosInstance = axios.create({
 });
 
 const AuthService = {
- async register(userData) {
+  async register(userData) {
     return await axiosInstance
       .post("/auth/signup", userData)
       .then((response) => {
@@ -21,7 +21,7 @@ const AuthService = {
       });
   },
 
- async login(credentials) {
+  async login(credentials) {
     const LOGIN_API_URL = `${baseURL}/auth/signin`; // Địa chỉ đăng nhập
     return await axiosInstance.post(LOGIN_API_URL, credentials).then((response) => {
       const token = response.data.token;

@@ -63,10 +63,10 @@
                         <li>
                           <router-link to="/contact">Contact</router-link>
                         </li>
-                        <li v-if="authInfo == null">
+                        <li v-if="user == null">
                           <router-link to="/login">Login</router-link>
                         </li>
-                        <li v-if="authInfo != null">
+                        <li v-if="user != null">
                           <a href="#">
                             <img
                               width="35"
@@ -84,11 +84,11 @@
                             "
                           >
                             <li>
-                              <a href="#">Name : {{ authInfo.name }} </a>
+                              <a href="#">Name : {{ user.name }} </a>
                             </li>
                             <li>
                               <a href="#"
-                                >Balance : {{ authInfo.balance }}
+                                >Balance : {{ user.balance }}
 
                                 <img
                                   width="25"
@@ -144,8 +144,6 @@
 </template>
 
 <script>
-import { authInfo } from "@/store";
-
 import Swal from "sweetalert2";
 
 export default {
@@ -153,6 +151,7 @@ export default {
   data() {
     return {
       isProfileVisible: false,
+      user:null,
     };
   },
   methods: {
@@ -161,7 +160,7 @@ export default {
     },
     Logout() {
       // Thực hiện đăng xuất bằng cách đặt lại giá trị của authInfo thành null
-      authInfo.value = null;
+      localStorage.removeItem("userLocal");
 
       // Điều hướng người dùng đến trang đăng nhập sau khi đăng xuất
       this.$router.push("/login");
@@ -174,12 +173,12 @@ export default {
         showConfirmButton: false,
         timer: 2000,
       });
-    }
-
-   
+    },
   },
-  computed: {
-    authInfo: () => authInfo.value, // Sử dụng giá trị từ store
+  created() {
+    // Lấy dữ liệu người dùng từ localStorage khi component được tạo ra
+    let userJSON = localStorage.getItem("userLocal");
+    this.user = JSON.parse(userJSON);
   },
 };
 </script>

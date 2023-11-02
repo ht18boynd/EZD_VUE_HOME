@@ -40,7 +40,7 @@
       <div class="container">
         <h2 class="cs-section_heading cs-style1 text-center">
           Explore By Catagory
-          <p v-if="authInfo">Tên: {{ authInfo.name }}</p>
+         
         </h2>
         <div class="cs-height_45 cs-height_lg_45"></div>
         <Carousel
@@ -440,7 +440,6 @@
 </template>
 
 <script>
-import {authInfo} from  "@/store";
 import { Carousel, Navigation, Pagination, Slide } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
 import footerHome from "@/pages/footer.vue";
@@ -508,10 +507,7 @@ export default {
     // await this.getAllRoles();
     // await this.getAllGenders();
   },
-  computed: {
- 
-    authInfo: () => authInfo.value, // Sử dụng giá trị từ store
-  },
+
  
 };
 </script>

@@ -155,7 +155,7 @@
                   matches: 'Phone number must be in the format xxx-xxx-xxxx',
                 }"
                 validation-visibility="dirty"
-                v-model="userData.phonenumber"
+                v-model="userData.phoneNumber"
               />
               <FormKit
                 type="checkbox"
@@ -213,7 +213,7 @@ export default {
         country: "",
         birthday: "",
         gender: "",
-        phonenumber: "",
+        phoneNumber: "",
       },
     };
   },
