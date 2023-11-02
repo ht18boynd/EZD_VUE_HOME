@@ -99,6 +99,12 @@
                               </a>
                             </li>
                             <li>
+                              <router-link to="/person/lucky" >
+                                <img width="25" height="25" src="https://img.icons8.com/nolan/64/1A6DFF/C822FF/roulette.png" alt="roulette"/>
+                                Lucky Spin
+                              </router-link>
+                            </li>
+                            <li>
                               <a href="#">
                                 <img
                                   width="25"
@@ -109,6 +115,7 @@
                                 Setting</a
                               >
                             </li>
+                          
                             <li>
                               <router-link to="/login" @click="Logout">
                                 <img

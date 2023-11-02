@@ -10,6 +10,8 @@ import CoinPage from "@/components/Coin.vue";
 import CheckOut from "@/components/CheckOut.vue";
 import test from "@/components/test.vue"
 
+import LuckySpin from "@/components/person/LuckySpin.vue"
+
 const routes = [
   {
     path: "/",
@@ -41,6 +43,11 @@ const routes = [
     path: "/checkout",
     component: CheckOut,
   },
+  {
+    path: "/person/lucky",
+    component: LuckySpin,
+  },
+
   {
     path: "/login",
     component: LoginPage,

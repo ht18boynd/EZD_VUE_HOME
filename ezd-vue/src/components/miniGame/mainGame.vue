@@ -2,8 +2,8 @@
     <div class="screen">
       <h1>Poke Memories</h1>
       <p>Select mode to start game</p>
-      <router-link to="/login"  v-if="authInfo==null"> <p>Please Login To Play</p></router-link>
-      <div class="modes"  v-if="authInfo!=null">
+      <router-link to="/login"  v-if="user==null"> <p>Please Login To Play</p></router-link>
+      <div class="modes"  v-if="user!=null">
      
         <button @click="onStart(4)">
           <span>2x2</span>
@@ -36,6 +36,11 @@ emits: ["onStart"],
   },
   computed: {
     authInfo: () => authInfo.value, // Sử dụng giá trị từ store
+  },
+  created() {
+    // Lấy dữ liệu người dùng từ localStorage khi component được tạo ra
+    let userJSON = localStorage.getItem("userLocal");
+    this.user = JSON.parse(userJSON);
   },
 }
 </script>
