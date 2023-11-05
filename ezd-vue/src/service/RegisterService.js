@@ -27,6 +27,7 @@ const AuthService = {
       const token = response.data.token;
       // Lưu JWT vào localStorage hoặc Vuex state
       localStorage.setItem("token", token);
+      console.log(token);
       return response;
     });
   },

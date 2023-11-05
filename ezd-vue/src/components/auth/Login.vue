@@ -26,28 +26,28 @@
             <h2 class="cs-form_title text-center">Sign In</h2>
 
             <FormKit
-            type="form"
-            @submit="login"
-            style="
-              background-image: url(&quot;assets/img/naruto.png&quot;);
-              background-size: cover;
-              background-position: center center;
-              background-repeat: no-repeat;
-            "
-          >
-            <div class="cs-form_btns">
-              <a href="#" class="cs-btn cs-style2 cs-btn_lg">
-                <span><i class="fab fa-google"></i>Google</span>
-              </a>
-              <a href="#" class="cs-btn cs-style2 cs-btn_lg">
-                <span><i class="fab fa-facebook-f"></i>Facebook</span>
-              </a>
-              <a href="#" class="cs-btn cs-style2 cs-btn_lg">
-                <span><i class="fab fa-linkedin-in"></i>Linkedin</span>
-              </a>
-            </div>
-            <div class="cs-height_30 cs-height_lg_30"></div>
-           
+              type="form"
+              @submit="login"
+              style="
+                background-image: url(&quot;assets/img/naruto.png&quot;);
+                background-size: cover;
+                background-position: center center;
+                background-repeat: no-repeat;
+              "
+            >
+              <div class="cs-form_btns">
+                <a href="#" class="cs-btn cs-style2 cs-btn_lg">
+                  <span><i class="fab fa-google"></i>Google</span>
+                </a>
+                <a href="#" class="cs-btn cs-style2 cs-btn_lg">
+                  <span><i class="fab fa-facebook-f"></i>Facebook</span>
+                </a>
+                <a href="#" class="cs-btn cs-style2 cs-btn_lg">
+                  <span><i class="fab fa-linkedin-in"></i>Linkedin</span>
+                </a>
+              </div>
+              <div class="cs-height_30 cs-height_lg_30"></div>
+
               <FormKit
                 name="email"
                 prefix-icon="email"
@@ -77,7 +77,6 @@
               />
 
               <div class="cs-height_20 cs-height_lg_20"></div>
-             
             </FormKit>
           </div>
 
@@ -95,9 +94,6 @@
 </template>
 
 <script>
-
-
-
 import { jwtDecode } from "jwt-decode";
 import footerHome from "@/pages/footer.vue";
 import startHeader from "@/pages/startHeader.vue";
@@ -105,6 +101,7 @@ import RegisterService from "@/service/RegisterService";
 import Swal from "sweetalert2";
 import { FormKit } from "@formkit/vue";
 import "@formkit/themes/genesis";
+import { userInfo  } from "@/store";
 
 export default {
   name: "LoginPage",
@@ -114,48 +111,30 @@ export default {
         email: null,
         password: "",
       },
-    
     };
   },
+
   methods: {
     async login() {
       try {
-        
-
         const response = await RegisterService.login(this.userData);
         const token = response.data.token;
         const decoded = jwtDecode(token);
         console.log(decoded);
         // Gán giá trị sub vào biến user
-       
-        const userGmail =decoded.sub;
+
+        const userGmail = decoded.sub;
         console.log("email :" + userGmail);
         // Fetch the complete Auth information
         const authInfoResponse = await RegisterService.findByEmail(userGmail);
-        const authInfoResponseJson = JSON.stringify(authInfoResponse);
-        localStorage.setItem("userLocal",authInfoResponseJson);
-
-        console.log(authInfoResponse);
-        console.log("authen globle ID: " + authInfoResponse.id);
-        console.log("authInfoResponseJson"+authInfoResponseJson);
-    
+        userInfo.value=authInfoResponse;
+        console.log("userInfo:" +userInfo.value.name);
         this.$router.push("/");
-        const Toast = Swal.mixin({
-          toast: true,
-          position: "top-end",
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener("mouseenter", Swal.stopTimer);
-            toast.addEventListener("mouseleave", Swal.resumeTimer);
-          },
-        });
 
-        Toast.fire({
-          icon: "success",
-          text: "Login successfully",
-        });
+        Swal.fire("Login Success!", "Login Success!", "success")
+        
+       
+        
       } catch {
         console.log("Error");
       }
@@ -166,7 +145,6 @@ export default {
     footerHome,
     FormKit,
   },
- 
 };
 </script>
 <style>

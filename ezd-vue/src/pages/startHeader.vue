@@ -6,7 +6,7 @@
           <div class="cs-main_header_in">
             <div class="cs-main_header_left">
               <router-link to="/" class="cs-site_branding"
-                ><img src="assets/img/logo.svg" alt="Logo"
+                ><img :src="BASE_URL + 'assets/img/logo.svg'" alt="Logo"
               /></router-link>
             </div>
             <div class="cs-main_header_right">
@@ -88,7 +88,10 @@
                             </li>
                             <li>
                               <a href="#"
-                                >Balance : {{ user.balance }}
+                                >Balance : {{ user.balance.toLocaleString("vi-VN", {
+                                  style: "currency",
+                                  currency: "VND",
+                                }) }}
 
                                 <img
                                   width="25"
@@ -163,8 +166,15 @@ export default {
   data() {
     return {
       isProfileVisible: false,
-      user:userInfo,
+      BASE_URL: process.env.BASE_URL,
+
     };
+  },
+  setup(){
+    const user = userInfo;
+    return{
+      user
+    }
   },
   methods: {
     toggleProfile() {
@@ -172,19 +182,13 @@ export default {
     },
     Logout() {
       // Thực hiện đăng xuất bằng cách đặt lại giá trị của authInfo thành null
-      localStorage.removeItem("userLocal");
-
+      localStorage.removeItem("token");
+      console.log("logout oke");
+      this.user=null;   
       // Điều hướng người dùng đến trang đăng nhập sau khi đăng xuất
       this.$router.push("/login");
-
       // Hiển thị thông báo đăng xuất thành công bằng SweetAlert2 hoặc bất kỳ cách nào bạn mong muốn
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Logged out successfully!",
-        showConfirmButton: false,
-        timer: 2000,
-      });
+      Swal.fire("Log Out Success!", "Log Out Success!", "success")
     },
   },
   
