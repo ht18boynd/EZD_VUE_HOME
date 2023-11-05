@@ -129,7 +129,6 @@
                             </li>
                           </ul>
                         </li>
-                        <li><router-link to="/faq">FAQ</router-link></li>
                       </ul>
                     </div>
                   </div>
@@ -140,8 +139,12 @@
                   <router-link to="/coin" class="cs-btn cs-style1"
                     ><span>Buy Coin</span></router-link
                   >
+                  <div><router-link to="/faq">FAQ</router-link>
+                </div>
+              
                 </div>
               </div>
+
             </div>
           </div>
         </div>
@@ -152,13 +155,15 @@
 
 <script>
 import Swal from "sweetalert2";
+import { userInfo  } from "@/store";
+
 
 export default {
   name: "startHeader",
   data() {
     return {
       isProfileVisible: false,
-      user:null,
+      user:userInfo,
     };
   },
   methods: {
@@ -182,10 +187,6 @@ export default {
       });
     },
   },
-  created() {
-    // Lấy dữ liệu người dùng từ localStorage khi component được tạo ra
-    let userJSON = localStorage.getItem("userLocal");
-    this.user = JSON.parse(userJSON);
-  },
+  
 };
 </script>

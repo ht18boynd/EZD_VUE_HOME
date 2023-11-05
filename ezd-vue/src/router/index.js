@@ -6,8 +6,7 @@ import BecomeIdol from "@/components/BecomeIdol.vue";
 import GameIndex from "@/components/miniGame/index.vue";
 import LoginPage from "@/components/auth/Login.vue";
 import RegisterPage from "@/components/auth/Register.vue";
-import CoinPage from "@/components/Coin.vue";
-import CheckOut from "@/components/CheckOut.vue";
+import CoinPage from "@/components/BuyCoin.vue";
 import test from "@/components/test.vue"
 
 import LuckySpin from "@/components/person/LuckySpin.vue"
@@ -39,10 +38,7 @@ const routes = [
     path: "/coin",
     component: CoinPage,
   },
-  {
-    path: "/checkout",
-    component: CheckOut,
-  },
+ 
   {
     path: "/person/lucky",
     component: LuckySpin,

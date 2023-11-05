@@ -6,7 +6,7 @@ const axiosInstance = axios.create({
     },
 });
 
-const BANNER_API_BASE_URL = 'http://localhost:8081/api/transactions/';
+const TRANSACTION_API_BASE_URL = 'http://localhost:8081/api/transactions/';
 
 
 class TransactionService {
@@ -16,7 +16,7 @@ class TransactionService {
         formData.append('amount', amount);
         try {
 
-            const response = await axiosInstance.post(`${BANNER_API_BASE_URL}save`, formData, {
+            const response = await axiosInstance.post(`${TRANSACTION_API_BASE_URL}save`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
