@@ -18,8 +18,7 @@
     </section>
     <!-- End Page Head -->
 
-    <div class="cs-height_100 cs-height_lg_70"></div>
-    <div class="container">
+    <div class="container" style="background-color: #93b8f5;">
       <div class="row">
         <div class="col-xl-6 col-md-8 offset-xl-3 offset-md-2">
           <div class="cs-form_card_in">
@@ -53,7 +52,7 @@
                 prefix-icon="email"
                 label="Email address"
                 validation="required|email"
-                style="width: 650px; color: #a8e0d8"
+                style="width: 650px; "
                 v-model="userData.email"
               />
               <div class="cs-height_20 cs-height_lg_20"></div>
@@ -150,7 +149,6 @@ export default {
 <style>
 .formkit-inner {
   width: 100%;
-  color: white;
 }
 [data-invalid] .formkit-inner {
   border-color: red;

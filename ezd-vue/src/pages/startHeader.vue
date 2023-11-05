@@ -183,6 +183,9 @@ export default {
     Logout() {
       // Thực hiện đăng xuất bằng cách đặt lại giá trị của authInfo thành null
       localStorage.removeItem("token");
+      localStorage.removeItem("nextSpinTime");
+
+     
       console.log("logout oke");
       this.user=null;   
       // Điều hướng người dùng đến trang đăng nhập sau khi đăng xuất

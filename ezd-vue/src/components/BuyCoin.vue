@@ -47,26 +47,34 @@
                     type="number"
                     placeholder="Nhập số Tiền bạn muốn Nạp"
                     v-model="amount"
-                    @input="checkAmountRange"
+                    required
+                    min="1"
+                    max="1000"
                   />
 
-                  <div v-if="isAmountInvalid" style="color: red">
-                    Số tiền phải từ 1 đến 1000 USD
+                  <div v-if="amount < 1 || amount > 1000">
+                    <div class="cs-height_30 cs-height_lg_30"></div>
+
+                    <p style="color: red">Số tiền phải từ 1 đến 1000 USD.</p>
                   </div>
+                
+                <div v-if="user === null">
+                  <p style="color: red">
+                    Vui lòng đăng nhập để thực hiện thanh toán.
+                    <router-link to="/login"> Log In</router-link>
+                  </p>
                 </div>
-                <div class="cs-height_30 cs-height_lg_30"></div>
+                <div v-else>
+                  <div class="cs-height_30 cs-height_lg_30"></div>
 
-                <div for="">Số Tiền :{{ formattedPrice }}</div>
-                <div class="cs-height_30 cs-height_lg_30"></div>
-
-                <div id="your-container-element" :disabled="amount === 0"></div>
-                <button
-                  type="submit"
-                  class="btn btn-warning"
-                  :disabled="amount === 0"
-                >
-                  Thanh Toán
-                </button>
+                  <div for="">Tên Người Gửi :{{ user.name }}</div>
+                  <div for="">Số Tiền :{{ formattedPrice }}</div>
+                  <div class="cs-height_30 cs-height_lg_30"></div>
+                </div>
+              </div>
+                <div v-if="!isAmountInvalid">
+                  <div id="your-container-element"></div>
+                </div>
               </form>
             </div>
           </div>
@@ -97,65 +105,47 @@
               </h3>
             </div>
             <hr />
-            <div class="cs-iconbox_text">30,000 VND</div>
-            <a href="#" class="cs-iconbox_btn cs-primary_font">
-              Thanh Toán
-              <svg
-                width="17"
-                height="12"
-                viewBox="0 0 17 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M16.5303 6.75396C16.8232 6.46107 16.8232 5.9862 16.5303 5.6933L11.7574 0.920332C11.4645 0.627439 10.9896 0.627439 10.6967 0.920332C10.4038 1.21323 10.4038 1.6881 10.6967 1.98099L14.9393 6.22363L10.6967 10.4663C10.4038 10.7592 10.4038 11.234 10.6967 11.5269C10.9896 11.8198 11.4645 11.8198 11.7574 11.5269L16.5303 6.75396ZM0 6.97363H16V5.47363H0V6.97363Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </a>
-          </div>
-          <div class="cs-height_30 cs-height_lg_30"></div>
-        </div>
-        <div class="col-lg-4 col-sm-4">
-          <div
-            class="cs-iconbox cs-style3 cs-box_shadow cs-white_bg"
-            style="text-align: center"
-          >
-            <div
-              class="cs-iconbox_img"
-              style="
-                font-size: medium;
-                font-family: &quot;Segoe UI&quot;, Tahoma, Geneva, Verdana,
-                  sans-serif;
-              "
-            >
-              <h3>
-                Nhập Mã Coupon
-                <img
-                  width="30"
-                  height="30"
-                  src="https://img.icons8.com/nolan/64/diamond.png"
-                  alt="diamond"
-                />
-              </h3>
+            <div class="cs-iconbox_text">
+              <form @submit.prevent="CheckOutBank">
+                <div class="form-group">
+                  <input
+                    class="form-control"
+                    type="number"
+                    placeholder="Nhập số Tiền bạn muốn Nạp"
+                    v-model="amountBank"
+                    required
+                    min="1"
+                    max="1000"
+                  />
+
+                  <div v-if="amountBank < 20000 || amountBank > 20000000">
+                    <div class="cs-height_30 cs-height_lg_30"></div>
+
+                    <p style="color: red">Số tiền phải từ 20,000 đến 20,000,000 VND.</p>
+                  </div>
+                </div>
+
+                <div v-if="user === null">
+                  <div class="cs-height_30 cs-height_lg_30"></div>
+
+                  <p style="color: red">
+                    Vui lòng đăng nhập để thực hiện thanh toán.
+                    <router-link to="/login"> Log In</router-link>
+                  </p>
+                </div>
+                <div v-else>
+                  <div class="cs-height_30 cs-height_lg_30"></div>
+
+                  <div for="">Tên Người Gửi :{{ user.name }}</div>
+                  <div for="">Số Tiền :{{ amountBank.toLocaleString("vi-VN", {
+                    style: "currency",
+                    currency: "VND",
+                  })  }}</div>
+                  <div class="cs-height_30 cs-height_lg_30"></div>
+                </div>
+                
+              </form>
             </div>
-            <hr />
-            <div class="cs-iconbox_text">50,000 VND</div>
-            <a href="#" class="cs-iconbox_btn cs-primary_font">
-              Thanh Toán
-              <svg
-                width="17"
-                height="12"
-                viewBox="0 0 17 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M16.5303 6.75396C16.8232 6.46107 16.8232 5.9862 16.5303 5.6933L11.7574 0.920332C11.4645 0.627439 10.9896 0.627439 10.6967 0.920332C10.4038 1.21323 10.4038 1.6881 10.6967 1.98099L14.9393 6.22363L10.6967 10.4663C10.4038 10.7592 10.4038 11.234 10.6967 11.5269C10.9896 11.8198 11.4645 11.8198 11.7574 11.5269L16.5303 6.75396ZM0 6.97363H16V5.47363H0V6.97363Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </a>
           </div>
           <div class="cs-height_30 cs-height_lg_30"></div>
         </div>
@@ -169,127 +159,122 @@
 
 <script>
 import { onMounted } from "vue";
-import { amountPayPal } from "@/store"; // Import trạng thái toàn cục
-
+import { userInfo } from "@/store";
 import { loadScript } from "@paypal/paypal-js";
-
 import TransactiomService from "@/service/TransactionService";
 import Swal from "sweetalert2";
 import footerHome from "@/pages/footer.vue";
 import startHeader from "@/pages/startHeader.vue";
+
 export default {
   name: "coinPage",
   components: {
     startHeader,
     footerHome,
   },
+
   data() {
     return {
-      user: null,
+      user: userInfo.value,
       isAmountInvalid: false,
       amount: 0,
-      isbutton: false,
+      amountBank:0
     };
   },
+
   methods: {
-    async CheckOut() {
-      try {
-        console.log("price  ,Id: " + this.amount + "ID : " + this.user.id);
-        const price = this.amount * 24582.5;
-        console.log(price);
-        if (this.amount >= 1 && 1000 >= this.amount) {
-          await TransactiomService.saveTransaction(this.user.id, price);
-          console.log("ok");
-          this.amount = 0;
-          Swal.fire("", "Đơn Của Bạn Đang Đợi Duyệt", "success");
-        } else {
-          Swal.fire("", "Giá Trị Không Hợp Lệ", "error");
-        }
-      } catch (error) {
-        Swal.fire("", "Lỗi Thanh Toán", "error");
-      }
-    },
-    checkAmountRange() {
-      amountPayPal.value = this.amount;
-      const minAmount = 1;
-      const maxAmount = 1000;
-
-      if (this.amount < minAmount || this.amount > maxAmount) {
-        this.isAmountInvalid = true;
+    handlePayPalSuccess() {
+      // Xử lý thành công khi thanh toán PayPal ở đây
+      const price = this.amount * 24582.5;
+      console.log(price);
+      if (this.amount >= 1 && this.amount <= 1000) {
+        TransactiomService.saveTransaction(this.user.id, price)
+          .then(() => {
+            this.amount = 0;
+            Swal.fire("", "Đơn Của Bạn Đang Đợi Duyệt", "success");
+          })
+          .catch(() => {
+            Swal.fire("", "Lỗi Thanh Toán", "error");
+          });
       } else {
+        Swal.fire("", "Giá Trị Không Hợp Lệ", "error");
+      }
+    },
+
+    async setupPayPal() {
+      onMounted(async () => {
+        let paypal;
+
+        try {
+          paypal = await loadScript({
+            clientId:
+              "AbLBGB3RVnQp5QZ6hEGgXxNAu1v0VKydgPZD2_uOqQ_ti-ZQQrRoUXJWUCHW9OFg51fm9goR6dEHB87b",
+          });
+        } catch (error){
+          console.error(error);
+        }
+
+        if (paypal) {
+          try {
+            await paypal
+              .Buttons({
+                createOrder: (data, actions) => {
+                  if (this.amount < 1) {
+                    this.amount=1;
+                  
+                  } if (this.amount > 1000) {
+                    this.amount=1000;
+                  
+                  } 
+                    return actions.order.create({
+                      intent: "CAPTURE",
+                      purchase_units: [
+                        {
+                          amount: {
+                            currency_code: "USD",
+                            value: this.amount.toString(),
+                          },
+                        },
+                      ],
+                    });
+                  
+                },
+                onApprove: (data, actions) => {
+                  return actions.order.capture().then(() => {
+                    this.handlePayPalSuccess();
+                    Swal.fire("", "Thanh Toán Thành Công", "success");
+                    console.log("Payment successful!");
+                  });
+                },
+              })
+              .render("#your-container-element");
+          } catch (error) {
+            console.error("Failed to render the PayPal Buttons", error);
+          }
+        }
+      });
+    },
+
+    validateInput() {
+      if (this.amount <= 0 || this.amount === "") {
         this.isAmountInvalid = false;
+      } else {
+        this.isAmountInvalid = true;
       }
     },
   },
 
-  // Trong phần setup của Vue component của bạn
-  setup() {
-    onMounted(async () => {
-      let paypal;
-
-      try {
-        paypal = await loadScript({
-          clientId:
-            "AbLBGB3RVnQp5QZ6hEGgXxNAu1v0VKydgPZD2_uOqQ_ti-ZQQrRoUXJWUCHW9OFg51fm9goR6dEHB87b",
-        });
-      } catch (error) {
-        console.error("Failed to load the PayPal JS SDK script", error);
-      }
-
-      if (paypal) {
-        try {
-          await paypal
-            .Buttons({
-              createOrder: (data, actions) => {
-                if (amountPayPal.value != 0) {
-                  return actions.order.create({
-                    intent: "CAPTURE",
-                    purchase_units: [
-                      {
-                        amount: {
-                          currency_code: "USD",
-                          value: amountPayPal.value,
-                        },
-                      },
-                    ],
-                  });
-                } else {
-                 console.log("In Valid:");
-                }
-              },
-              onApprove: (data, actions) => {
-                return actions.order.capture().then(() => {
-                  // Thực hiện xử lý sau khi thanh toán thành công
-
-                  Swal.fire("", "Thanh Toán Thành Công", "success");
-                  console.log("Payment successful!");
-                });
-              },
-             
-              // ...
-            })
-            .render("#your-container-element");
-        } catch (error) {
-          console.error("Failed to render the PayPal Buttons", error);
-        }
-      }
-    });
-
-    // ...
-  },
   computed: {
     formattedPrice() {
-      // Sử dụng Intl.NumberFormat để định dạng price thành đơn vị tiền tệ
       return new Intl.NumberFormat("vi-VN", {
         style: "currency",
         currency: "VND",
       }).format(this.amount * 24582.5);
     },
+    
   },
-  created() {
-    // Lấy dữ liệu người dùng từ localStorage khi component được tạo ra
-    let userJSON = localStorage.getItem("userLocal");
-    this.user = JSON.parse(userJSON);
+  async created() {
+    await this.setupPayPal();
   },
 };
 </script>

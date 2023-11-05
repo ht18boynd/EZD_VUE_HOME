@@ -342,10 +342,13 @@ export default {
       return this.ListLucky.slice(start, end);
     },
   },
-  created() {
-    this.getUserByEmail();
+ async created() {
+   await this.getUserByEmail();
     // Kiểm tra xem có giá trị thời gian quay tiếp theo trong localStorage không
-    const nextSpinTime = localStorage.getItem("nextSpinTime");
+    const nextSpinTime = localStorage.getItem(`nextSpinTime_${ this.userInfoData.id}`);
+    console.log("Test : " +  this.userInfoData.id);
+
+
 
     if (nextSpinTime) {
       const currentTime = new Date().getTime();
@@ -424,7 +427,6 @@ export default {
         this.userInfoData.email,
       );
       this.newUser = newRespone;
-      console.log("new balance :" + this.newUser.balance);
       userInfo.value = this.newUser;
       console.log("Add Oke");
       this.getUserByEmail(), (this.popupActive = false);
@@ -454,10 +456,12 @@ export default {
           clearInterval(interval); // Dừng interval
         }
       }, 1000); // Cập nhật mỗi 1 giây (1000 milliseconds)
+
       localStorage.setItem(
-        "nextSpinTime",
-        new Date().getTime() + this.remainingTime,
-      );
+  `nextSpinTime_${this.userInfoData.id}`,
+  new Date().getTime() + this.remainingTime
+);
+
 
       // Sau đó thực hiện quay bình thường
       // Tính ra tổng xác suất của tất cả các phạm vi
