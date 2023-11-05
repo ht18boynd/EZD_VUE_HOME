@@ -1,115 +1,35 @@
 <template>
   <div>
-    <div class="cs-preloader cs-center">
-      <div class="cs-preloader_in"></div>
-      <span>Loading</span>
-    </div>
-
     <!-- Start Header Section -->
     <startHeader></startHeader>
     <!-- End Header Section -->
 
-    <div class="cs-height_90 cs-height_lg_80"></div>
     <div class="cs-height_30 cs-height_lg_30"></div>
 
     <!-- Start Hero -->
 
     <section class="container-fluid">
       <div class="cs-hero_slider_1">
-        <div class="cs-slider cs-style1">
-          <div
-            class="cs-slider_container"
-            data-autoplay="0"
-            data-loop="1"
-            data-speed="600"
-            data-center="0"
-            data-slides-per-view="1"
-          >
-            <div class="cs-slider_wrapper">
-              <div v-for="slide in bannerList" :key="slide.id">
-                <!-- Thay 'slide' bằng tên biến phù hợp -->
-                <div class="cs-slide">
-                  <div
-                    class="cs-hero cs-style1 cs-bg cs-center"
-                    :data-src="slide.image"
-                  >
-                    <div class="container">
-                      <div class="cs-hero_text">
-                        <h1 class="cs-hero_title">{{ slide.title }}</h1>
-                        <!-- Sử dụng tiêu đề của banner -->
-                        <div class="cs-hero_subtitle cs-medium">
-                          {{ slide.name }}
-                          <!-- Sử dụng tên của banner -->
-                        </div>
-                        <div class="cs-hero_btns">
-                          <a href="#" class="cs-hero_btn cs-style1 cs-color1"
-                            ><span>Explore</span></a
-                          >
-                          <a href="#" class="cs-hero_btn cs-style1 cs-color2"
-                            ><span>Create</span></a
-                          >
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- .cs-slide -->
-              </div>
+        <carousel :items-to-show="1">
+          <slide v-for="slide in bannerList" :key="slide">
+            <div class="slide-content">
+              <img
+                :src="slide.image"
+                alt=""
+                style="width: 1300px; height: 500px"
+              />
             </div>
-          </div>
-          <!-- .cs-slider_container -->
-          <div class="cs-slider_arrows cs-style2">
-            <div class="cs-left_arrow cs-center cs-box_shadow">
-              <svg
-                width="14"
-                height="15"
-                viewBox="0 0 14 15"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M13.0269 7.55957H0.817552"
-                  stroke="currentColor"
-                  stroke-width="1.16474"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M6.92188 1.45508L0.817222 7.55973L6.92188 13.6644"
-                  stroke="currentColor"
-                  stroke-width="1.16474"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>{{ slide.name }}</h5>
+              <p>{{ slide.title }}.</p>
             </div>
-            <div class="cs-right_arrow cs-center cs-box_shadow">
-              <svg
-                width="14"
-                height="15"
-                viewBox="0 0 14 15"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M0.816895 7.55957H13.0262"
-                  stroke="currentColor"
-                  stroke-width="1.16474"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M6.92188 1.45508L13.0265 7.55973L6.92188 13.6644"
-                  stroke="currentColor"
-                  stroke-width="1.16474"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </div>
-          </div>
-          <div class="cs-pagination cs-style1 cs-hidden"></div>
-        </div>
+          </slide>
+
+          <template #addons>
+            <navigation />
+            <pagination />
+          </template>
+        </carousel>
         <!-- .cs-slider -->
       </div>
     </section>
@@ -120,6 +40,7 @@
       <div class="container">
         <h2 class="cs-section_heading cs-style1 text-center">
           Explore By Catagory
+         
         </h2>
         <div class="cs-height_45 cs-height_lg_45"></div>
         <Carousel
@@ -149,7 +70,126 @@
     <div class="cs-height_70 cs-height_lg_40"></div>
 
     <!-- Start New Items -->
-    <newItem></newItem>
+    <section>
+      <div class="container">
+        <div class="cs-section_heading cs-style2">
+          <div class="cs-section_left">
+            <h2 class="cs-section_title">New Items</h2>
+          </div>
+          <div class="cs-section_right">
+            <a href="explore-1.html" class="cs-btn cs-style1"
+              ><span>Explore More</span></a
+            >
+          </div>
+        </div>
+        <div class="cs-isotop_filter cs-style1 cs-type1 cs-center">
+          <ul class="cs-mp0 cs-center">
+            <li class="active">
+              <a href="#" data-filter="*"><span>All NFT</span></a>
+            </li>
+            <li>
+              <a href="#" data-filter=".fashion"><span>Fashion</span></a>
+            </li>
+            <li>
+              <a href="#" data-filter=".music"><span>Music</span></a>
+            </li>
+            <li>
+              <a href="#" data-filter=".video"><span>Video</span></a>
+            </li>
+            <li>
+              <a href="#" data-filter=".games"><span>Games</span></a>
+            </li>
+          </ul>
+        </div>
+        <div class="cs-height_45 cs-height_lg_45"></div>
+        <div class="cs-isotop cs-style1 cs-isotop_col_5 cs-has_gutter_30">
+          <div class="cs-grid_sizer"></div>
+          <div class="cs-isotop_item fashion">
+            <div class="cs-card cs-style4 cs-box_shadow cs-white_bg">
+              <span class="cs-card_like cs-primary_color">
+                <i class="fas fa-heart fa-fw"></i>
+                2.1K
+              </span>
+              <a
+                href="explore-details.html"
+                class="cs-card_thumb cs-zoom_effect"
+              >
+                <img
+                  src="assets/img/explore/1.jpeg"
+                  alt="Image"
+                  class="cs-zoom_item"
+                />
+              </a>
+              <div class="cs-card_info">
+                <a href="#" class="cs-avatar cs-white_bg">
+                  <img src="assets/img/avatar/avatar_12.png" alt="Avatar" />
+                  <span>Johny E.</span>
+                </a>
+                <h3 class="cs-card_title">
+                  <a href="explore-details.html">Art work #2134</a>
+                </h3>
+                <div class="cs-card_price">
+                  Current Bid: <b class="cs-primary_color">0.29 ETH 7/21</b>
+                </div>
+                <hr />
+                <div class="cs-card_footer">
+                  <span class="cs-card_btn_1" data-modal="#history_1">
+                    <i class="fas fa-redo fa-fw"></i>
+                    View History
+                  </span>
+                  <span class="cs-card_btn_2" data-modal="#bid_1"
+                    ><span>Place Bid</span></span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- .cs-isotop_item -->
+          <div class="cs-isotop_item music">
+            <div class="cs-card cs-style4 cs-box_shadow cs-white_bg">
+              <span class="cs-card_like cs-primary_color">
+                <i class="fas fa-heart fa-fw"></i>
+                3.3K
+              </span>
+              <a
+                href="explore-details.html"
+                class="cs-card_thumb cs-zoom_effect"
+              >
+                <img
+                  src="assets/img/explore/2.jpeg"
+                  alt="Image"
+                  class="cs-zoom_item"
+                />
+              </a>
+              <div class="cs-card_info">
+                <a href="#" class="cs-avatar cs-white_bg">
+                  <img src="assets/img/avatar/avatar_13.png" alt="Avatar" />
+                  <span>debit alex</span>
+                </a>
+                <h3 class="cs-card_title">
+                  <a href="explore-details.html">Cool octopus traveling</a>
+                </h3>
+                <div class="cs-card_price">
+                  Current Bid: <b class="cs-primary_color">0.24 ETH 4/17</b>
+                </div>
+                <hr />
+                <div class="cs-card_footer">
+                  <span class="cs-card_btn_1" data-modal="#history_1">
+                    <i class="fas fa-redo fa-fw"></i>
+                    View History
+                  </span>
+                  <span class="cs-card_btn_2" data-modal="#bid_1"
+                    ><span>Place Bid</span></span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- .cs-isotop_item -->
+        </div>
+      </div>
+    </section>
     <!-- End New Items -->
     <div class="cs-height_95 cs-height_lg_70"></div>
     <!-- Music Live-->
@@ -405,7 +445,6 @@ import "vue3-carousel/dist/carousel.css";
 import footerHome from "@/pages/footer.vue";
 import iconBox from "@/pages/iconBox.vue";
 import topScore from "@/pages/topScore.vue";
-import newItem from "@/pages/newItem.vue";
 import startHeader from "@/pages/startHeader.vue";
 import musicLive from "@/components/youtube/musicLive.vue";
 import gameLive from "@/components/youtube/gameLive.vue";
@@ -419,7 +458,7 @@ export default {
     footerHome,
     iconBox,
     topScore,
-    newItem,
+    // Loading,
     startHeader,
     Carousel,
     Slide,
@@ -430,6 +469,7 @@ export default {
   },
   data() {
     return {
+      // loading: true, // Initially, set loading to true
       // gamelist: [],
       bannerList: [],
       gamelist: [],
@@ -467,12 +507,8 @@ export default {
     // await this.getAllRoles();
     // await this.getAllGenders();
   },
-  computed: {
-    // Tính toán `maxId` để xác định `id` lớn nhất trong danh sách
-    // maxId() {
-    //   return Math.max(...this.gamelist.map((game) => game.id));
-    // },
-  },
+
+ 
 };
 </script>
 <style scoped>

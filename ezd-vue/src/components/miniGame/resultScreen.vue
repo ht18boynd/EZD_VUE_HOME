@@ -1,59 +1,59 @@
 <template>
   <div class="screen">
-
-    <h1>✨ Congratulations ✨</h1>
-    <h3>{{ Math.round(timer / 920) }} seconds</h3>
+    <h3>✨ Congratulations✨:{{ authInfo.name }}</h3>
+    <h6>{{ Math.round(timer / 920) }} seconds</h6>
     <button @click="onStartAgain">Start Again</button>
   </div>
 </template>
 
 <script>
- import { collection, addDoc } from "firebase/firestore"
-  // the firestore instance
-  import db from '@/firebase/init.js'
-  
+import { authInfo } from "@/store";
+import { collection, addDoc } from "firebase/firestore";
+import db from "@/firebase/init.js";
+
 export default {
-name:"resultGame",
-props: {
+  name: "resultGame",
+  props: {
     timer: {
       type: Number,
       default: 0,
     },
   },
   emits: ["onStartAgain"],
-  data(){
-    return{
+  data() {
+    return {
       BASE_URL: process.env.BASE_URL,
-      timerScore :null,
-    }
+      timerScore: null,
+    };
   },
   methods: {
     onStartAgain() {
       this.$emit("onStartAgain");
     },
     async createUser() {
-        // 'users' collection reference
-        const colRef = collection(db, 'users')
-        this.timerScore=Math.round(this.timer / 920)
-        // data to send
-        const dataObj = {
-          firstName: 'John',
-          time:  this.timerScore
-        
-        }
-  
-        // create document and return reference to it
-        const docRef = await addDoc(colRef, dataObj)
-  
-        // access auto-generated ID with '.id'
-        console.log('Document was created with ID:', docRef.id)
-      }
+      // 'users' collection reference
+      const colRef = collection(db, "users");
+      this.timerScore = Math.round(this.timer / 920);
+      // data to send
+      const dataObj = {
+        firstName: this.authInfo.name,
+        time: this.timerScore,
+      };
+
+      // create document and return reference to it
+      const docRef = await addDoc(colRef, dataObj);
+
+      // access auto-generated ID with '.id'
+      console.log("Document was created with ID:", docRef.id);
+    },
   },
   created() {
-      this.createUser()
-    },
-
-}
+    this.createUser();
+  },
+  computed: {
+    authInfo: () => authInfo.value, // Sử dụng giá trị từ store
+  },
+};
 </script>
 
 <style scoped>
@@ -61,8 +61,12 @@ props: {
   width: 100%;
   height: 480px;
 
-  background-color: linear-gradient(116.85deg, rgba(252, 70, 107, 0.3) 0%, rgba(63, 94, 251, 0.3) 100%);
- 
+  background-color: linear-gradient(
+    116.85deg,
+    rgba(252, 70, 107, 0.3) 0%,
+    rgba(63, 94, 251, 0.3) 100%
+  );
+
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,9 +1,6 @@
 <template>
   <div>
-    <div class="cs-preloader cs-center">
-      <div class="cs-preloader_in"></div>
-      <span>Loading</span>
-    </div>
+    
     <!-- Start Header Section -->
    <startHeader></startHeader>
    <div class="cs-height_100 cs-height_lg_70"></div>

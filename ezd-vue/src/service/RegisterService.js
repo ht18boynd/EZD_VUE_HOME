@@ -10,8 +10,8 @@ const axiosInstance = axios.create({
 });
 
 const AuthService = {
-  register(userData) {
-    return axiosInstance
+  async register(userData) {
+    return await axiosInstance
       .post("/auth/signup", userData)
       .then((response) => {
         return response.data;
@@ -21,13 +21,19 @@ const AuthService = {
       });
   },
 
-  login(credentials) {
+  async login(credentials) {
     const LOGIN_API_URL = `${baseURL}/auth/signin`; // Địa chỉ đăng nhập
-    return axiosInstance.post(LOGIN_API_URL, credentials).then((response) => {
+    return await axiosInstance.post(LOGIN_API_URL, credentials).then((response) => {
       const token = response.data.token;
       // Lưu JWT vào localStorage hoặc Vuex state
       localStorage.setItem("token", token);
       return response;
+    });
+  },
+  async findByEmail(email) {
+    const FIND_BY_EMAIL_API_URL = `${baseURL}/auth/findByEmail?email=${email}`;
+    return await axiosInstance.get(FIND_BY_EMAIL_API_URL).then((response) => {
+      return response.data;
     });
   },
 };
