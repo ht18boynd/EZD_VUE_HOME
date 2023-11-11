@@ -6,48 +6,16 @@
           <div class="cs-main_header_in">
             <div class="cs-main_header_left">
               <router-link to="/" class="cs-site_branding"
-                ><img src="assets/img/logo.svg" alt="Logo"
+                ><img :src="BASE_URL + 'assets/img/logo.svg'" alt="Logo"
               /></router-link>
             </div>
             <div class="cs-main_header_right">
-              <div class="cs-search_wrap">
-                <form action="#" class="cs-search">
-                  <input
-                    type="text"
-                    class="cs-search_input"
-                    placeholder="Search"
-                  />
-                  <button class="cs-search_btn">
-                    <svg
-                      width="20"
-                      height="21"
-                      viewBox="0 0 20 21"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M9.16667 16.3333C12.8486 16.3333 15.8333 13.3486 15.8333 9.66667C15.8333 5.98477 12.8486 3 9.16667 3C5.48477 3 2.5 5.98477 2.5 9.66667C2.5 13.3486 5.48477 16.3333 9.16667 16.3333Z"
-                        stroke="currentColor"
-                        stroke-opacity="0.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                      <path
-                        d="M17.5 18L13.875 14.375"
-                        stroke="currentColor"
-                        stroke-opacity="0.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </button>
-                </form>
-              </div>
+              
               <div class="cs-nav_wrap">
                 <div class="cs-nav_out">
                   <div class="cs-nav_in">
                     <div class="cs-nav">
-                      <ul class="cs-nav_list">
+                      <ul class="cs-nav_list" style="font-weight:600;font-size:medium">
                         <li>
                           <router-link to="/">Home</router-link>
                         </li>
@@ -67,13 +35,13 @@
                           <router-link to="/login">Login</router-link>
                         </li>
                         <li v-if="user != null">
-                          <a href="#">
+                          <router-link to="/person/profile">
                             <img
                               width="35"
                               height="35"
                               src="https://img.icons8.com/plasticine/100/brawl-stars.png"
                               alt="brawl-stars"
-                          /></a>
+                          /></router-link>
 
                           <ul
                             style="
@@ -88,7 +56,10 @@
                             </li>
                             <li>
                               <a href="#"
-                                >Balance : {{ user.balance }}
+                                >Balance : {{ user.balance.toLocaleString("vi-VN", {
+                                  style: "currency",
+                                  currency: "VND",
+                                }) }}
 
                                 <img
                                   width="25"
@@ -105,14 +76,14 @@
                               </router-link>
                             </li>
                             <li>
-                              <a href="#">
+                              <router-link to="/person/setting">
                                 <img
                                   width="25"
                                   height="25"
                                   src="https://img.icons8.com/nolan/64/settings--v1.png"
                                   alt="settings--v1"
                                 />
-                                Setting</a
+                                Setting</router-link
                               >
                             </li>
                           
@@ -163,28 +134,29 @@ export default {
   data() {
     return {
       isProfileVisible: false,
-      user:userInfo,
+      BASE_URL: process.env.BASE_URL,
+      user:userInfo.value
+
     };
   },
+ 
   methods: {
     toggleProfile() {
       this.isProfileVisible = !this.isProfileVisible;
     },
     Logout() {
       // Thực hiện đăng xuất bằng cách đặt lại giá trị của authInfo thành null
-      localStorage.removeItem("userLocal");
+      localStorage.removeItem("token");
+      localStorage.removeItem("nextSpinTime");
 
+     
+      console.log("logout oke");
+      this.user=null;  
+      userInfo.value=null; 
       // Điều hướng người dùng đến trang đăng nhập sau khi đăng xuất
       this.$router.push("/login");
-
       // Hiển thị thông báo đăng xuất thành công bằng SweetAlert2 hoặc bất kỳ cách nào bạn mong muốn
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Logged out successfully!",
-        showConfirmButton: false,
-        timer: 2000,
-      });
+      Swal.fire("Log Out Success!", "Log Out Success!", "success")
     },
   },
   

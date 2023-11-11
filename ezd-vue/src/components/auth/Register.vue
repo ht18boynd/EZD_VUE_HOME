@@ -17,26 +17,15 @@
         </div>
       </div>
     </section>
+    <div class="cs-height_20 cs-height_lg_20"></div>
     <!-- End Page Head -->
-
-    <div class="cs-height_100 cs-height_lg_70"></div>
     <div class="container">
       <div class="row">
-        <div class="col-xl-6 col-md-8 offset-xl-3 offset-md-2">
-          <FormKit
-            type="form"
-            @submit="registerUser"
-            style="
-              background-image: url(&quot;assets/img/jinx.jpg&quot;);
-              background-size: cover;
-              background-position: center center;
-              background-repeat: no-repeat;
-            "
-           
-          >
+        <div class="col-xl-6 col-md-8 offset-xl-3 offset-md-2" >
+          <form class="cs-form_card cs-style1 cs-box_shadow cs-white_bg"   @submit.prevent="registerUser" >
             <div class="cs-form_card_in">
               <h2 class="cs-form_title text-center">Create Account</h2>
-              <div class="cs-form_btns">
+              <!-- <div class="cs-form_btns">
                 <a href="#" class="cs-btn cs-style2 cs-btn_lg">
                   <span><i class="fab fa-google"></i>Google</span>
                 </a>
@@ -46,136 +35,93 @@
                 <a href="#" class="cs-btn cs-style2 cs-btn_lg">
                   <span><i class="fab fa-linkedin-in"></i>Linkedin</span>
                 </a>
-              </div>
+              </div> -->
               <div class="cs-height_30 cs-height_lg_30"></div>
-
-              <FormKit
-                type="text"
-                label="Full Name :"
-                prefix-icon="caretRight"
-                validation="required"
-                style="color: #a8e0d8"
-                v-model="userData.name"
-                :classes="{
-                  outer: 'mb-5',
-                  label: 'block mb-1 font-bold text-sm',
-                  input: 'w-full h-10 px-3 border-none text-base text-gray-700 placeholder-gray-400',
-                }"
-              />
-              <!-- Account Name -->
+              <div class="cs-form_field_wrap">
+                <input
+                  type="text"
+                  class="cs-form_field"
+                  v-model="userData.name"
+                  placeholder="Username"
+                  style="background-color:#617bb8 ; "
+                />
+              </div>
+              <div v-if="nameError" class="error-message" style="color: red">
+                {{ nameError }}
+              </div>
               <div class="cs-height_20 cs-height_lg_20"></div>
-              <FormKit
-                type="text"
-                label="Account Name :"
-                prefix-icon="caretRight"
-                style="color: #a8e0d8"
-                validation="required"
-                v-model="userData.accountName"
-                :classes="{
-                  outer: 'mb-5',
-                  label: 'block mb-1 font-bold text-sm',
-                  input: 'w-full h-10 px-3 border-none text-base text-gray-700 placeholder-gray-400',
-                }"
-              />
-              <!-- Email Address -->
+              <div class="cs-form_field_wrap">
+                <input
+                  type="email"
+                  class="cs-form_field"
+                  v-model="userData.email"
+                  placeholder="Your Email"
+                  style="background-color:#617bb8 ;"
+                />
+              </div>
+              <div v-if="emailError" class="error-message" style="color: red">
+                {{ emailError }}
+              </div>
               <div class="cs-height_20 cs-height_lg_20"></div>
-              <FormKit
-                type="email"
-                label="Email address"
-                validation="required|email"
-                style="width: 650px; color: #a8e0d8"
-                v-model="userData.email"
-                prefix-icon="email"
-              />
+              <div class="cs-form_field_wrap">
+                <input
+                  type="date"
+                  class="cs-form_field"
+                  v-model="userData.birthday"
+                
+                  style="background-color:#617bb8 ;"
+                  
+                />
+              </div>
+              <div
+                v-if="birthdayError"
+                class="error-message"
+                style="color: red"
+              >
+                {{ birthdayError }}
+              </div>
               <div class="cs-height_20 cs-height_lg_20"></div>
-              <FormKit
-                type="password"
-                label="Password"
-                validation="required"
-                style="color: #a8e0d8"
-                v-model="userData.password"
-                prefix-icon="password"
-              />
-
-              <!-- Country -->
+              <div class="cs-form_field_wrap">
+                <input
+                  type="password"
+                  class="cs-form_field"
+                  v-model="userData.password"
+                  placeholder="Set your password"
+                  style="background-color:#617bb8 ;"
+                />
+              </div>
               <div class="cs-height_20 cs-height_lg_20"></div>
-              <FormKit
-                name="text"
-                prefix-icon="cardano"
-
-                label="Country :"
-                validation="required"
-                style="color: #a8e0d8"
-                v-model="userData.country"
-              />
-              <!-- Password -->
-
-              <!-- Address -->
+              <div v-if="passError" class="error-message" style="color: red">
+                {{ passError }}
+              </div>
+              <div class="cs-form_field_wrap">
+                <input
+                  type="password"
+                  class="cs-form_field"
+                  v-model="confirmPassword"
+                  placeholder="Confirm password"
+                  style="background-color:#617bb8 ;"
+                />
+              </div>
               <div class="cs-height_20 cs-height_lg_20"></div>
-              <FormKit
-                type="text"
-                prefix-icon="cardano"
-                label="Address :"
-                style="color: #a8e0d8"
-                validation="required"
-                v-model="userData.address"
-              />
-              <!-- Birthday -->
-              <div class="cs-height_20 cs-height_lg_20"></div>
-              <FormKit
-                type="datetime-local"
-                label="Birthday"
-                prefix-icon="month"
-                help="Enter your birth day"
-                validation="required|date_before:2007-01-01"
-                validation-visibility="live"
-                v-model="userData.birthday"
-              />
-
-              <!-- Gender -->
-              <div class="cs-height_20 cs-height_lg_20"></div>
-              <FormKit
-                v-model="userData.gender"
-                type="radio"
-                prefix-icon="snapchat"
-                label="Giới Tính"
-                :options="['Nam', 'Nữ']"
-              
-              />
-              <!-- Phone Number -->
-              <div class="cs-height_20 cs-height_lg_20"></div>
-              <FormKit
-                type="tel"
-                label="Phone number"
-                prefix-icon="telephone"
-                placeholder="xxx-xxx-xxxx"
-             
-                validation="required|matches:/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/"
-                :validation-messages="{
-                  matches: 'Phone number must be in the format xxx-xxx-xxxx',
-                }"
-                validation-visibility="dirty"
-                v-model="userData.phoneNumber"
-              />
-              <FormKit
-                type="checkbox"
-                label="Terms and Conditions"
-                help="Do you agree to our terms of service?"
-                name="terms"
-                :value="true"
-                validation="accepted"
-                validation-visibility="dirty"
-              />
-              <div class="cs-height_10 cs-height_lg_10"></div>
+              <div
+                v-if="confirmPassError"
+                class="error-message"
+                style="color: red"
+              >
+                {{ confirmPassError }}
+              </div>
 
               <div class="cs-height_20 cs-height_lg_20"></div>
-
+              <button class="cs-btn cs-style1 cs-btn_lg w-100" type="submit">
+                <span>Register Now</span>
+              </button>
               <div class="cs-height_30 cs-height_lg_30"></div>
               <div class="cs-form_footer text-center">
                 Have an account? <router-link to="/login">Log In</router-link>
               </div>
             </div>
-          </FormKit>
+          </form>
         </div>
       </div>
     </div>
@@ -190,81 +136,115 @@ import startHeader from "@/pages/startHeader.vue";
 import AuthService from "@/service/RegisterService";
 // import { useRouter } from "vue-router"; // Sử dụng useRouter thay vì useRoute
 import Swal from "sweetalert2";
-import { FormKit } from "@formkit/vue";
 
-import "@formkit/themes/genesis";
 export default {
   name: "RegisterPage",
 
   components: {
     startHeader,
     footerHome,
-    FormKit,
   },
   data() {
     return {
       userData: {
         name: "",
-        accountName: "",
         email: "",
         password: "",
-        avatar: null,
-        address: "",
-        country: "",
         birthday: "",
-        gender: "",
-        phoneNumber: "",
       },
+      nameError: "",
+      emailError: "",
+      birthdayError: "",
+      passError: "",
+      confirmPassError: "",
     };
   },
   methods: {
+    validateForm() {
+      this.resetErrors(); // Đặt lại tất cả các biến lỗi trước khi kiểm tra
+
+      if (!this.userData.name) {
+        this.nameError = "Username is required";
+      }
+
+      if (!this.userData.email) {
+        this.emailError = "Email is required";
+      } else {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(this.userData.email)) {
+          this.emailError = "Invalid email format";
+        }
+      }
+
+      if (!this.userData.birthday) {
+        this.birthdayError = "Birthday is required";
+      } else {
+        const birthdayDate = new Date(this.userData.birthday);
+        const currentDate = new Date();
+        const age = currentDate.getFullYear() - birthdayDate.getFullYear();
+
+        if (age < 16) {
+          this.birthdayError = "You must be at least 16 years old";
+        }
+      }
+
+      if (!this.userData.password) {
+        this.passError = "Password is required";
+      } else {
+        // Kiểm tra password từ 8-16 ký tự, chứa cả số và chữ cái, không có khoảng trắng
+        const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,16}$/;
+        if (!passwordPattern.test(this.userData.password)) {
+          this.passError =
+            "Password must be 8-16 characters, contain both letters and numbers, and no spaces";
+        }
+      }
+
+      if (this.userData.password !== this.confirmPassword) {
+        this.confirmPassError = "Passwords do not match";
+      }
+
+      // Trả về true nếu không có lỗi, ngược lại trả về false
+      return (
+        !this.nameError &&
+        !this.emailError &&
+        !this.birthdayError &&
+        !this.passError &&
+        !this.confirmPassError
+      );
+    },
+
+    resetErrors() {
+      this.nameError = null;
+      this.emailError = null;
+      this.birthdayError = null;
+      this.passError = null;
+      this.confirmPassError = null;
+      // Thêm các biến lỗi khác nếu cần
+    },
     async registerUser() {
-     
       try {
+        if (!this.validateForm()) {
+          return; // Dừng quá trình đăng ký nếu có lỗi
+        }
         const response = await AuthService.register(this.userData);
         if (response.id) {
           this.$router.push("/login");
-          const Toast = Swal.mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-              toast.addEventListener("mouseenter", Swal.stopTimer);
-              toast.addEventListener("mouseleave", Swal.resumeTimer);
-            },
-          });
-
-          Toast.fire({
-            icon: "success",
-            text: "Register  Successfully",
-          });
+          Swal.fire("Sign Up Success!", "Sign Up Success!!", "success");
         }
-      } catch {
-        Swal.fire({
-          position: "top-end",
-          icon: "error",
-          title: "Register error !",
-          showConfirmButton: false,
-          timer: 2000,
-        });
+      } catch (error) {
+        if (
+          error.response &&
+          error.response.status === 400 &&
+          error.response.data.message === "Email đã tồn tại"
+        ) {
+          // Xử lý trường hợp Email đã tồn tại
+          Swal.fire("Sign Up Error!", "Email Đã Tồn Tại !", "error");
+        } else {
+          // Xử lý các lỗi khác
+          Swal.fire("Sign Up Error!", "Sign Up Error !", "error");
+        }
       }
     },
   },
 };
 </script>
-<style>
-.formkit-inner {
-  width: 100%;
-  color: white;
-}
-[data-invalid] .formkit-inner {
-  border-color: red;
-  box-shadow: 0 0 0 1px red;
-}
-
-[data-complete] .formkit-inner {
-  border-color: red;
-}
-</style>

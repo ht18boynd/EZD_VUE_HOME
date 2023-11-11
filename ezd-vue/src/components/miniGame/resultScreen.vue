@@ -1,13 +1,13 @@
 <template>
   <div class="screen">
-    <h3>✨ Congratulations✨:{{ authInfo.name }}</h3>
+    <h3>✨ Congratulations✨:{{ user.name }}</h3>
     <h6>{{ Math.round(timer / 920) }} seconds</h6>
     <button @click="onStartAgain">Start Again</button>
   </div>
 </template>
 
 <script>
-import { authInfo } from "@/store";
+import { userInfo } from "@/store";
 import { collection, addDoc } from "firebase/firestore";
 import db from "@/firebase/init.js";
 
@@ -26,6 +26,12 @@ export default {
       timerScore: null,
     };
   },
+  setup(){
+    const user = userInfo;
+    return{
+      user
+    }
+  },
   methods: {
     onStartAgain() {
       this.$emit("onStartAgain");
@@ -36,7 +42,7 @@ export default {
       this.timerScore = Math.round(this.timer / 920);
       // data to send
       const dataObj = {
-        firstName: this.authInfo.name,
+        firstName: this.user.name,
         time: this.timerScore,
       };
 
@@ -50,9 +56,7 @@ export default {
   created() {
     this.createUser();
   },
-  computed: {
-    authInfo: () => authInfo.value, // Sử dụng giá trị từ store
-  },
+  
 };
 </script>
 
