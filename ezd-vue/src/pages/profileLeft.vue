@@ -7,14 +7,15 @@
     <div class="cs-profile_left" v-if="user != null">
         <div class="cs-profile_sidebar cs-white_bg cs-box_shadow">
           <div class="cs-profile_info">
-            <div class="cs-profile_pic">
+            <div class="cs-profile_pic" v-if="user.avarta==null">
+              
               <img
-                :src="BASE_URL + 'assets/img/avatar/avatar_29.png'"
+                src="https://res.cloudinary.com/dbdz9u1y6/image/upload/v1698467917/oogfmmehumkcbpxfaqrv.jpg"
                 alt=""
               />
             </div>
             <h3 class="cs-profile_title">{{ user.name }}</h3>
-            <div class="cs-name">@omuk tomux</div>
+            
             <ul class="cs-profile_meta cs-mp0">
               <li>Followers (560)</li>
               <li>Following (56)</li>
@@ -23,7 +24,7 @@
           <div class="cs-height_30 cs-height_lg_30"></div>
           <ul class="cs-profile_nav cs-mp0">
             <li>
-              <a href="user-profile.html">
+              <router-link to="/person/profile">
                 <svg
                   width="19"
                   height="15"
@@ -43,10 +44,10 @@
                   />
                 </svg>
                 <span>Profile Info</span>
-              </a>
+              </router-link>
             </li>
             <li>
-              <a href="user-account-settings.html">
+              <router-link to="/person/setting">
                 <svg
                   width="19"
                   height="18"
@@ -84,7 +85,7 @@
                   </defs>
                 </svg>
                 <span>Account Settings</span>
-              </a>
+              </router-link>
             </li>
             <li>
               <a href="user-items.html">
@@ -106,7 +107,7 @@
               </a>
             </li>
             <li>
-              <router-link to="/person/lucky" class="active">
+              <router-link to="/person/lucky">
                 <svg
                   width="15"
                   height="14"
@@ -125,7 +126,7 @@
               </router-link>
             </li>
             <li>
-              <a href="user-activity.html">
+              <router-link to="/person/create">
                 <svg
                   width="18"
                   height="18"
@@ -138,8 +139,8 @@
                     fill="currentColor"
                   />
                 </svg>
-                <span>My Activity</span>
-              </a>
+                <span>Create New Product</span>
+              </router-link>
             </li>
             <li>
               <a href="user-wallet.html">
@@ -195,7 +196,7 @@ export default {
 name:'profileLetf',
 data(){
     return{
-        user:userInfo,
+        user:userInfo.value,
       BASE_URL: process.env.BASE_URL,
     }
 },methods: {

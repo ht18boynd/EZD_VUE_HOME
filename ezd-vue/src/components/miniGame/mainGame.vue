@@ -23,10 +23,15 @@
   </template>
 
 <script>
-import { authInfo } from "@/store";
+import { userInfo } from "@/store";
 export default {
 name:'mainGame',
 emits: ["onStart"],
+data(){
+  return{
+    user:userInfo.value
+  }
+},
 
   methods: {
 
@@ -34,14 +39,8 @@ emits: ["onStart"],
       this.$emit("onStart", { totalOfBlocks });
     },
   },
-  computed: {
-    authInfo: () => authInfo.value, // Sử dụng giá trị từ store
-  },
-  created() {
-    // Lấy dữ liệu người dùng từ localStorage khi component được tạo ra
-    let userJSON = localStorage.getItem("userLocal");
-    this.user = JSON.parse(userJSON);
-  },
+
+ 
 }
 </script>
 <style lang="css" scoped>

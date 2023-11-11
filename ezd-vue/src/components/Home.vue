@@ -5,37 +5,38 @@
     <!-- End Header Section -->
 
     <div class="cs-height_30 cs-height_lg_30"></div>
+    <div class="cs-height_30 cs-height_lg_30"></div>
+    <div class="cs-height_30 cs-height_lg_30"></div>
+    <div class="cs-height_30 cs-height_lg_30"></div>
 
     <!-- Start Hero -->
-
-    <section class="container-fluid">
-      <div class="cs-hero_slider_1">
-        <carousel :items-to-show="1">
-          <slide v-for="slide in bannerList" :key="slide">
-            <div class="slide-content">
-              <img
-                :src="slide.image"
-                alt=""
-                style="width: 1300px; height: 500px"
-              />
+<!-- Start Hero -->
+<section class="container-fluid">
+  <div class="cs-hero_slider_1">
+    <carousel class="cs-slider cs-style1" :autoplay="0" :loop="1" :speed="600" :center="0" :slides-per-view="1">
+      <slide v-for="(slide, index) in bannerList" :key="index">
+        <div class="cs-hero cs-style1 cs-bg cs-center" :style="{ backgroundImage: 'url(' + slide.image + ')', width: '1200px', height: '500px' }">
+          <div class="container">
+            <div class="cs-hero_text">
+              <h1 class="cs-hero_title">{{ slide.name }}</h1>
+              <div class="cs-hero_subtitle cs-medium">{{ slide.title }}</div>
+              <div class="cs-hero_btns">
+                <a href="#" class="cs-hero_btn cs-style1 cs-color1"><span>Explore</span></a>
+                <a href="#" class="cs-hero_btn cs-style1 cs-color2"><span>Create</span></a>
+              </div>
             </div>
-            <div class="carousel-caption d-none d-md-block">
-              <h5>{{ slide.name }}</h5>
-              <p>{{ slide.title }}.</p>
-            </div>
-          </slide>
-
-          <template #addons>
-            <navigation />
-            <pagination />
-          </template>
-        </carousel>
-        <!-- .cs-slider -->
-      </div>
-    </section>
-    <!-- End Hero -->
-
-    <div class="cs-height_95 cs-height_lg_70"></div>
+          </div>
+        </div>
+      </slide>
+      <template #addons >
+        <navigation class="custom-navigation" />
+        <pagination class="custom-pagination" />
+      </template>
+      
+    </carousel>
+  </div>
+</section>
+<div class="cs-height_70 cs-height_lg_40"></div>
     <section>
       <div class="container">
         <h2 class="cs-section_heading cs-style1 text-center">
@@ -76,11 +77,7 @@
           <div class="cs-section_left">
             <h2 class="cs-section_title">New Items</h2>
           </div>
-          <div class="cs-section_right">
-            <a href="explore-1.html" class="cs-btn cs-style1"
-              ><span>Explore More</span></a
-            >
-          </div>
+          
         </div>
         <div class="cs-isotop_filter cs-style1 cs-type1 cs-center">
           <ul class="cs-mp0 cs-center">
@@ -500,23 +497,16 @@ export default {
   },
 
   async created() {
-    await this.getBannerActive();
+   this.getBannerActive();
     this.getAllGames();
-
-    // await this.getAllLevels();
-    // await this.getAllRoles();
-    // await this.getAllGenders();
   },
 
  
 };
 </script>
 <style scoped>
-.carousel-container {
-  background-size: cover; /* Tuỳ chỉnh kích thước ảnh nền */
-  background-repeat: no-repeat; /* Ngăn lặp lại ảnh nền */
-  /* Các thuộc tính CSS khác cho phần container của Carousel */
-}
+
+@import url("vue3-carousel/dist/carousel.css");
 .carousel__image {
   width: 240px;
   height: 280px;
@@ -541,7 +531,7 @@ export default {
   /* Thay đổi màu cho Pagination */
   width: 300px;
   padding: 10px;
-  background-color: #95edc7; /* Màu nền */
+  background-color: #6d54f7; /* Màu nền */
   border-radius: 5px;
   display: flex;
   justify-content: center; /* Căn giữa theo chiều ngang */
