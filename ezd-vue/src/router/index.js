@@ -12,7 +12,9 @@ import LuckySpin from "@/components/person/LuckySpin.vue"
 import CreateProduct from "@/components/person/CreateProduct.vue"
 import ProfileInfo from "@/components/person/ProfileInfo.vue"
 import SettingAccount from "@/components/person/Setting.vue"
-
+import ListBlog from "@/components/blog/listBlog.vue"
+import BlogDetails from "@/components/blog/blogDetails.vue"
+import IndexFaq from "@/components/faq/index.vue"
 const routes = [
   { path: "/", component: HomePage },
   { path: "/test", component: Test },
@@ -26,6 +28,9 @@ const routes = [
   { path: "/person/setting", component: SettingAccount },
   { path: "/login", component: LoginPage },
   { path: "/register", component: RegisterPage },
+  { path: "/blog", component: ListBlog },
+  { path: "/blog/:id",name: 'blogDetails', component: BlogDetails },
+  { path: "/faq", component: IndexFaq },
 ];
 
 
