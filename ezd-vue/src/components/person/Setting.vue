@@ -86,23 +86,23 @@
          <profileLeftVue></profileLeftVue>
          <div class="cs-profile_right">
             <div class="cs-height_30 cs-height_lg_30"></div>
-            <h2 class="cs-section_heading cs-style1">Profile Info</h2>
+            <h2 class="cs-section_heading cs-style1">Change Password</h2>
             <div class="cs-height_25 cs-height_lg_25"></div>
-            <form class="row">
+            <form class="row" @submit.prevent="updatePasswordUser">
               <div class="col-lg-6">
                 <div class="cs-form_field_wrap">
-                  <input type="password" class="cs-form_field cs-white_bg" placeholder="Old password">
+                  <input type="password" class="cs-form_field cs-white_bg" placeholder="Old password" v-model="currentPassword">
                 </div>
                 <div class="cs-height_25 cs-height_lg_25"></div>
                 <div class="cs-form_field_wrap">
-                  <input type="password" class="cs-form_field cs-white_bg" placeholder="New password">
+                  <input type="password" class="cs-form_field cs-white_bg" placeholder="New password" v-model="newPasword">
                 </div>
                 <div class="cs-height_25 cs-height_lg_25"></div>
-                <div class="cs-form_field_wrap">
-                  <input type="password" class="cs-form_field cs-white_bg" placeholder="Confirm new password">
-                </div>
+                <!-- <div class="cs-form_field_wrap">
+                  <input type="password" class="cs-form_field cs-white_bg" placeholder="Confirm new password" v-model="comfirm">
+                </div> -->
                 <div class="cs-height_25 cs-height_lg_25"></div>
-                <button class="cs-btn cs-style1 cs-btn_lg"><span>Change Password</span></button>
+                <button class="cs-btn cs-style1 cs-btn_lg" type="submit"><span>Change Password</span></button>
               </div>
             </form>
           </div>
@@ -121,9 +121,10 @@ import "vue-awesome-paginate/dist/style.css";
 import { userInfo } from "@/store";
 import footerHome from "@/pages/footer.vue";
 import startHeader from "@/pages/startHeader.vue";
-// import Swal from "sweetalert2";
+import Swal from "sweetalert2";
 
 import profileLeftVue from "@/pages/profileLeft.vue";
+import RegisterService from "@/service/RegisterService";
 
 export default {
   name: "settingAccount",
@@ -132,6 +133,7 @@ export default {
       BASE_URL: process.env.BASE_URL,
 
       userInfoData: userInfo.value, // Gán userInfo vào biến userInfoData
+      newPasword:"",currentPassword:"",comfirm:""
     };
   },
   components: {
@@ -139,7 +141,22 @@ export default {
     footerHome,
     profileLeftVue,
   },
+  methods: {
+    async updatePasswordUser(){
+       await RegisterService.updatePassword(this.userInfoData.email,
+       this.currentPassword,
+       this.newPasword
+       );
+      console.log("new:"+this.userInfoData.email+
+       this.currentPassword+
+       this.newPasword);
+    
+        Swal.fire("Login Success!", "Change Password Success !", "success");
+        this.email="";
+      
+    }
+  },
 };
 </script>
 
-<style></style>
+

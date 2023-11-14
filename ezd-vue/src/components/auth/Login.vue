@@ -74,6 +74,7 @@
               <div class="cs-form_footer text-center">
                 No Account?
                 <router-link to="/register">Register Now</router-link>
+                <router-link to="/reset-password">Foget Password</router-link>
               </div>
             </div>
           </form>
