@@ -85,7 +85,11 @@
           <div class="cs-height_30 cs-height_lg_30"></div>
           <h2 class="cs-section_heading cs-style1">Create</h2>
           <div class="cs-height_25 cs-height_lg_25"></div>
-          <form class="row" @submit.prevent="submitProduct">
+          <form
+            class="row"
+            @submit.prevent="submitProduct"
+            enctype="multipart/form-data"
+          >
             <div class="col-lg-12">
               <div class="cs-file_wrap">
                 <div class="cs-file_in">
@@ -154,15 +158,16 @@
                 <input
                   type="file"
                   class="cs-file"
-                  accept="image/*"
-                  ref="imageInput"
                   @change="handleImageChange"
                 />
+
                 <img
-                  v-if="imagePreview"
-                  :src="imagePreview"
-                  class="cs-preview"
-                  alt="Image"
+                  id="previewImage"
+                  class="img-fluid"
+                  v-if="imagePreviewUrl"
+                  :src="imagePreviewUrl"
+                  alt="Preview"
+                  style="width: 360px; height: 240px"
                 />
               </div>
               <div class="cs-height_25 cs-height_lg_25"></div>
@@ -173,7 +178,7 @@
                 <label class="cs-form_label">Select Game</label>
                 <select
                   class="cs-form_field"
-                  v-model="selectedGameId"
+                  v-model="gameProductId"
                   @change="onGameSelectionChange"
                 >
                   <option disabled>Lựa Chọn Dưới Đây...</option>
@@ -187,17 +192,33 @@
                 </select>
               </div>
               <div class="cs-height_20 cs-height_lg_20"></div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="cs-form_field_wrap">
+                    <label class="cs-form_label">Price/hour:</label>
+                    <input
+                      type="text"
+                      class="cs-form_field"
+                      v-model="formattedItemPrice"
+                      @input="updateItemPrice"
+                      placeholder="Price"
+                    />
+                  </div>
+                </div>
 
-              <div class="cs-form_field_wrap">
-                <label class="cs-form_label">Price/hour:</label>
-                <input
-                  type="text"
-                  class="cs-form_field"
-                  v-model="formattedItemPrice"
-                  @input="updateItemPrice"
-                  placeholder="Price per Hour"
-                />
+                <div class="col-6">
+                  <div class="cs-form_field_wrap">
+                    <label class="cs-form_label">Hour:</label>
+                    <input
+                      type="number"
+                      class="cs-form_field"
+                      v-model="hour"
+                      placeholder="Price per Hour"
+                    />
+                  </div>
+                </div>
               </div>
+
               <div class="cs-height_20 cs-height_lg_20"></div>
               <div class="cs-form_field_wrap">
                 <textarea
@@ -205,7 +226,7 @@
                   rows="5"
                   placeholder="e. g.  description"
                   class="cs-form_field"
-                  v-model="desciption"
+                  v-model="description"
                 ></textarea>
               </div>
 
@@ -214,7 +235,7 @@
             <div class="col-lg-6">
               <div class="cs-form_field_wrap">
                 <label class="cs-form_label">Role:</label>
-                <select class="cs-form_field" v-model="selectedRoleId">
+                <select class="cs-form_field" v-model="roleProductId">
                   <!-- Use v-for to loop through the gamelist and display options -->
                   <option disabled>Lựa Chọn Dưới Đây...</option>
 
@@ -231,7 +252,7 @@
               <div class="cs-height_20 cs-height_lg_20"></div>
               <div class="cs-form_field_wrap">
                 <label class="cs-form_label">Level:</label>
-                <select class="cs-form_field" v-model="selectedLevelId">
+                <select class="cs-form_field" v-model="levelProductId">
                   <!-- Use v-for to loop through the gamelist and display options -->
                   <option disabled>Lựa Chọn Dưới Đây...</option>
 
@@ -249,7 +270,7 @@
 
               <div class="cs-form_field_wrap">
                 <label class="cs-form_label">Gender :</label>
-                <select class="cs-form_field" v-model="selectedGenderId">
+                <select class="cs-form_field" v-model="genderProductId">
                   <!-- Use v-for to loop through the gamelist and display options -->
                   <option disabled>Lựa Chọn Dưới Đây...</option>
 
@@ -281,11 +302,10 @@
 
 <script>
 import "vue-awesome-paginate/dist/style.css";
-// import {watch} from "vue";
 import { userInfo } from "@/store";
 import footerHome from "@/pages/footer.vue";
 import startHeader from "@/pages/startHeader.vue";
-// import Swal from "sweetalert2";
+import Swal from "sweetalert2";
 import GameService from "@/service/GameService";
 import ProductService from "@/service/ProductService";
 import profileLeftVue from "@/pages/profileLeft.vue";
@@ -295,17 +315,16 @@ export default {
   data() {
     return {
       user: "",
-      productName: "",
-      itemPrice: 0, // Giá trị thực
+      price: 0, // Giá trị thực
       formattedItemPrice: "", // Giá trị đã định dạng
-      // ... Add more properties as needed
-      imageFiles: [], // Array to store selected image files
-      imagePreview: null, // Preview of the selected image
-      selectedGameId: "",
-      desciption: "",
-      selectedGenderId: "",
-      selectedLevelId: "",
-      selectedRoleId: "",
+      hour: 0,
+      imgProduct: null, // Array to store selected image files
+      imagePreviewUrl: null, // Preview of the selected image
+      gameProductId: "",
+      description: "",
+      genderProductId: "",
+      levelProductId: "",
+      roleProductId: "",
       gamelist: [],
       BASE_URL: process.env.BASE_URL,
       selectedGameDetails: {
@@ -325,7 +344,7 @@ export default {
     async onGameSelectionChange() {
       try {
         // Gọi phương thức để lấy thông tin chi tiết của trò chơi
-        const gameDetails = await GameService.getGameById(this.selectedGameId);
+        const gameDetails = await GameService.getGameById(this.gameProductId);
 
         console.log(gameDetails);
         // Cập nhật chi tiết trò chơi đã chọn, roles, levels, và genders
@@ -348,7 +367,7 @@ export default {
         // Kiểm tra xem numericValue có phải là một số hợp lệ hay không
         if (!isNaN(numericValue)) {
           // Cập nhật giá trị thực
-          this.itemPrice = numericValue;
+          this.price = numericValue;
         } else {
           console.error("Giá trị không hợp lệ:", numericValue);
         }
@@ -362,44 +381,69 @@ export default {
 
     handleImageChange(event) {
       // Handle image selection and preview
-      const files = event.target.files;
-      console.log(files); // Thêm dòng này để xem giá trị của files
+      this.imgProduct = event.target.files[0];
 
-      if (files.length > 0) {
-        this.imageFiles = Array.from(files);
-        this.imagePreview = URL.createObjectURL(files[0]);
-      }
+      // Tạo một đối tượng FileReader để đọc hình ảnh
+      let reader = new FileReader();
+
+      reader.onload = (e) => {
+        this.imagePreviewUrl = e.target.result; // Cập nhật imagePreviewUrl với dữ liệu hình ảnh
+      };
+
+      // Đọc hình ảnh được chọn
+      reader.readAsDataURL(this.imgProduct);
     },
+
     async submitProduct() {
-      const id = userInfo.value.id;
-      console.log( id,
-          this.selectedGameId,
-          this.itemPrice,
-          this.imageFiles,
-          this.desciption,
-          this.selectedGenderId,
-          this.selectedLevelId,
-          this.selectedRoleId)
-      try {
-        // Call the ProductService method to save the product
-        const savedProduct = await ProductService.saveProduct(
-          id,
-          this.selectedGameId,
-          this.itemPrice,
-          this.imageFiles,
-          this.desciption,
-          this.selectedGenderId,
-          this.selectedLevelId,
-          this.selectedRoleId,
-        );
+  const userProductId = userInfo.value.id;
 
-        // Handle success or update your component state
-        console.log("Product saved:", savedProduct);
-      } catch (error) {
-        console.error("Error saving product:", error);
-        // Handle error
-      }
-    },
+  // Check for empty fields
+  if (
+    !userProductId ||
+    !this.gameProductId ||
+    !this.price ||
+    !this.imgProduct ||
+    !this.description ||
+    !this.hour ||
+    !this.roleProductId ||
+    !this.levelProductId ||
+    !this.genderProductId
+  ) {
+    // Display error message for empty fields
+    Swal.fire("", "Please fill in all fields", "error");
+    return; // Stop further execution
+  }
+
+  try {
+     await ProductService.saveProduct(
+      userProductId,
+      this.gameProductId,
+      this.roleProductId,
+      this.levelProductId,
+      this.genderProductId,
+      this.imgProduct,
+      this.price,
+      this.hour,
+      this.description
+    );
+
+    Swal.fire("", "Tạo Mới Thành Công ✔️", "success");
+
+    // Reset form values to default after successful submission
+    this.gameProductId = "";
+    this.roleProductId = "";
+    this.levelProductId = "";
+    this.genderProductId = "";
+    this.imgProduct = null;
+    this.price = 0;
+    this.formattedItemPrice="";
+    this.hour = 0;
+    this.description = "";
+  } catch (error) {
+    Swal.fire("", "Đã Có Lỗi Xảy Ra !", "error");
+  }
+},
+
     async getAllGames() {
       try {
         const response = await GameService.getAllGames();
@@ -426,4 +470,8 @@ export default {
 };
 </script>
 
-
+<style scoped>
+.cs-form_label {
+  color: wheat;
+}
+</style>

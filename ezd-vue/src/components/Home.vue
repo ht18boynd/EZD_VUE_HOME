@@ -6,42 +6,59 @@
 
     <div class="cs-height_30 cs-height_lg_30"></div>
     <div class="cs-height_30 cs-height_lg_30"></div>
-    <div class="cs-height_30 cs-height_lg_30"></div>
-    <div class="cs-height_30 cs-height_lg_30"></div>
+
 
     <!-- Start Hero -->
-<!-- Start Hero -->
-<section class="container-fluid">
-  <div class="cs-hero_slider_1">
-    <carousel class="cs-slider cs-style1" :autoplay="0" :loop="1" :speed="600" :center="0" :slides-per-view="1">
-      <slide v-for="(slide, index) in bannerList" :key="index">
-        <div class="cs-hero cs-style1 cs-bg cs-center" :style="{ backgroundImage: 'url(' + slide.image + ')', width: '1200px', height: '500px' }">
-          <div class="container">
-            <div class="cs-hero_text">
-              <h1 class="cs-hero_title">{{ slide.name }}</h1>
-              <div class="cs-hero_subtitle cs-medium">{{ slide.title }}</div>
-              <div class="cs-hero_btns">
-                <a href="#" class="cs-hero_btn cs-style1 cs-color1"><span>Explore</span></a>
-                <a href="#" class="cs-hero_btn cs-style1 cs-color2"><span>Create</span></a>
+    <!-- Start Hero -->
+    <section class="container-fluid">
+      <div class="cs-hero_slider_1">
+        <carousel
+          class="cs-slider cs-style1"
+          :autoplay="0"
+          :loop="1"
+          :speed="600"
+          :center="0"
+          :slides-per-view="1"
+        >
+          <slide v-for="(slide, index) in bannerList" :key="index">
+            <div
+              class="cs-hero cs-style1 cs-bg cs-center"
+              :style="{
+                backgroundImage: 'url(' + slide.image + ')',
+                width: '1200px',
+                height: '500px',
+              }"
+            >
+              <div class="container">
+                <div class="cs-hero_text">
+                  <h1 class="cs-hero_title">{{ slide.name }}</h1>
+                  <div class="cs-hero_subtitle cs-medium">
+                    {{ slide.title }}
+                  </div>
+                  <div class="cs-hero_btns">
+                    <a href="#" class="cs-hero_btn cs-style1 cs-color1"
+                      ><span>Explore</span></a
+                    >
+                    <a href="#" class="cs-hero_btn cs-style1 cs-color2"
+                      ><span>Create</span></a
+                    >
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </slide>
-      <template #addons >
-        <navigation class="custom-navigation" />
-        <pagination class="custom-pagination" />
-      </template>
-      
-    </carousel>
-  </div>
-</section>
-<div class="cs-height_70 cs-height_lg_40"></div>
+          </slide>
+          <template #addons>
+            <navigation class="custom-navigation" />
+            <pagination class="custom-pagination" />
+          </template>
+        </carousel>
+      </div>
+    </section>
+    <div class="cs-height_70 cs-height_lg_40"></div>
     <section>
       <div class="container">
         <h2 class="cs-section_heading cs-style1 text-center">
           Explore By Catagory
-         
         </h2>
         <div class="cs-height_45 cs-height_lg_45"></div>
         <Carousel
@@ -52,11 +69,13 @@
         >
           <Slide v-for="game in gamelist" :key="game.id">
             <div class="carousel__item">
+              <router-link  :to="'/product/skill/' + game.id">
               <img
                 :src="game.imageName"
                 alt="Game Image"
                 class="carousel__image"
               />
+            </router-link>
               <div class="carousel__caption">{{ game.nameGame }}</div>
             </div>
           </Slide>
@@ -77,7 +96,6 @@
           <div class="cs-section_left">
             <h2 class="cs-section_title">New Items</h2>
           </div>
-          
         </div>
         <div class="cs-isotop_filter cs-style1 cs-type1 cs-center">
           <ul class="cs-mp0 cs-center">
@@ -99,92 +117,66 @@
           </ul>
         </div>
         <div class="cs-height_45 cs-height_lg_45"></div>
-        <div class="cs-isotop cs-style1 cs-isotop_col_5 cs-has_gutter_30">
-          <div class="cs-grid_sizer"></div>
-          <div class="cs-isotop_item fashion">
-            <div class="cs-card cs-style4 cs-box_shadow cs-white_bg">
-              <span class="cs-card_like cs-primary_color">
-                <i class="fas fa-heart fa-fw"></i>
-                2.1K
-              </span>
-              <a
-                href="explore-details.html"
-                class="cs-card_thumb cs-zoom_effect"
-              >
-                <img
-                  src="assets/img/explore/1.jpeg"
-                  alt="Image"
-                  class="cs-zoom_item"
-                />
-              </a>
-              <div class="cs-card_info">
-                <a href="#" class="cs-avatar cs-white_bg">
-                  <img src="assets/img/avatar/avatar_12.png" alt="Avatar" />
-                  <span>Johny E.</span>
-                </a>
-                <h3 class="cs-card_title">
-                  <a href="explore-details.html">Art work #2134</a>
-                </h3>
-                <div class="cs-card_price">
-                  Current Bid: <b class="cs-primary_color">0.29 ETH 7/21</b>
-                </div>
-                <hr />
-                <div class="cs-card_footer">
-                  <span class="cs-card_btn_1" data-modal="#history_1">
-                    <i class="fas fa-redo fa-fw"></i>
-                    View History
-                  </span>
-                  <span class="cs-card_btn_2" data-modal="#bid_1"
-                    ><span>Place Bid</span></span
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- .cs-isotop_item -->
-          <div class="cs-isotop_item music">
-            <div class="cs-card cs-style4 cs-box_shadow cs-white_bg">
-              <span class="cs-card_like cs-primary_color">
-                <i class="fas fa-heart fa-fw"></i>
-                3.3K
-              </span>
-              <a
-                href="explore-details.html"
-                class="cs-card_thumb cs-zoom_effect"
-              >
-                <img
-                  src="assets/img/explore/2.jpeg"
-                  alt="Image"
-                  class="cs-zoom_item"
-                />
-              </a>
-              <div class="cs-card_info">
-                <a href="#" class="cs-avatar cs-white_bg">
-                  <img src="assets/img/avatar/avatar_13.png" alt="Avatar" />
-                  <span>debit alex</span>
-                </a>
-                <h3 class="cs-card_title">
-                  <a href="explore-details.html">Cool octopus traveling</a>
-                </h3>
-                <div class="cs-card_price">
-                  Current Bid: <b class="cs-primary_color">0.24 ETH 4/17</b>
-                </div>
-                <hr />
-                <div class="cs-card_footer">
-                  <span class="cs-card_btn_1" data-modal="#history_1">
-                    <i class="fas fa-redo fa-fw"></i>
-                    View History
-                  </span>
-                  <span class="cs-card_btn_2" data-modal="#bid_1"
-                    ><span>Place Bid</span></span
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="row">
+           
+          <div class="col-xl-3 col-lg-4 col-sm-6" v-for="item in listProduct" :key="item.id" >
+         <div class="cs-card cs-style4 cs-box_shadow cs-white_bg" >
+           <span class="cs-card_like cs-primary_color" style="background-color:rgba(22,214,181); color:white">
+            ✿ {{ item.status }} ✿
+           </span>
 
-          <!-- .cs-isotop_item -->
-        </div>
+           <router-link class="cs-card_thumb cs-zoom_effect"
+           :to="'/product/productDetails/' + item.user_product.id">
+             <img
+              :src="item.img_product"
+               alt="Image"
+               class="cs-zoom_item"
+             />
+             </router-link
+             >
+           <div class="cs-card_info">
+             <a href="#" class="cs-avatar cs-white_bg">
+            
+              
+               <span></span>
+             </a>
+             
+             <h3 class="cs-card_title">
+
+               <a href="explore-details.html">{{item.game_product.nameGame}}</a>
+             </h3>
+             <h3 class="cs-card_title">
+              <a href="explore-details.html">{{item.user_product.name}}</a>
+
+              </h3>
+
+             <div class="cs-card_price">
+              
+
+              <img
+              width="35"
+              height="35"
+              src="https://img.icons8.com/plasticine/100/brawl-stars.png"
+              alt="brawl-stars"
+          />
+          <b class="cs-primary_color">{{ item.price }} vnĐ / {{item.hour}}.h</b>
+             </div>
+             <hr />
+             <!-- <div class="cs-card_footer">
+                 <span class="cs-card_btn_2" data-modal="#bid_1"
+                 ><span>Donate</span></span
+               >
+               <span class="cs-card_btn_2" data-modal="#bid_1"
+                 ><span>Place Rent</span></span
+               >
+             </div> -->
+           </div>
+         </div>
+         <div class="cs-height_30 cs-height_lg_30"></div>
+       </div>
+    
+     <!-- .col -->
+   </div>
       </div>
     </section>
     <!-- End New Items -->
@@ -445,6 +437,8 @@ import topScore from "@/pages/topScore.vue";
 import startHeader from "@/pages/startHeader.vue";
 import musicLive from "@/components/youtube/musicLive.vue";
 import gameLive from "@/components/youtube/gameLive.vue";
+import { userInfo } from "@/store";
+import ProductService from "@/service/ProductService";
 
 import BannnerService from "@/service/BannerService";
 import GameService from "@/service/GameService";
@@ -471,9 +465,21 @@ export default {
       bannerList: [],
       gamelist: [],
       BASE_URL: process.env.BASE_URL,
+      userInfoData: userInfo.value, // Gán userInfo vào biến userInfoData
+      listProduct: [],
     };
   },
   methods: {
+    async getAllProduct() {
+      try {
+        const response = await ProductService.getAllProduct();
+
+        this.listProduct = response.sort((a, b) => b.id - a.id); // giảm dần
+        console.log(this.listProduct);
+      } catch (error) {
+        console.error("Error fetching products by user:", error);
+      }
+    },
     async getAllGames() {
       try {
         const response = await GameService.getAllGames();
@@ -494,18 +500,17 @@ export default {
         console.error("Lỗi khi lấy danh sách banner: ", error);
       }
     },
+    
   },
 
   async created() {
-   this.getBannerActive();
+    this.getBannerActive();
     this.getAllGames();
+    this.getAllProduct();
   },
-
- 
 };
 </script>
 <style scoped>
-
 @import url("vue3-carousel/dist/carousel.css");
 .carousel__image {
   width: 240px;
