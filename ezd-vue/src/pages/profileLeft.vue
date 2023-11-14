@@ -88,7 +88,7 @@
               </router-link>
             </li>
             <li>
-              <a href="user-items.html">
+              <router-link to="/person/item">
                 <svg
                   width="20"
                   height="14"
@@ -104,7 +104,7 @@
                   />
                 </svg>
                 <span>My Items</span>
-              </a>
+              </router-link>
             </li>
             <li>
               <router-link to="/person/lucky">
@@ -203,6 +203,12 @@ data(){
     Logout() {
       // Thực hiện đăng xuất bằng cách đặt lại giá trị của authInfo thành null
       localStorage.removeItem("token");
+      localStorage.removeItem("nextSpinTime");
+
+     
+      console.log("logout oke");
+      this.user=null;  
+      userInfo.value=null; 
       console.log("logout oke");
       this.user=null;   
       // Điều hướng người dùng đến trang đăng nhập sau khi đăng xuất

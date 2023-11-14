@@ -5,9 +5,11 @@
         <div class="container-fluid">
           <div class="cs-main_header_in">
             <div class="cs-main_header_left">
-              <router-link to="/" class="cs-site_branding"
-                ><img :src="BASE_URL + 'assets/img/logo.svg'" alt="Logo"
-              /></router-link>
+              <router-link to="/" class="cs-site_branding">
+                <img width="64" height="64" src="https://img.icons8.com/nolan/64/e.png" alt="e"/>
+                <img width="64" height="64" src="https://img.icons8.com/nolan/64/z.png" alt="z"/>
+                <img width="64" height="64" src="https://img.icons8.com/nolan/64/d.png" alt="d"/>
+              </router-link>
             </div>
             <div class="cs-main_header_right">
               
@@ -56,17 +58,16 @@
                             </li>
                             <li>
                               <a href="#"
-                                >Balance : {{ user.balance.toLocaleString("vi-VN", {
+                                > <img
+                                width="25"
+                                height="25"
+                                src="https://img.icons8.com/nolan/64/diamond.png"
+                                alt="diamond"
+                              /> {{ user.balance.toLocaleString("vi-VN", {
                                   style: "currency",
                                   currency: "VND",
                                 }) }}
-
-                                <img
-                                  width="25"
-                                  height="25"
-                                  src="https://img.icons8.com/nolan/64/diamond.png"
-                                  alt="diamond"
-                                />
+                               
                               </a>
                             </li>
                             <li>
