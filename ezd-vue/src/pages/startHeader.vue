@@ -127,11 +127,13 @@
 
 <script>
 import Swal from "sweetalert2";
-import { userInfo  } from "@/store";
-
-
+import { mapState } from 'vuex';
+import { userInfo } from "@/store";
 export default {
   name: "startHeader",
+  computed: {
+    ...mapState(['userInfo']),
+  },
   data() {
     return {
       isProfileVisible: false,
@@ -149,8 +151,6 @@ export default {
       // Thực hiện đăng xuất bằng cách đặt lại giá trị của authInfo thành null
       localStorage.removeItem("token");
       localStorage.removeItem("nextSpinTime");
-
-     
       console.log("logout oke");
       this.user=null;  
       userInfo.value=null; 

@@ -1,30 +1,32 @@
+// store.js
+
 import { ref } from "vue";
 import { jwtDecode } from "jwt-decode";
 import RegisterService from "@/service/RegisterService";
 
-// Khai báo userInfo là một biến tham chiếu với giá trị ban đầu là null
+export const userInfo = ref(null);
 
-export let userInfo = ref(null);
+let token = localStorage.getItem("token");
 
-  let token = localStorage.getItem("token");
+if (token) {
+  const decoded = jwtDecode(token);
+  const userGmail = decoded.sub;
 
-  // Kiểm tra nếu token tồn tại
-  if (token) {
-    const decoded = jwtDecode(token);
-    const userGmail = decoded.sub;
+  RegisterService.findByEmail(userGmail)
+    .then((response) => {
+      userInfo.value = response;
+    })
+    .catch((error) => {
+      console.error("Lỗi khi lấy thông tin người dùng: " + error);
+    });
+}
 
-    // Lấy dữ liệu người dùng từ API dựa trên email
-    RegisterService.findByEmail(userGmail)
-      .then((response) => {
-        // Gán dữ liệu cho userInfo
-        userInfo.value = response;
-      
-        // Gán các trường dữ liệu khác tại đây nếu cần
-      })
-      .catch((error) => {
-        console.error("Lỗi khi lấy thông tin người dùng: " + error);
-      });
-  }
+// Mutation để cập nhật userInfo
+export const mutations = {
+  setUserInfo(state, user) {
+    state.userInfo = user;
+  },
+};
 
 // Tạo amountPayPal là một ref
 export const amountPayPal = ref(0);

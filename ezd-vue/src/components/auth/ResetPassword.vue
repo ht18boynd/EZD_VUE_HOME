@@ -28,6 +28,13 @@
             <button class="cs-btn cs-style1 cs-btn_lg w-100" type="submit">
               <span>Forgot Password</span>
             </button>
+            <div class="cs-height_30 cs-height_lg_30"></div>
+            <div class="cs-form_footer text-center">
+              
+             
+              <hr>
+              <router-link to="/login">Login </router-link>
+            </div>
           </form>
         </div>
       </div>
@@ -63,7 +70,7 @@ export default {
         Swal.fire("Login Success!", "Reset Password Success , Check Email!", "success");
         this.email="";
       
-      
+        this.$router.push("/login");
     }
   },
 }
