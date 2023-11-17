@@ -18,7 +18,7 @@ import SettingAccount from "@/components/person/Setting.vue"
 import ListBlog from "@/components/blog/listBlog.vue"
 import BlogDetails from "@/components/blog/blogDetails.vue"
 import IndexFaq from "@/components/faq/index.vue"
-
+import Contact from "@/components/contact/homeContact.vue"
 import MyItem from "@/components/person/MyItem.vue"
 import ProductDetail from "@/components/product/productDetail.vue"
 import Skill from "@/components/product/skill.vue"
@@ -46,7 +46,7 @@ const routes = [
   { path: "/blog", component: ListBlog },
   { path: "/blog/:id",name: 'blogDetails', component: BlogDetails },
   { path: "/faq", component: IndexFaq },
-
+  { path: "/contact", component: Contact },
   { path: "/reset-password", component: ResetPassword },
 
 
