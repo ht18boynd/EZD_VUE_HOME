@@ -60,6 +60,11 @@
                         </li>
 
                         <li>
+                          <router-link to="/feedback">Feedback</router-link>
+                        </li>
+
+
+                        <li>
                           <router-link to="/faq">FAQ</router-link>
                         </li>
                       </ul>
@@ -78,6 +83,7 @@
                         class="cs-nav_list"
                         style="font-weight: 800; font-size: large ; margin-right : 50px "
                       >
+
                         <li v-if="user == null">
                           <router-link to="/login">Login</router-link>
                         </li>
