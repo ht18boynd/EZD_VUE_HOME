@@ -6,9 +6,8 @@
   <div class="container">
     <div class="row">
       <div class="cs-author_right">
-        <h4> {{username}}</h4>
-        
-        </div>
+        <h4>{{ username }}</h4>
+      </div>
       <div class="col-lg-4">
         <div class="row">
           <!-- Trong template -->
@@ -16,15 +15,16 @@
             <a
               href="#"
               class="cs-card cs-style1 cs-box_shadow text-center cs-white_bg"
+             
             >
               <div class="cs-card_thumb">
-                <img :src="avartar" alt="Image" class="cs-zoom_item" />
+                <img :src="selectedImage" alt="Image" class="cs-zoom_item" />
               </div>
-            
             </a>
           </div>
           <div class="cs-height_30 cs-height_lg_30"></div>
 
+          <!-- Hiển thị danh sách ảnh -->
           <div
             class="col-lg-4 col-sm-4 col-6"
             v-for="avatar in avatars"
@@ -33,11 +33,11 @@
             <a
               href="#"
               class="cs-card cs-style1 cs-box_shadow text-center cs-white_bg"
+              @click="showSelectedImage(avatar)"
             >
               <div class="cs-card_thumb">
                 <img :src="avatar" alt="Image" class="cs-zoom_item" />
               </div>
-            
             </a>
           </div>
         </div>
@@ -56,36 +56,39 @@
         <div class="cs-height_25 cs-height_lg_25"></div>
         <div class="row">
           <Carousel
-          :itemsToShow="3.25"
-          :wrapAround="true"
-          :transition="500"
-          class="custom-carousel"
-        >
-        <Slide class="custom-slide" v-for="item in listProduct" :key="item.id">
-          <div class="carousel__item">
-              <img :src="item.img_product" alt="Image" class="cs-zoom_item" />
-              <div class="cs-author_right">
-                {{ item.game_product.nameGame }}
-                <div>
-                  <img
-                    width="35"
-                    height="35"
-                    src="https://img.icons8.com/plasticine/100/brawl-stars.png"
-                    alt="brawl-stars"
-                  />
-                  <b class="cs-primary_color"
-                    >{{ item.price }} vnĐ / {{ item.hour }}.h</b
-                  >
+            :itemsToShow="3.25"
+            :wrapAround="true"
+            :transition="500"
+            class="custom-carousel"
+          >
+            <Slide
+              class="custom-slide"
+              v-for="item in listProduct"
+              :key="item.id"
+            >
+              <div class="carousel__item">
+                <img :src="item.img_product" alt="Image" />
+                <div class="cs-author_right">
+                  {{ item.game_product.nameGame }}
+                  <div>
+                    <img
+                      width="35"
+                      height="35"
+                      src="https://img.icons8.com/plasticine/100/brawl-stars.png"
+                      alt="brawl-stars"
+                    />
+                    <b class="cs-primary_color"
+                      >{{ item.price }} vnĐ / {{ item.hour }}.h</b
+                    >
+                  </div>
                 </div>
               </div>
-            </div>
-          </Slide>
-          <template #addons>
-            <navigation class="custom-navigation" />
-          </template>
-        </Carousel>
+            </Slide>
+            <template #addons>
+              <navigation class="custom-navigation" />
+            </template>
+          </Carousel>
           <div>
-          
             <div class="cs-height_25 cs-height_lg_25"></div>
           </div>
         </div>
@@ -124,24 +127,28 @@
           </div>
         </div>
         <div class="cs-height_25 cs-height_lg_25"></div>
-      
-        <div class="row">  
-         
+
+        <div class="row">
           <div class="col-6">
-            <div  class="cs-btn cs-style1 cs-btn_lg w-100 text-center" @click="showDonateForm">
+            <div
+              class="cs-btn cs-style1 cs-btn_lg w-100 text-center"
+              @click="showDonateForm"
+            >
               <span>Donate</span>
             </div>
-             <!-- Popup form donate -->
-    <div id="donate-popup" class="donate-popup">
-      <div class="donate-popup-content">
-        <span class="donate-popup-close" @click="closeDonateForm">&times;</span>
-        <label for="amount">Số tiền:</label>
-        <input type="number" v-model="amount" required />
-        <p v-if="amount !=null">Bạn Đã Nhập: {{ formattedPrice}}</p>
-        <p>Donate Cho:{{username}}</p>
-        <button @click="handleDonate">Donate</button>
-      </div>
-    </div>
+            <!-- Popup form donate -->
+            <div id="donate-popup" class="donate-popup">
+              <div class="donate-popup-content">
+                <span class="donate-popup-close" @click="closeDonateForm"
+                  >&times;</span
+                >
+                <label for="amount">Số tiền:</label>
+                <input type="number" v-model="amount" required />
+                <p v-if="amount != null">Bạn Đã Nhập: {{ formattedPrice }}</p>
+                <p>Donate Cho:{{ username }}</p>
+                <button @click="handleDonate">Donate</button>
+              </div>
+            </div>
           </div>
           <div class="col-6">
             <a href="#" class="cs-btn cs-style1 cs-btn_lg w-100 text-center"
@@ -339,13 +346,13 @@ import footerHome from "@/pages/footer.vue";
 import startHeader from "@/pages/startHeader.vue";
 import ProductService from "@/service/ProductService";
 import { Carousel, Navigation, Slide } from "vue3-carousel";
-import { userInfo } from '@/store';
+import { userInfo } from "@/store";
 import Swal from "sweetalert2";
 import RegisterService from "@/service/RegisterService";
 // fire base
 import db from "@/firebase/init.js";
 import { collection, addDoc } from "firebase/firestore";
-import TopDonate from "@/pages/topDonate.vue"
+import TopDonate from "@/pages/topDonate.vue";
 
 export default {
   name: "productDetails",
@@ -355,9 +362,8 @@ export default {
       BASE_URL: process.env.BASE_URL,
       listProduct: [],
       avatars: [], // This should be "avatars" instead of "avartas"
-      avartar: "",username:"",
-      amount:null,
-
+      username: "",
+      amount: null,
     };
   },
   components: {
@@ -365,62 +371,66 @@ export default {
     footerHome,
     Carousel,
     Slide,
-    Navigation,TopDonate
+    Navigation,
+    TopDonate,
   },
   methods: {
     showDonateForm() {
-      const donatePopup = document.getElementById('donate-popup');
-      donatePopup.style.display = 'block';
+      const donatePopup = document.getElementById("donate-popup");
+      donatePopup.style.display = "block";
     },
     closeDonateForm() {
-      const donatePopup = document.getElementById('donate-popup');
-      donatePopup.style.display = 'none';
+      const donatePopup = document.getElementById("donate-popup");
+      donatePopup.style.display = "none";
     },
     async handleDonate() {
       try {
         const fromUserId = userInfo.value.id;
         const toUserId = this.listProduct[0].user_product.id;
-        const userBalance  = userInfo.value.balance;
+        const userBalance = userInfo.value.balance;
         if (userBalance < this.amount) {
-      // Hiển thị thông báo lỗi nếu số dư không đủ
-      Swal.fire({
-        icon: 'error',
-        title: 'Không đủ số dư',
-        text: 'Số dư của bạn không đủ để thực hiện giao dịch.',
-      });
-      return; // Dừng xử lý nếu số dư không đủ
+          // Hiển thị thông báo lỗi nếu số dư không đủ
+          Swal.fire({
+            icon: "error",
+            title: "Không đủ số dư",
+            text: "Số dư của bạn không đủ để thực hiện giao dịch.",
+          });
+          return; // Dừng xử lý nếu số dư không đủ
         }
 
-        if(this.amount<1000 || this.amount >10000000){
-            // Hiển thị thông báo lỗi nếu số dư không đủ
-      Swal.fire({
-        icon: 'error',
-        title: 'Giá Trị Không Hợp Lệ',
-        text: 'Số Tiền Donate Từ 1000 đến 10 triệu vnđ',
-      });
-      return; // Dừng xử lý nếu số dư không đủ
+        if (this.amount < 1000 || this.amount > 10000000) {
+          // Hiển thị thông báo lỗi nếu số dư không đủ
+          Swal.fire({
+            icon: "error",
+            title: "Giá Trị Không Hợp Lệ",
+            text: "Số Tiền Donate Từ 1000 đến 10 triệu vnđ",
+          });
+          return; // Dừng xử lý nếu số dư không đủ
         }
         // Thêm dữ liệu vào collection mới trong Firestore
-    const donationData = {
-      fromUserName:  userInfo.value.name,
-      toUserName: this.listProduct[0].user_product.name,
-      amount: this.amount,
-      timestamp: new Date(),
-    };
+        const donationData = {
+          fromUserName: userInfo.value.name,
+          toUserName: this.listProduct[0].user_product.name,
+          amount: this.amount,
+          timestamp: new Date(),
+        };
 
-    const donationRef = await addDoc(collection(db, "donations"), donationData);
-    console.log("Document ID: ", donationRef.id);
+        const donationRef = await addDoc(
+          collection(db, "donations"),
+          donationData,
+        );
+        console.log("Document ID: ", donationRef.id);
 
         // Gọi phương thức donate từ service và truyền thông tin donate
         await DonateService.saveTransaction(fromUserId, toUserId, this.amount);
-       
+
         Swal.fire("", "Donate Thành Công ✔️", "success");
         const newRespone = await RegisterService.findByEmail(
-        userInfo.value.email,
-      );
-      this.newUser = newRespone;
-      userInfo.value = this.newUser;
-      console.log("value new" +userInfo.value.balance);
+          userInfo.value.email,
+        );
+        this.newUser = newRespone;
+        userInfo.value = this.newUser;
+        console.log("value new" + userInfo.value.balance);
         // Gọi các xử lý khác sau khi donate thành công nếu cần
         this.showDonateForm = false; // Ẩn form donate sau khi thành công
       } catch (error) {
@@ -429,21 +439,24 @@ export default {
       }
     },
     async getAllProductById(id) {
-      try {
-        console.log(id);
-        const response = await ProductService.getProductsByUser(id);
-        this.listProduct = response.sort((a, b) => b.id - a.id); // giảm dần
-        this.avatars = this.listProduct[0].user_product.avatars;
-        this.avartar = this.avatars[0];
-        this.username = this.listProduct[0].user_product.name;
-
-      
-
-      } catch (error) {
-        console.error("Error fetching products by user:", error);
+    try {
+      console.log(id);
+      const response = await ProductService.getProductsByUser(id);
+      this.listProduct = response.sort((a, b) => b.id - a.id); // giảm dần
+      this.avatars = this.listProduct[0].user_product.avatars;
+      this.username = this.listProduct[0].user_product.name;
+        // Gán ảnh đầu tiên làm ảnh mặc định
+        if (this.avatars.length > 0) {
+        this.selectedImage = this.avatars[0];
       }
-    },
-   
+    } catch (error) {
+      console.error("Error fetching products by user:", error);
+    }
+  },
+  showSelectedImage(imageUrl) {
+    // Gán URL của ảnh được chọn vào trạng thái selectedImage
+    this.selectedImage = imageUrl;
+  },
   },
   async created() {
     await this.getAllProductById(this.id);
@@ -455,9 +468,7 @@ export default {
         currency: "VND",
       }).format(this.amount);
     },
-    
   },
-
 };
 </script>
 <style scoped>
@@ -477,9 +488,16 @@ export default {
 }
 .carousel__item {
   margin-right: 20px;
-  margin-left: 20px;  /* Thay đổi giá trị này để điều chỉnh khoảng cách giữa các item */
+  margin-left: 20px; /* Thay đổi giá trị này để điều chỉnh khoảng cách giữa các item */
   box-sizing: border-box;
   background-color: rgb(50, 76, 148); /* Thêm background-color trắng */
+
+ 
+
+}
+.carousel__item img{
+ width: 100%;
+  height:120px
 }
 .carousel__item:last-child {
   margin-right: 0; /* Không cần margin cho item cuối cùng */
@@ -491,7 +509,6 @@ export default {
 }
 
 /* CSS tùy chỉnh cho Pagination */
-
 
 .donate-popup {
   display: none;
@@ -520,7 +537,7 @@ export default {
   border: 1px solid #888;
   width: 100%;
   position: relative;
-  color:black
+  color: black;
 }
 
 .donate-popup-close {
@@ -557,7 +574,7 @@ export default {
 .donate-popup button {
   /* Điều chỉnh các thuộc tính của nút Donate */
   /* Ví dụ: */
-  background-color: #E91E63;
+  background-color: #e91e63;
   color: #ffffff;
   border: none;
   border-radius: 5px;
@@ -565,6 +582,4 @@ export default {
   cursor: pointer;
   font-size: 16px;
 }
-
 </style>
-
