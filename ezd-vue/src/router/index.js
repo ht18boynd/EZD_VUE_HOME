@@ -22,6 +22,7 @@ import Contact from "@/components/contact/homeContact.vue"
 import MyItem from "@/components/person/MyItem.vue"
 import ProductDetail from "@/components/product/productDetail.vue"
 import Skill from "@/components/product/skill.vue"
+import Feedback from "@/components/feedback/feedback.vue"
 
 
 
@@ -48,6 +49,7 @@ const routes = [
   { path: "/faq", component: IndexFaq },
   { path: "/contact", component: Contact },
   { path: "/reset-password", component: ResetPassword },
+  { path: "/feedback", component: Feedback },
 
 
 ];

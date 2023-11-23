@@ -33,6 +33,9 @@
                         <li>
                           <router-link to="/contact">Contact</router-link>
                         </li>
+                        <li>
+                          <router-link to="/feedback">Feedback</router-link>
+                        </li>
                         <li v-if="user == null">
                           <router-link to="/login">Login</router-link>
                         </li>

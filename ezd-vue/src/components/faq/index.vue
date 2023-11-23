@@ -21,20 +21,18 @@
         <div class="col-lg-6">
           <div class="cs-faq">
             <div class="cs-section_heading cs-style3">
-              <h2 class="cs-section_title">Quiz</h2>
-              <div class="cs-section_seperator"></div>
+              <button class="cs-btn cs-style1 cs-btn_lg" @click="toggleCollapse">Join Quizz</button>
+              
             </div>
             <div class="cs-height_30 cs-height_lg_30"></div>
-            <div class="cs-accordians">
+            
+            <div v-if="isCollapsed" class="cs-accordians">
               <section class="quiz" v-if="!quizCompleted">
                 <div class="quiz-info">
                   <span
                     class="question"
                     style="font-size: 21px; font-weight: bold"
                     >{{ getCurrentQuestion.question }}</span
-                  >
-                  <span class="score"
-                    >Score {{ score }}/{{ questions.length }}</span
                   >
                 </div>
 
@@ -316,20 +314,25 @@ export default {
     const quizCompleted = ref(false);
     const currentQuestion = ref(0);
     const score = ref(0);
-const saveScoreToFaq = async (userId, userName, score) => {
-  try {
-    // Thêm dữ liệu vào collection "scoreFaq"
-    const docRef = await addDoc(collection(db, 'scoreFaq'), {
-      userId: userInfo.value.id,
-      userName: userInfo.value.name,
-      score: score,
-    });
+    const isCollapsed = ref(false);
 
-    console.log('Document written with ID: ', docRef.id);
-  } catch (error) {
-    console.error('Error adding document: ', error);
-  }
-};
+    const toggleCollapse = () => {
+      isCollapsed.value = !isCollapsed.value;
+    };
+    const saveScoreToFaq = async (userId, userName, score) => {
+      try {
+        // Thêm dữ liệu vào collection "scoreFaq"
+        const docRef = await addDoc(collection(db, "scoreFaq"), {
+          userId: userInfo.value.id,
+          userName: userInfo.value.name,
+          score: score,
+        });
+
+        console.log("Document written with ID: ", docRef.id);
+      } catch (error) {
+        console.error("Error adding document: ", error);
+      }
+    };
     const loadQuizzes = async () => {
       try {
         const response = await QuizService.getAllQuizzes();
@@ -359,8 +362,7 @@ const saveScoreToFaq = async (userId, userName, score) => {
 
     const SetAnswer = () => {
       // Your logic for handling selected answer
-    getCurrentQuestion.value.shuffledAnswers 
-      
+      getCurrentQuestion.value.shuffledAnswers;
     };
 
     const NextQuestion = () => {
@@ -385,11 +387,7 @@ const saveScoreToFaq = async (userId, userName, score) => {
         } else {
           // Quiz completed
           quizCompleted.value = true;
-           saveScoreToFaq(
-      userInfo.value.id,
-      userInfo.value.name,
-      score.value
-    );
+          saveScoreToFaq(userInfo.value.id, userInfo.value.name, score.value);
         }
       }
     };
@@ -405,12 +403,14 @@ const saveScoreToFaq = async (userId, userName, score) => {
       getCurrentQuestion,
       quizCompleted,
       SetAnswer,
-      NextQuestion,saveScoreToFaq
+      NextQuestion,
+      saveScoreToFaq,
+      isCollapsed,
+      toggleCollapse,
     };
   },
 };
 </script>
-
 
 <style scoped>
 .options-container {
