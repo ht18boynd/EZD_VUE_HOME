@@ -183,9 +183,9 @@ import { mapState } from "vuex";
 import { userInfo } from "@/store";
 import GameService from "@/service/GameService";
 
+
 export default {
   name: "startHeader",
-
   data() {
     return {
       isProfileVisible: false,
