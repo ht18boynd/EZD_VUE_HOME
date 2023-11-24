@@ -89,50 +89,56 @@
           <h2 class="cs-section_heading cs-style1">My Items</h2>
           <div class="cs-height_25 cs-height_lg_25"></div>
           <div class="row">
-           
-                 <div class="col-xl-3 col-lg-4 col-sm-6" v-for="item in listProduct" :key="item.id" >
-                <div class="cs-card cs-style4 cs-box_shadow cs-white_bg">
-                  <span class="cs-card_like cs-primary_color">
-                    <i class="fas fa-heart fa-fw"></i>
+            <div
+              class="col-xl-3 col-lg-4 col-sm-6"
+              v-for="item in listProduct"
+              :key="item.id"
+            >
+              <div class="cs-card cs-style4 cs-box_shadow cs-white_bg">
+                <span class="cs-card_like cs-primary_color">
+                  <i class="fas fa-heart fa-fw"></i>
                   {{ item.status }}
-                  </span>
-                  <a
-                    href="explore-details.html"
-                    class="cs-card_thumb cs-zoom_effect"
-                  >
-                    <img
-                     :src="item.img_product"
-                      alt="Image"
-                      class="cs-zoom_item"
-                    />
+                </span>
+                <a
+                  href="explore-details.html"
+                  class="cs-card_thumb cs-zoom_effect"
+                >
+                  <img
+                    :src="item.img_product"
+                    alt="Image"
+                    class="cs-zoom_item"
+                  />
+                </a>
+                <div class="cs-card_info">
+                  <a>
+                    <img :src="item.user_product.avatar" alt="Image" />
+                    <span>{{ item.user_product.name }}</span>
                   </a>
-                  <div class="cs-card_info">
-                    
-                    <a>
-                        <img :src="item.user_product.avatar"  alt="Image"
-                        />
-                        <span>{{item.user_product.name}}</span>
-                    </a>
-                    <h3 class="cs-card_title">
-                      <a href="explore-details.html">{{item.game_product.nameGame}}</a>
-                    </h3>
-                    <div class="cs-card_price">
-                      Price: <b class="cs-primary_color">{{ item.price }} vnĐ / {{item.hour}}.h</b>
-                    </div>
-                    <hr />
-                    <div class="cs-card_footer">
-                        <span class="cs-card_btn_2" data-modal="#bid_1"
-                        ><span>Donate</span></span
-                      >
-                      <span class="cs-card_btn_2" data-modal="#bid_1"
-                        ><span>Place Rent</span></span
-                      >
-                    </div>
+                  <h3 class="cs-card_title">
+                    <a href="explore-details.html">{{
+                      item.game_product.nameGame
+                    }}</a>
+                  </h3>
+                  <div class="cs-card_price">
+                    Price:
+                    <b class="cs-primary_color"
+                      >{{ item.price }} vnĐ / {{ item.hour }}.h</b
+                    >
+                  </div>
+                  <hr />
+                  <div class="cs-card_footer">
+                    <span class="cs-card_btn_2" data-modal="#bid_1"
+                      ><span>Donate</span></span
+                    >
+                    <span class="cs-card_btn_2" data-modal="#bid_1"
+                      ><span>Place Rent</span></span
+                    >
                   </div>
                 </div>
-                <div class="cs-height_30 cs-height_lg_30"></div>
               </div>
-           
+              <div class="cs-height_30 cs-height_lg_30"></div>
+            </div>
+
             <!-- .col -->
           </div>
           <div class="cs-height_10 cs-height_lg_10"></div>
@@ -176,20 +182,20 @@ export default {
   },
   methods: {
     async getAllProductById() {
-      
-    
       try {
-    const response = await ProductService.getProductsByUser(  this.userInfoData.id,);
+        const response = await ProductService.getProductsByUser(
+          this.userInfoData.id,
+        );
 
-    this.listProduct = response.sort((a, b) => b.id - a.id); // giảm dần 
-console.log(this.listProduct);
-  } catch (error) {
-    console.error('Error fetching products by user:', error);
-  }
-    }
+        this.listProduct = response.sort((a, b) => b.id - a.id); // giảm dần
+        console.log(this.listProduct);
+      } catch (error) {
+        console.error("Error fetching products by user:", error);
+      }
+    },
   },
   async created() {
-    await   this.getAllProductById();
+    await this.getAllProductById();
   },
 };
 </script>

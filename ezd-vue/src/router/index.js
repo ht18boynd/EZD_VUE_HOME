@@ -21,7 +21,7 @@ import IndexFaq from "@/components/faq/index.vue"
 
 import MyItem from "@/components/person/MyItem.vue"
 import ProductDetail from "@/components/product/productDetail.vue"
-import Skill from "@/components/product/skill.vue"
+import SkillPage from "@/components/product/skill.vue"
 
 
 
@@ -38,7 +38,7 @@ const routes = [
   { path: "/person/setting", component: SettingAccount },
   { path: "/person/item", component: MyItem },
   { path: "/product/productDetails/:id", component: ProductDetail , props: true, },
-  { path: "/product/skill/:id", component: Skill , props: true, },
+  { path: "/product/skill/:id", component: SkillPage , props: true, },
 
   { path: "/login", component: LoginPage },
   { path: "/register", component: RegisterPage },

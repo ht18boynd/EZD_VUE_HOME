@@ -6,7 +6,7 @@
               <h2 class="cs-section_title">TFT Live</h2>
             </div>
             <div class="cs-section_right">
-              <a href="collection.html" class="cs-btn cs-style1"><span>Explore More</span></a>
+              <a href="https://www.youtube.com/" class="cs-btn cs-style1"><span>Explore More</span></a>
             </div>
           </div>
           <div class="cs-height_45 cs-height_lg_45"></div>
