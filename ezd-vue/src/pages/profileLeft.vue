@@ -6,13 +6,35 @@
   <div class="cs-profile_left" v-if="user != null">
     <div class="cs-profile_sidebar cs-white_bg cs-box_shadow">
       <div class="cs-profile_info">
-        <div class="cs-profile_pic" v-if="avatars != null">
         
-          <img :src="avartar" alt="" class="cs-zoom_item" />
-       
+        <div
+          class="cs-profile_pic rounded position-relative"
+          v-if="avatars != null"
+        >
+          <!-- <img :src="user.currentRank.avatar_frame_image" alt="Rank Avatar" />
+          <img
+            :src="avartar"
+            alt="Avatar"
+            class="cs-zoom_item rounded-circle position-absolute top-50 start-50 translate-middle"
+            style="z-index: 1"
+          /> -->
+          <img
+            :src="user.currentRank.avatar_frame_image"
+            alt="Rank Avatar"
+            class="cs-zoom_item rounded-circle position-absolute top-50 start-50 translate-middle"
+            style="z-index: 2; object-fit: cover;width: 200px; height: 200px;margin:auto;padding:0;"
+          />
+          <img
+            :src="avartar"
+            alt="Avatar"
+            class="cs-zoom_item rounded-circle position-absolute top-50 start-50 translate-middle"
+            style="z-index: 1; width: 180px; height: 180px;"
+          />
         </div>
+        <img :src="user.currentRank.background_image" alt="Rank Background" style="padding-bottom:5px;"/>
         <h3 class="cs-profile_title">{{ user.name }}</h3>
 
+        
         <ul class="cs-profile_meta cs-mp0">
           <li>Followers (560)</li>
           <li>Following (56)</li>
@@ -191,7 +213,8 @@ export default {
   data() {
     return {
       user: userInfo.value,
-      avatars: [],avartar:"",
+      avatars: [],
+      avartar: "",
       BASE_URL: process.env.BASE_URL,
     };
   },
@@ -214,9 +237,11 @@ export default {
   },
   created() {
     this.avatars = userInfo.value.avatars;
-    this.avartar=this.avatars[0];
+    this.avartar = this.avatars[0];
   },
 };
 </script>
 
-<style></style>
+<style scoped>
+
+</style>
