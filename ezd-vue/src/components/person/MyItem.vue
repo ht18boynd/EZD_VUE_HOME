@@ -161,11 +161,12 @@ import "vue-awesome-paginate/dist/style.css";
 import { userInfo } from "@/store";
 import footerHome from "@/pages/footer.vue";
 import startHeader from "@/pages/startHeader.vue";
-// import Swal from "sweetalert2";
+import Swal from "sweetalert2";
 import ProductService from "@/service/ProductService";
-
 import profileLeftVue from "@/pages/profileLeft.vue";
-
+import PurchaseService from "@/service/PurchaseService.js";
+import ItemService from "@/service/ItemService";
+import RegisterService from "@/service/RegisterService";
 export default {
   name: "myItem",
   data() {
@@ -173,6 +174,8 @@ export default {
       BASE_URL: process.env.BASE_URL,
       userInfoData: userInfo.value, // Gán userInfo vào biến userInfoData
       listProduct: [],
+      listPurchase: [],
+      listItem: [],
     };
   },
   components: {
@@ -194,10 +197,16 @@ export default {
       }
     },
   },
+
   async created() {
     await this.getAllProductById();
   },
 };
 </script>
 
-<style></style>
+<style lang="postcss" scoped>
+.cs-blurred {
+  filter: blur(5px); /* You can adjust the blur intensity as needed */
+  opacity: 0.7; /* Adjust the opacity for a semi-transparent effect */
+}
+</style>

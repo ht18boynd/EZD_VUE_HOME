@@ -27,6 +27,3 @@ export const mutations = {
     state.userInfo = user;
   },
 };
-
-// Tạo amountPayPal là một ref
-export const amountPayPal = ref(0);

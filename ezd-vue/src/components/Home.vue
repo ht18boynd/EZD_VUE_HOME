@@ -7,7 +7,6 @@
     <div class="cs-height_30 cs-height_lg_30"></div>
     <div class="cs-height_30 cs-height_lg_30"></div>
 
-
     <!-- Start Hero -->
     <!-- Start Hero -->
     <section class="container-fluid">
@@ -69,13 +68,13 @@
         >
           <Slide v-for="game in gamelist" :key="game.id">
             <div class="carousel__item">
-              <router-link  :to="'/product/skill/' + game.id">
-              <img
-                :src="game.imageName"
-                alt="Game Image"
-                class="carousel__image"
-              />
-            </router-link>
+              <router-link :to="'/product/skill/' + game.id">
+                <img
+                  :src="game.imageName"
+                  alt="Game Image"
+                  class="carousel__image"
+                />
+              </router-link>
               <div class="carousel__caption">{{ game.nameGame }}</div>
             </div>
           </Slide>
@@ -100,51 +99,87 @@
      
         <div class="cs-height_45 cs-height_lg_45"></div>
         <div class="row">
-           
-          <div class="col-xl-3 col-lg-4 col-sm-6" v-for="item in listProduct" :key="item.id" >
-         <div class="cs-card cs-style4 cs-box_shadow cs-white_bg" >
-           <span class="cs-card_like cs-primary_color" style="background-color:rgba(22,214,181); color:white">
-            ✿ {{ item.status }} ✿
-           </span>
+          <div
+            class="col-xl-3 col-lg-4 col-sm-6"
+            v-for="item in listProduct"
+            :key="item.id"
+          >
+            <div class="cs-card cs-style4 cs-box_shadow cs-white_bg">
+              <span
+                class="cs-card_like cs-primary_color"
+                style="background-color: rgba(22, 214, 181); color: white"
+              >
+                ✿ {{ item.status }} ✿
+              </span>
 
-           <router-link class="cs-card_thumb cs-zoom_effect"
-           :to="'/product/productDetails/' + item.user_product.id">
-             <img
-              :src="item.img_product"
-               alt="Image"
-               class="cs-zoom_item"
-             />
-             </router-link
-             >
-           <div class="cs-card_info">
-             <a href="#" class="cs-avatar cs-white_bg">
-            
-              
-               <span></span>
-             </a>
-             
-             <h3 class="cs-card_title">
-
+              <router-link
+                class="cs-card_thumb cs-zoom_effect"
+                :to="'/product/productDetails/' + item.user_product.id"
+              >
+                <img :src="item.img_product" alt="Image" class="cs-zoom_item" />
+              </router-link>
+              <div class="cs-card_info">
+                <a href="#" class="cs-avatar cs-white_bg">
+                  <span></span>
+                </a>
+              <h3>
              {{item.game_product.nameGame}}
              </h3>
              <h3 class="cs-card_title">
               {{item.user_product.name}}
+             </h3>
 
-              </h3>
-
-             <div class="cs-card_price">
-              
-
-              <img
-              width="35"
-              height="35"
-              src="https://img.icons8.com/plasticine/100/brawl-stars.png"
-              alt="brawl-stars"
-          />
-          <b class="cs-primary_color">{{ item.price }} vnĐ / {{item.hour}}.h</b>
-             </div>
-             <hr />
-             <!-- <div class="cs-card_footer">
+                <div class="cs-card_price">
+                  <div
+                    style="
+                      position: relative;
+                      width: 35px;
+                      height: 35px;
+                      float: left;
+                    "
+                  >
+                    <img
+                      width="100"
+                      height="100"
+                      :src="item.user_product.currentRank.avatar_frame_image"
+                      class="img-fluid rounded"
+                      style="
+                        z-index: 1;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                      "
+                    />
+                    <img
+                      width="100"
+                      height="100"
+                      src="https://img.icons8.com/plasticine/100/brawl-stars.png"
+                      alt="brawl-stars"
+                      style="
+                        z-index: 2;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                      "
+                    />
+                  </div>
+                  <div style="float: none">
+                    <img
+                      :src="item.user_product.currentRank.background_image"
+                    />
+                  </div>
+                  <b class="cs-primary_color"
+                    >{{ item.price }} vnĐ / {{ item.hour }}.h</b
+                  >
+                </div>
+                <hr />
+                <!-- <div class="cs-card_footer">
                  <span class="cs-card_btn_2" data-modal="#bid_1"
                  ><span>Donate</span></span
                >
@@ -152,13 +187,13 @@
                  ><span>Place Rent</span></span
                >
              </div> -->
-           </div>
-         </div>
-         <div class="cs-height_30 cs-height_lg_30"></div>
-       </div>
-    
-     <!-- .col -->
-   </div>
+              </div>
+            </div>
+            <div class="cs-height_30 cs-height_lg_30"></div>
+          </div>
+
+          <!-- .col -->
+        </div>
       </div>
     </section>
     <!-- End New Items -->
@@ -482,7 +517,6 @@ export default {
         console.error("Lỗi khi lấy danh sách banner: ", error);
       }
     },
-    
   },
 
   async created() {

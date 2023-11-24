@@ -5,10 +5,40 @@
         <div class="container-fluid">
           <div class="cs-main_header_in">
             <div class="cs-main_header_left">
+              <router-link to="/" class="cs-site_branding">
+                <img
+                  width="64"
+                  height="64"
+                  src="https://img.icons8.com/nolan/64/e.png"
+                  alt="e"
+                />
+                <img
+                  width="64"
+                  height="64"
+                  src="https://img.icons8.com/nolan/64/z.png"
+                  alt="z"
+                />
+                <img
+                  width="64"
+                  height="64"
+                  src="https://img.icons8.com/nolan/64/d.png"
+                  alt="d"
+                />
+              </router-link>
+            </div>
+            <div class="cs-main_header_right">
               <div class="cs-nav_wrap">
                 <div class="cs-nav_out">
                   <div class="cs-nav_in">
                     <div class="cs-nav">
+
+                      <ul
+                        class="cs-nav_list"
+                        style="font-weight: 600; font-size: medium"
+                      >
+                        <li>
+                          <router-link to="/">Home</router-link>
+                        </li>
                       <router-link to="/">
                         <img
                           :src="BASE_URL + 'assets/gif/ezRemove.gif'"
@@ -20,7 +50,7 @@
                         />
                       </router-link>
 
-                    
+                    </ul>
                       <ul
                         class="cs-nav_list"
                         style="font-weight: 800; font-size: large"
@@ -112,12 +142,27 @@
                         </li>
                         <li v-if="user != null">
                           <router-link to="/person/profile">
-                            <img
-                              width="35"
-                              height="35"
-                              src="https://img.icons8.com/plasticine/100/brawl-stars.png"
-                              alt="brawl-stars"
-                          /></router-link>
+                            <div class="rounded position-relative">
+                              <!-- Hình ảnh với khung viền -->
+                              <img
+                                width="35"
+                                height="35"
+                                :src="user.currentRank.avatar_frame_image"
+                                alt="Rank Avatar"
+                                class="img-fluid rounded"
+                              />
+
+                              <!-- Icon nằm bên trong khung viền -->
+                              <img
+                                width="35"
+                                height="35"
+                                src="https://img.icons8.com/plasticine/100/brawl-stars.png"
+                                alt="brawl-stars"
+                                class="position-absolute top-50 start-50 translate-middle"
+                                style="z-index: 1"
+                              />
+                            </div>
+                          </router-link>
 
                           <ul
                             style="
@@ -192,6 +237,14 @@
                   </div>
                 </div>
               </div>
+              <div class="cs-header_btns_wrap">
+                <div class="cs-header_btns">
+                  <router-link to="/coin" class="cs-btn cs-style1"
+                    ><span>Buy Coin</span></router-link
+                  >
+                  <div><router-link to="/faq">FAQ</router-link></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -208,7 +261,9 @@ import GameService from "@/service/GameService";
 
 export default {
   name: "startHeader",
-
+  computed: {
+    ...mapState(["userInfo"]),
+  },
   data() {
     return {
       isProfileVisible: false,

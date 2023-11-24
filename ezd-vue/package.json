@@ -32,6 +32,7 @@
     "vue-recaptcha-v3": "^2.0.1",
     "vue-router": "^4.2.5",
     "vue3-carousel": "^0.3.1",
+    "vue3-modal": "^0.1.6",
     "vuex": "^4.1.0"
   },
   "devDependencies": {
