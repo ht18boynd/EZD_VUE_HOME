@@ -4606,7 +4606,7 @@ kbd {
 }
 
 .cs-site_branding img {
-  height: 45px;
+  height: 46px;
 }
 
 @media screen and (min-width: 1200px) {
@@ -4666,7 +4666,8 @@ kbd {
     height: inherit;
   }
   .cs-nav .cs-nav_list > li {
-    margin-right: 25px;
+    margin-right: 45px;
+   
     height: inherit;
   }
   .cs-nav .cs-nav_list > li:last-child {
@@ -4994,7 +4995,7 @@ li.menu-item-has-children
     display: none;
   }
   .cs-site_branding img {
-    height: 40px;
+    height: 30px;
   }
   .cs-site_header.cs-style1 .cs-main_header_center .cs-site_branding {
     position: absolute;

@@ -55,9 +55,9 @@
       
     </div>
     <div class="cs-height_10 cs-height_lg_10"></div>
-    <div class="text-center">
+    <!-- <div class="text-center">
       <a href="#" class="cs-btn cs-style1 cs-btn_lg"><span>Load More</span></a>
-    </div>
+    </div> -->
   </div>
      
 

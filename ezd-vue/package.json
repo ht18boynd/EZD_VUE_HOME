@@ -24,7 +24,7 @@
     "jwt-decode": "^4.0.0",
     "paypal-rest-sdk": "^1.8.1",
     "prettier": "^3.0.3",
-    "sweetalert2": "^11.7.32",
+    "sweetalert2": "^11.10.0",
     "vue": "^3.2.13",
     "vue-awesome-paginate": "^1.1.46",
     "vue-carousel": "^0.18.0",
