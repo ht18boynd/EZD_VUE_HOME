@@ -52,6 +52,22 @@ class ProductService {
     }
   }
 
+  async getProductsByGame(gameProductId) {
+    try {
+
+      const FIND_BY_GAME_API_URL = `${PRODUCT_API_BASE_URL}byGame/${gameProductId}`;
+      
+     
+
+      return await axiosInstance.get(FIND_BY_GAME_API_URL).then((response) => {
+        return response.data;
+      });
+    } catch (error) {
+      console.error('Error fetching products by user:', error);
+      throw error;
+    }
+  }
+
   async getAllProduct(){
     try {
 

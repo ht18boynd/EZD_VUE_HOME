@@ -67,7 +67,7 @@
                 <input
                   type="date"
                   class="cs-form_field"
-                  v-model="userData.birthday"
+                  v-model="userData.birthDay"
                 
                   style="background-color:#617bb8 ;"
                   
@@ -150,7 +150,7 @@ export default {
         name: "",
         email: "",
         password: "",
-        birthday: "",
+        birthDay: "",
       },
       nameError: "",
       emailError: "",
@@ -176,10 +176,11 @@ export default {
         }
       }
 
-      if (!this.userData.birthday) {
+      if (!this.userData.birthDay) {
         this.birthdayError = "Birthday is required";
       } else {
-        const birthdayDate = new Date(this.userData.birthday);
+        
+        const birthdayDate = new Date(this.userData.birthDay);
         const currentDate = new Date();
         const age = currentDate.getFullYear() - birthdayDate.getFullYear();
 

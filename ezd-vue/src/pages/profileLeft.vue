@@ -13,9 +13,7 @@
         </div>
         <h3 class="cs-profile_title">{{ user.name }}</h3>
 
-        <ul class="cs-profile_meta cs-mp0">
-          <li>Followers (560)</li>
-          <li>Following (56)</li>
+        <ul class="cs-profile_meta cs-mp0">        
         </ul>
       </div>
       <div class="cs-height_30 cs-height_lg_30"></div>
