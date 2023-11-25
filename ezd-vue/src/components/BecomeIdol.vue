@@ -10,7 +10,7 @@
         <div class="text-center">
           <h1 class="cs-page_title">Become The Idol</h1>
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><router-link to="/">Home</router-link></li>
             <li class="breadcrumb-item active">Form Register</li>
           </ol>
         </div>
@@ -138,6 +138,7 @@
               
             </div>
             <div class="cs-height_45 cs-height_lg_45"></div>
+            <div v-if="user !=null">
             <form class="cs-contact_form" @submit.prevent="createBecomeForm">
               <div class="row">
                 <div class="col-lg-6">
@@ -338,6 +339,23 @@
               </div>
             </form>
           </div>
+          <div v-else> <router-link to="/login"> Please Login </router-link> </div>
+        
+          </div>
+          <div class="cs-height_45 cs-height_lg_45"></div>
+
+          <div class="cs-contact_card">
+            <div class="cs-contact_info text-center">
+              <img src="assets/img/e1.png">
+            </div>
+            <div class="cs-contact_info text-center">
+            <img src="assets/img/e2.png">
+            </div>
+            <div class="cs-contact_info text-center">
+              <img src="assets/img/e3.png">
+              
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -366,6 +384,7 @@ export default {
 
   data() {
     return {
+      user:userInfo.value,
       model: null,
       predictions: [],
       isButtonCreate: false,
@@ -507,10 +526,7 @@ export default {
           imageCanvas.width = image.width;
           imageCanvas.height = image.height;
           context.drawImage(image, 0, 0, image.width, image.height);
-          this.init().then(() => {
-            this.predict(imageCanvas);
-          });
-        }.bind(this);
+           }.bind(this);
 
         image.src = e.target.result;
       }.bind(this);
@@ -528,9 +544,7 @@ export default {
           imageCanvas.width = image.width;
           imageCanvas.height = image.height;
           context.drawImage(image, 0, 0, image.width, image.height);
-          this.init().then(() => {
-            this.predict(imageCanvas);
-          });
+        
         }.bind(this);
 
         image.src = e.target.result;

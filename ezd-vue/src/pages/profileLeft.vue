@@ -139,7 +139,7 @@
             <span>Lucky Spin</span>
           </router-link>
         </li>
-        <li>
+        <li v-if="user.role==='STAF'">
           <router-link to="/person/create">
             <svg
               width="18"

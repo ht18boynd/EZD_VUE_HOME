@@ -5,12 +5,16 @@
   <TopDonate></TopDonate>
   <div class="container">
     <div class="row">
-      <div class="cs-author_right">
+      <!-- <div class="cs-author_right">
         <h4>{{ username }}</h4>
         <img :src="userRankImage" />
-      </div>
+      </div> -->
       <div class="col-lg-4">
         <div class="row">
+          <div class="cs-author_right" style="text-align:center;">
+            <h4>{{ username }}</h4>
+          </div>
+          <div class="cs-height_30 cs-height_lg_30"></div>
           <!-- Trong template -->
           <div class="col-lg-12 col-sm-4 col-6">
             <a
@@ -68,15 +72,9 @@
             >
               <div class="carousel__item">
                 <img :src="item.img_product" alt="Image" />
-                <div class="cs-author_right">
+                <div >
                   {{ item.game_product.nameGame }}
                   <div>
-                    <img
-                      width="35"
-                      height="35"
-                      src="https://img.icons8.com/plasticine/100/brawl-stars.png"
-                      alt="brawl-stars"
-                    />
                     <b class="cs-primary_color"
                       >{{ item.price }} vnĐ / {{ item.hour }}.h</b
                     >
@@ -99,30 +97,18 @@
               class="cs-tab_links cs-style1 cs-medium cs-primary_color cs-mp0 cs-primary_font"
             >
               <li class="active"><a href="#Description">Description</a></li>
-              <li><a href="#Details">Details</a></li>
+            
             </ul>
           </div>
           <div class="cs-height_20 cs-height_lg_20"></div>
           <div class="cs-tab_content">
             <div id="Description" class="cs-tab active">
               <div class="cs-white_bg cs-box_shadow cs-general_box_5">
-                Amet lorem minim mollit non deserunt ullamco est sit aliqua
-                dolor do amet sint. Velit officia consequat duis enim velit
-                mollit. Amet lorem minim mollit nonese deserunt ullamco est sit
-                aliqua dolor do amet sint. Velit officia consequat duis enim
-                velit mollit Velit officia else est sit ullamco es duis.
+               
               </div>
             </div>
             <!-- .cs-tab -->
-            <div id="Details" class="cs-tab">
-              <div class="cs-white_bg cs-box_shadow cs-general_box_5">
-                Velit officia consequat duis enim velit mollit. Amet lorem minim
-                mollit nonese deserunt ullamco est sit aliqua dolor do amet
-                sint. Velit officia consequat duis enim velit mollit Velit
-                officia else est sit ullamco es duis. Amet lorem minim mollit
-                non deserunt ullamco est sit aliqua dolor do amet sint.
-              </div>
-            </div>
+         
             <!-- .cs-tab -->
           </div>
         </div>
@@ -153,7 +139,6 @@
 
           <div class="col-6">
             <a
-              href="#"
               class="cs-btn cs-style1 cs-btn_lg w-100 text-center"
               @click="toggleItemList"
               ><span>Donate Bằng Icon</span></a
@@ -868,28 +853,26 @@ export default {
 </script>
 <style scoped>
 @import url("vue3-carousel/dist/carousel.css");
-.carousel__image {
-  width: 300px;
-  height: 300px;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+.carousel__item {
+  padding: 10px;
+  background-color: rgb(50, 76, 148); /* Thêm background-color trắng */
+  border-radius: 10px; /* Thêm border-radius cho .carousel__item */
 }
+
 .custom-carousel {
   display: flex;
   justify-content: space-between;
-
+  height:300px;
   align-items: center;
   padding: 0 20px; /* Thêm padding nếu cần thiết */
 }
-.carousel__item {
-  margin-right: 20px;
-  margin-left: 20px; /* Thay đổi giá trị này để điều chỉnh khoảng cách giữa các item */
-  box-sizing: border-box;
-  background-color: rgb(50, 76, 148); /* Thêm background-color trắng */
-}
+
 .carousel__item img {
-  width: 100%;
-  height: 120px;
+  width: 450px;
+  height: 280px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 .carousel__item:last-child {
   margin-right: 0; /* Không cần margin cho item cuối cùng */
