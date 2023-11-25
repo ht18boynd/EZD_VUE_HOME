@@ -7,6 +7,7 @@
     <div class="row">
       <div class="cs-author_right">
         <h4>{{ username }}</h4>
+        <img :src="userRankImage" />
       </div>
       <div class="col-lg-4">
         <div class="row">
@@ -149,10 +150,44 @@
               </div>
             </div>
           </div>
+
           <div class="col-6">
-            <a href="#" class="cs-btn cs-style1 cs-btn_lg w-100 text-center"
-              ><span>Place Bid</span></a
+            <a
+              href="#"
+              class="cs-btn cs-style1 cs-btn_lg w-100 text-center"
+              @click="toggleItemList"
+              ><span>Donate Bằng Icon</span></a
             >
+          </div>
+          <!-- Danh sách các mục -->
+          <div v-if="showItemList" class="row">
+            <div
+              class="col-xl-2 col-lg-4 col-sm-6"
+              v-for="purchase in listPurchase"
+              :key="purchase.id"
+            >
+              <div>
+                <div class="cs-height_30 cs-height_lg_30"></div>
+                <div class="cs-card cs-style4 cs-box_shadow cs-white_bg">
+                  <span class="cs-card_like cs-primary_color">
+                    <i class="fas fa-heart fa-fw"></i>
+                    <!-- {{ getItemQuantity(item.id) }} -->
+                    {{ purchase.quantity }}
+                  </span>
+                  <a
+                    class="cs-card_thumb cs-zoom_effect"
+                    @click="hanldPurchase(purchase)"
+                  >
+                    <img
+                      :src="purchase.item_purchase.imageUrl"
+                      alt="Image"
+                      class="cs-zoom_item"
+                      :class="{ 'cs-blurred': purchase.quantity === 0 }"
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="cs-height_25 cs-height_lg_25"></div>
@@ -646,7 +681,7 @@ import RegisterService from "@/service/RegisterService";
 import db from "@/firebase/init.js";
 import { collection, addDoc } from "firebase/firestore";
 import TopDonate from "@/pages/topDonate.vue";
-
+import PurchaseService from "@/service/PurchaseService";
 export default {
   name: "productDetails",
   props: ["id"], // Nhận tham số id từ URL
@@ -657,6 +692,10 @@ export default {
       avatars: [], // This should be "avatars" instead of "avartas"
       username: "",
       amount: null,
+      listPurchase:[],
+      userRankAvatar:null,
+      userRankImage:null,
+      showItemList: false,
     };
   },
   components: {
@@ -675,6 +714,55 @@ export default {
     closeDonateForm() {
       const donatePopup = document.getElementById("donate-popup");
       donatePopup.style.display = "none";
+    },
+    async toggleItemList() {
+      // Khi click vào nút, đảo ngược giá trị của biến trạng thái
+      this.showItemList = !this.showItemList;
+
+      // Nếu showItemList là true, gọi hàm để lấy danh sách mục
+      if (this.showItemList) {
+        await this.getPurchaseById();
+      }
+    },
+    getItemQuantity(itemId) {
+      const purchase = this.listPurchase.find(
+        (p) => p.item_purchase.id === itemId,
+      );
+      return purchase ? purchase.quantity : 0;
+    },
+    async hanldPurchase(purchase) {
+      const fromUserId = userInfo.value.id; // Update this line based on your actual data structure
+      const toUserId = this.id;
+      const itemId = purchase.item_purchase.id;
+      const quantity = 1;
+      if (purchase.quantity < quantity) {
+        const result = await Swal.fire({
+          icon: "error",
+          title: "Không đủ số lượng",
+          text: "Bạn có muốn chuyển đến mua Item",
+          showCancelButton: true,
+          confirmButtonText: "Yes",
+          cancelButtonText: "No",
+        });
+        if (result.isConfirmed) {
+          // Chuyển hướng đến trang coin nếu người dùng chọn "Yes"
+          this.$router.push("/coin");
+        }
+        return;
+      }
+      try {
+        await DonateService.donateByIcon(
+          fromUserId,
+          toUserId,
+          itemId,
+          quantity,
+        );
+        Swal.fire("", " Bạn đã donate ✔️", "success");
+        // After donation, you might want to refresh the purchase data
+        await this.getPurchaseById();
+      } catch (error) {
+        console.log("Error donate item:", error);
+      }
     },
     async handleDonate() {
       try {
@@ -731,28 +819,42 @@ export default {
         // Xử lý lỗi nếu có
       }
     },
+    async getPurchaseById() {
+      const user_id = userInfo.value.id;
+      try {
+        const response = await PurchaseService.getPurchaseById(user_id);
+        this.listPurchase = response.sort((a, b) => b.id - a.id);
+      } catch (error) {
+        console.error("Lỗi di khi lấy danh sách purchase", error);
+      }
+    },
     async getAllProductById(id) {
-    try {
-      console.log(id);
-      const response = await ProductService.getProductsByUser(id);
-      this.listProduct = response.sort((a, b) => b.id - a.id); // giảm dần
-      this.avatars = this.listProduct[0].user_product.avatars;
-      this.username = this.listProduct[0].user_product.name;
+      try {
+        console.log(id);
+        const response = await ProductService.getProductsByUser(id);
+        this.listProduct = response.sort((a, b) => b.id - a.id); // giảm dần
+        this.avatars = this.listProduct[0].user_product.avatars;
+        this.username = this.listProduct[0].user_product.name;
+        this.userRankAvatar =
+          this.listProduct[0].user_product.currentRank.avatar_frame_image;
+        this.userRankImage =
+          this.listProduct[0].user_product.currentRank.background_image;
         // Gán ảnh đầu tiên làm ảnh mặc định
         if (this.avatars.length > 0) {
-        this.selectedImage = this.avatars[0];
+          this.selectedImage = this.avatars[0];
+        }
+      } catch (error) {
+        console.error("Error fetching products by user:", error);
       }
-    } catch (error) {
-      console.error("Error fetching products by user:", error);
-    }
-  },
-  showSelectedImage(imageUrl) {
-    // Gán URL của ảnh được chọn vào trạng thái selectedImage
-    this.selectedImage = imageUrl;
-  },
+    },
+    showSelectedImage(imageUrl) {
+      // Gán URL của ảnh được chọn vào trạng thái selectedImage
+      this.selectedImage = imageUrl;
+    },
   },
   async created() {
     await this.getAllProductById(this.id);
+    await this.getPurchaseById();
   },
   computed: {
     formattedPrice() {

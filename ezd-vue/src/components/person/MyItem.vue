@@ -91,56 +91,44 @@
           <div class="row">
             <div
               class="col-xl-3 col-lg-4 col-sm-6"
-              v-for="item in listProduct"
+              v-for="item in listItem"
               :key="item.id"
             >
-              <div class="cs-card cs-style4 cs-box_shadow cs-white_bg">
-                <span class="cs-card_like cs-primary_color">
-                  <i class="fas fa-heart fa-fw"></i>
-                  {{ item.status }}
-                </span>
-                <a
-                  href="explore-details.html"
-                  class="cs-card_thumb cs-zoom_effect"
-                >
-                  <img
-                    :src="item.img_product"
-                    alt="Image"
-                    class="cs-zoom_item"
-                  />
-                </a>
-                <div class="cs-card_info">
-                  <a>
-                    <img :src="item.user_product.avatar" alt="Image" />
-                    <span>{{ item.user_product.name }}</span>
+              <div>
+                <div class="cs-card cs-style4 cs-box_shadow cs-white_bg">
+                  <span class="cs-card_like cs-primary_color">
+                    <i class="fas fa-heart fa-fw"></i>
+                    {{ getItemQuantity(item.id) }}
+                  </span>
+                  <a
+                    @click="purchaseItems(item.id)"
+                    class="cs-card_thumb cs-zoom_effect"
+                  >
+                    <img
+                      :src="item.imageUrl"
+                      alt="Image"
+                      class="cs-zoom_item"
+                      :class="{ 'cs-blurred': getItemQuantity(item.id) === 0 }"
+                    />
                   </a>
-                  <h3 class="cs-card_title">
-                    <a href="explore-details.html">{{
-                      item.game_product.nameGame
-                    }}</a>
-                  </h3>
-                  <div class="cs-card_price">
-                    Price:
-                    <b class="cs-primary_color"
-                      >{{ item.price }} vnĐ / {{ item.hour }}.h</b
-                    >
-                  </div>
-                  <hr />
-                  <div class="cs-card_footer">
-                    <span class="cs-card_btn_2" data-modal="#bid_1"
-                      ><span>Donate</span></span
-                    >
-                    <span class="cs-card_btn_2" data-modal="#bid_1"
-                      ><span>Place Rent</span></span
-                    >
+                  <div class="cs-card_info">
+                    <h3 class="cs-card_title">
+                      <a>{{ item.name }}</a>
+                    </h3>
+                    <div class="cs-card_price">
+                      Giá tiền:
+                      <b class="cs-primary_color">{{
+                        item.price.toLocaleString("vi-VN", {
+                          style: "currency",
+                          currency: "VND",
+                        })
+                      }}</b>
+                    </div>
                   </div>
                 </div>
-                <div class="cs-height_30 cs-height_lg_30"></div>
               </div>
               <div class="cs-height_30 cs-height_lg_30"></div>
             </div>
-
-            <!-- .col -->
           </div>
           <div class="cs-height_10 cs-height_lg_10"></div>
           <div class="text-center">
@@ -162,11 +150,12 @@ import "vue-awesome-paginate/dist/style.css";
 import { userInfo } from "@/store";
 import footerHome from "@/pages/footer.vue";
 import startHeader from "@/pages/startHeader.vue";
-// import Swal from "sweetalert2";
+import Swal from "sweetalert2";
 import ProductService from "@/service/ProductService";
-
 import profileLeftVue from "@/pages/profileLeft.vue";
-
+import PurchaseService from "@/service/PurchaseService.js";
+import ItemService from "@/service/ItemService";
+import RegisterService from "@/service/RegisterService";
 export default {
   name: "myItem",
   data() {
@@ -174,6 +163,8 @@ export default {
       BASE_URL: process.env.BASE_URL,
       userInfoData: userInfo.value, // Gán userInfo vào biến userInfoData
       listProduct: [],
+      listPurchase: [],
+      listItem: [],
     };
   },
   components: {
@@ -182,25 +173,101 @@ export default {
     profileLeftVue,
   },
   methods: {
+    async purchaseItems(itemId) {
+      // Lấy dữ liệu người dùng mới từ API sau khi donate
+      const response = await RegisterService.findByEmail(userInfo.value.email);
+      userInfo.value = response; // Cập nhật thông tin người dùng.
+
+      const userBalance = userInfo.value.balance;
+      const itemToPurchase = this.listItem.find((item) => item.id === itemId);
+
+      // const userPurchaseId = userInfo.value.id;
+      const quantity = 1;
+      try {
+        if (userBalance < itemToPurchase.price) {
+          const result = await Swal.fire({
+            icon: "error",
+            title: "Không đủ tiền để mua",
+            text: "Bạn có muốn chuyển đến trang nạp tiền",
+            showCancelButton: true,
+            confirmButtonText: "Yes",
+            cancelButtonText: "No",
+          });
+          if (result.isConfirmed) {
+            // Chuyển hướng đến trang coin nếu người dùng chọn "Yes"
+            this.$router.push("/coin");
+          }
+          return;
+        }
+        const response = await PurchaseService.purchaseItem(
+          this.userInfoData.id,
+          itemId,
+          quantity,
+        );
+        console.log("Item purchased successfully:", response);
+        // this.$store.commit("updateBalance", this.userInfoData.balance);
+        Swal.fire("", "Mua Thành Công ✔️", "success");
+        this.getItem();
+        this.getPurchasesById();
+      } catch (error) {
+        console.error("Error purchasing item:", error);
+      }
+    },
+
+    getItemQuantity(itemId) {
+      const purchase = this.listPurchase.find(
+        (p) => p.item_purchase.id === itemId,
+      );
+      return purchase ? purchase.quantity : 0;
+    },
+
     async getAllProductById() {
-      
-    
       try {
         const response = await ProductService.getProductsByUser(
           this.userInfoData.id,
         );
-
         this.listProduct = response.sort((a, b) => b.id - a.id); // giảm dần
         console.log(this.listProduct);
       } catch (error) {
         console.error("Error fetching products by user:", error);
       }
     },
+    async getItem() {
+      try {
+        const response = await ItemService.getItem();
+        const data = response.data;
+        this.listItem = data;
+      } catch (error) {
+        console.error("Lỗi khi lấy danh sách mua", error);
+      }
+    },
+    async getPurchasesById() {
+      try {
+        const response = await PurchaseService.getPurchaseById(
+          this.userInfoData.id,
+        );
+        this.listPurchase = response.sort((a, b) => b.id - a.id); // giảm dần
+      } catch (error) {
+        console.error("Lỗi khi lấy danh sách mua", error);
+      }
+    },
   },
+
   async created() {
-    await this.getAllProductById();
+    this.getAllProductById();
+
+    // this.purchaseItems().then(() => this.getPurchasesById()).then(() => this.getItem());
+
+    this.getPurchasesById();
+    // this.getAllItemById();
+    this.getItem();
   },
 };
 </script>
 
-<style></style>
+<style lang="postcss" scoped>
+.cs-blurred {
+  filter: blur(5px); /* You can adjust the blur intensity as needed */
+  opacity: 0.7; /* Adjust the opacity for a semi-transparent effect */
+}
+</style>

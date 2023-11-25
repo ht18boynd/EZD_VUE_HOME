@@ -7,7 +7,6 @@
     <div class="cs-height_30 cs-height_lg_30"></div>
     <div class="cs-height_30 cs-height_lg_30"></div>
 
-
     <!-- Start Hero -->
     <!-- Start Hero -->
     <section class="container-fluid">
@@ -36,7 +35,9 @@
                     {{ slide.title }}
                   </div>
                   <div class="cs-hero_btns">
-                    <a href="youtube.com" class="cs-hero_btn cs-style1 cs-color1"
+                    <a
+                      href="youtube.com"
+                      class="cs-hero_btn cs-style1 cs-color1"
                       ><span>Explore</span></a
                     >
                     <a href="#" class="cs-hero_btn cs-style1 cs-color2"
@@ -69,13 +70,13 @@
         >
           <Slide v-for="game in gamelist" :key="game.id">
             <div class="carousel__item">
-              <router-link  :to="'/product/skill/' + game.id">
-              <img
-                :src="game.imageName"
-                alt="Game Image"
-                class="carousel__image"
-              />
-            </router-link>
+              <router-link :to="'/product/skill/' + game.id">
+                <img
+                  :src="game.imageName"
+                  alt="Game Image"
+                  class="carousel__image"
+                />
+              </router-link>
               <div class="carousel__caption">{{ game.nameGame }}</div>
             </div>
           </Slide>
@@ -89,7 +90,6 @@
 
     <div class="cs-height_70 cs-height_lg_40"></div>
 
- 
     <section>
       <div class="container">
         <div class="cs-section_heading cs-style2">
@@ -97,15 +97,21 @@
             <h2 class="cs-section_title">New Idols</h2>
           </div>
         </div>
-     
+
         <div class="cs-height_45 cs-height_lg_45"></div>
         <div class="row">
-           
-          <div class="col-xl-3 col-lg-4 col-sm-6" v-for="item in listProduct" :key="item.id" >
-         <div class="cs-card cs-style4 cs-box_shadow cs-white_bg" >
-           <span class="cs-card_like cs-primary_color" style="background-color:rgba(22,214,181); color:white">
-            ✿ {{ item.status }} ✿
-           </span>
+          <div
+            class="col-xl-3 col-lg-4 col-sm-6"
+            v-for="item in listProduct"
+            :key="item.id"
+          >
+            <div class="cs-card cs-style4 cs-box_shadow cs-white_bg">
+              <span
+                class="cs-card_like cs-primary_color"
+                style="background-color: rgba(22, 214, 181); color: white"
+              >
+                ✿ {{ item.status }} ✿
+              </span>
 
               <router-link
                 class="cs-card_thumb cs-zoom_effect"
@@ -117,28 +123,65 @@
                 <a href="#" class="cs-avatar cs-white_bg">
                   <span></span>
                 </a>
-              <h3>
-             {{item.game_product.nameGame}}
-             </h3>
-             <h3 class="cs-card_title">
-              {{item.user_product.name}}
-             </h3>
+                <h3>
+                  {{ item.game_product.nameGame }}
+                </h3>
+                <h3 class="cs-card_title">
+                  {{ item.user_product.name }}
+                </h3>
 
-             
+                <div class="cs-card_price">
+                  <div
+                    style="
+                      position: relative;
+                      width: 35px;
+                      height: 35px;
+                      float: left;
+                    "
+                  >
+                    <img
+                      width="100"
+                      height="100"
+                      :src="item.user_product.currentRank.avatar_frame_image"
+                      class="img-fluid rounded"
+                      style="
+                        z-index: 1;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                      "
+                    />
+                    <img
+                      width="100"
+                      height="100"
+                      src="https://img.icons8.com/plasticine/100/brawl-stars.png"
+                      alt="brawl-stars"
+                      style="
+                        z-index: 2;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                      "
+                    />
+                  </div>
 
-             <div class="cs-card_price">
-              
-
-              <img
-              width="35"
-              height="35"
-              src="https://img.icons8.com/plasticine/100/brawl-stars.png"
-              alt="brawl-stars"
-          />
-          <b class="cs-primary_color">{{ item.price }} vnĐ / {{item.hour}}.h</b>
-             </div>
-             <hr />
-             <!-- <div class="cs-card_footer">
+                  <div style="float: none">
+                    <img
+                      :src="item.user_product.currentRank.background_image"
+                    />
+                  </div>
+                  <b class="cs-primary_color"
+                    >{{ item.price }} vnĐ / {{ item.hour }}.h</b
+                  >
+                </div>
+                <hr />
+                <!-- <div class="cs-card_footer">
                  <span class="cs-card_btn_2" data-modal="#bid_1"
                  ><span>Donate</span></span
                >
@@ -146,13 +189,13 @@
                  ><span>Place Rent</span></span
                >
              </div> -->
-           </div>
-         </div>
-         <div class="cs-height_30 cs-height_lg_30"></div>
-       </div>
-    
-     <!-- .col -->
-   </div>
+              </div>
+            </div>
+            <div class="cs-height_30 cs-height_lg_30"></div>
+          </div>
+
+          <!-- .col -->
+        </div>
       </div>
     </section>
     <!-- End New Items -->
@@ -182,13 +225,15 @@
       <div class="container">
         <div class="cs-cta cs-style2 text-center cs-accent_bg">
           <h2 class="cs-cta_title cs-white_color_8">
-            Join our biggest  Gamer Community
+            Join our biggest Gamer Community
           </h2>
           <div class="cs-cta_subtitle cs-white_color_8">
             Exercitation veniam consequat sunt nostrud amet. It is a long
             <br />established fact that a reader
           </div>
-          <router-link to="/register" class="cs-btn cs-style1 cs-btn_lg cs-color2"
+          <router-link
+            to="/register"
+            class="cs-btn cs-style1 cs-btn_lg cs-color2"
             ><span>Sign Up</span></router-link
           >
         </div>
@@ -476,7 +521,6 @@ export default {
         console.error("Lỗi khi lấy danh sách banner: ", error);
       }
     },
-    
   },
 
   async created() {

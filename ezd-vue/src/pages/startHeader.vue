@@ -20,24 +20,19 @@
                         />
                       </router-link>
 
-                    
                       <ul
                         class="cs-nav_list"
                         style="font-weight: 800; font-size: large"
                       >
-                      <li>
-                        <router-link to="/" :key="$route.fullPath"
-                          >Home</router-link
-                        >
-                      </li>
+                       
                         <li>
                           <router-link to="/become" :key="$route.fullPath"
                             >Become The Idols</router-link
                           >
                         </li>
-                      
+
                         <li><router-link to="/game">Mini Game</router-link></li>
-                      
+
                         <li><router-link to="/blog">Blog</router-link></li>
                         <li>
                           <router-link to="/contact">Contact</router-link>
@@ -47,51 +42,52 @@
                           <router-link to="/feedback">Feedback</router-link>
                         </li>
 
-
                         <li>
                           <router-link to="/faq">FAQ</router-link>
                         </li>
                         <li class="menu-item-has-children cs-mega-menu">
-                          <router-link to="/" :key="$route.fullPath">All Service</router-link>
+                          <router-link to="/" :key="$route.fullPath"
+                            >All Service</router-link
+                          >
                           <ul class="cs-mega-wrapper">
-                           
-                            <li class="menu-item-has-children">                          
+                            <li class="menu-item-has-children">
                               <div class="row scrollable-container">
                                 <div
                                   class="col-xl-3 col-lg-2 col-sm-4"
-                                  v-for="game in gamelist" :key="game.id" 
+                                  v-for="game in gamelist"
+                                  :key="game.id"
                                 >
-                                  <div class="cs-card cs-style4 cs-box_shadow cs-white_bg">                                
-                                    <router-link  :to="'/product/skill/' + game.id">
+                                  <div
+                                    class="cs-card cs-style4 cs-box_shadow cs-white_bg"
+                                  >
+                                    <router-link
+                                      :to="'/product/skill/' + game.id"
+                                    >
                                       <img
-                                      :src="game.imageName"
+                                        :src="game.imageName"
                                         alt="Image"
                                         class="cs-zoom_item"
                                       />
                                     </router-link>
                                     <div class="cs-card_info">
-                                     
                                       <h3 class="cs-card_title">
                                         <a href="explore-details.html">{{
                                           game.nameGame
                                         }}</a>
                                       </h3>
-
-                                   
-                                     
                                     </div>
                                   </div>
-                                  <div class="cs-height_30 cs-height_lg_30"></div>
+                                  <div
+                                    class="cs-height_30 cs-height_lg_30"
+                                  ></div>
                                 </div>
-                    
+
                                 <!-- .col -->
                               </div>
                             </li>
                           </ul>
-                          
                         </li>
                       </ul>
-             
                     </div>
                   </div>
                 </div>
@@ -104,20 +100,38 @@
                     <div class="cs-nav">
                       <ul
                         class="cs-nav_list"
-                        style="font-weight: 800; font-size: large ; margin-right : 50px "
+                        style="
+                          font-weight: 800;
+                          font-size: large;
+                          margin-right: 50px;
+                        "
                       >
-
                         <li v-if="user == null">
                           <router-link to="/login">Login</router-link>
                         </li>
                         <li v-if="user != null">
                           <router-link to="/person/profile">
-                            <img
-                              width="35"
-                              height="35"
-                              src="https://img.icons8.com/plasticine/100/brawl-stars.png"
-                              alt="brawl-stars"
-                          /></router-link>
+                            <div class="rounded position-relative">
+                              <!-- Hình ảnh với khung viền -->
+                              <img
+                                width="35"
+                                height="35"
+                                :src="user.currentRank.avatar_frame_image"
+                                alt="Rank Avatar"
+                                class="img-fluid rounded"
+                              />
+
+                              <!-- Icon nằm bên trong khung viền -->
+                              <img
+                                width="35"
+                                height="35"
+                                src="https://img.icons8.com/plasticine/100/brawl-stars.png"
+                                alt="brawl-stars"
+                                class="position-absolute top-50 start-50 translate-middle"
+                                style="z-index: 1"
+                              />
+                            </div>
+                          </router-link>
 
                           <ul
                             style="
@@ -206,7 +220,6 @@ import { mapState } from "vuex";
 import { userInfo } from "@/store";
 import GameService from "@/service/GameService";
 
-
 export default {
   name: "startHeader",
   computed: {
@@ -252,15 +265,12 @@ export default {
   async created() {
     this.getAllGames();
   },
-
 };
 </script>
 
 <style scoped>
-
-  .scrollable-container {
-    max-height: 600px; /* Set the desired max height */
-    overflow-y: auto;  /* Add a vertical scrollbar when needed */
-  }
+.scrollable-container {
+  max-height: 600px; /* Set the desired max height */
+  overflow-y: auto; /* Add a vertical scrollbar when needed */
+}
 </style>
-
