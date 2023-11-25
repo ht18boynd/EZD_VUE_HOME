@@ -5,8 +5,8 @@
       <router-link to="/login"  v-if="user==null"> <p>Please Login To Play</p></router-link>
       <div class="modes"  v-if="user!=null">
      
-        <button @click="onStart(4)">
-          <span>2x2</span>
+        <button @click="onStart(2)">
+          <span>1*1</span>
           <span>Easy</span>
         </button>
         <button @click="onStart(16)">
@@ -47,7 +47,6 @@ data(){
 .screen {
   width: 100%;
   height: 920px;
-
   display: flex;
   align-items: center;
   justify-content: center;

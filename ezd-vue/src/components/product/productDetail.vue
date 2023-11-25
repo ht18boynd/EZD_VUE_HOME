@@ -805,6 +805,7 @@ export default {
       }
     },
     async getPurchaseById() {
+  
       const user_id = userInfo.value.id;
       try {
         const response = await PurchaseService.getPurchaseById(user_id);
