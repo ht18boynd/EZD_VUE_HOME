@@ -36,7 +36,7 @@
                     {{ slide.title }}
                   </div>
                   <div class="cs-hero_btns">
-                    <a href="#" class="cs-hero_btn cs-style1 cs-color1"
+                    <a href="youtube.com" class="cs-hero_btn cs-style1 cs-color1"
                       ><span>Explore</span></a
                     >
                     <a href="#" class="cs-hero_btn cs-style1 cs-color2"
@@ -89,33 +89,15 @@
 
     <div class="cs-height_70 cs-height_lg_40"></div>
 
-    <!-- Start New Items -->
+ 
     <section>
       <div class="container">
         <div class="cs-section_heading cs-style2">
           <div class="cs-section_left">
-            <h2 class="cs-section_title">New Items</h2>
+            <h2 class="cs-section_title">New Idols</h2>
           </div>
         </div>
-        <div class="cs-isotop_filter cs-style1 cs-type1 cs-center">
-          <ul class="cs-mp0 cs-center">
-            <li class="active">
-              <a href="#" data-filter="*"><span>All NFT</span></a>
-            </li>
-            <li>
-              <a href="#" data-filter=".fashion"><span>Fashion</span></a>
-            </li>
-            <li>
-              <a href="#" data-filter=".music"><span>Music</span></a>
-            </li>
-            <li>
-              <a href="#" data-filter=".video"><span>Video</span></a>
-            </li>
-            <li>
-              <a href="#" data-filter=".games"><span>Games</span></a>
-            </li>
-          </ul>
-        </div>
+     
         <div class="cs-height_45 cs-height_lg_45"></div>
         <div class="row">
            
@@ -125,30 +107,24 @@
             ✿ {{ item.status }} ✿
            </span>
 
-           <router-link class="cs-card_thumb cs-zoom_effect"
-           :to="'/product/productDetails/' + item.user_product.id">
-             <img
-              :src="item.img_product"
-               alt="Image"
-               class="cs-zoom_item"
-             />
-             </router-link
-             >
-           <div class="cs-card_info">
-             <a href="#" class="cs-avatar cs-white_bg">
-            
-              
-               <span></span>
-             </a>
-             
-             <h3 class="cs-card_title">
-
-               <a href="explore-details.html">{{item.game_product.nameGame}}</a>
+              <router-link
+                class="cs-card_thumb cs-zoom_effect"
+                :to="'/product/productDetails/' + item.user_product.id"
+              >
+                <img :src="item.img_product" alt="Image" class="cs-zoom_item" />
+              </router-link>
+              <div class="cs-card_info">
+                <a href="#" class="cs-avatar cs-white_bg">
+                  <span></span>
+                </a>
+              <h3>
+             {{item.game_product.nameGame}}
              </h3>
              <h3 class="cs-card_title">
-              <a href="explore-details.html">{{item.user_product.name}}</a>
+              {{item.user_product.name}}
+             </h3>
 
-              </h3>
+             
 
              <div class="cs-card_price">
               
@@ -206,14 +182,14 @@
       <div class="container">
         <div class="cs-cta cs-style2 text-center cs-accent_bg">
           <h2 class="cs-cta_title cs-white_color_8">
-            Join our biggest NFTs platform
+            Join our biggest  Gamer Community
           </h2>
           <div class="cs-cta_subtitle cs-white_color_8">
             Exercitation veniam consequat sunt nostrud amet. It is a long
             <br />established fact that a reader
           </div>
-          <a href="/home/register" class="cs-btn cs-style1 cs-btn_lg cs-color2"
-            ><span>Sign Up</span></a
+          <router-link to="/register" class="cs-btn cs-style1 cs-btn_lg cs-color2"
+            ><span>Sign Up</span></router-link
           >
         </div>
       </div>

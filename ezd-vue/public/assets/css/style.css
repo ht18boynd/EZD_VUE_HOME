@@ -4764,7 +4764,8 @@ kbd {
     background-color: #fff;
   }
   .cs-nav .cs-nav_list .cs-mega-wrapper > li {
-    width: 250px;
+    width: 850px;
+    height: 600px;
     -webkit-box-flex: 0;
         -ms-flex: none;
             flex: none;
